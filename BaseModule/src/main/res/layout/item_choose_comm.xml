@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen_15"
+    android:paddingRight="@dimen/dimen_15">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/dimen_10"
+        android:paddingBottom="@dimen/dimen_10">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/dimen_30"
+            android:layout_height="@dimen/dimen_30"
+            android:layout_marginLeft="@dimen/dimen_3"
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/ic_cmb_logo" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_13"
+            android:layout_weight="1"
+            android:textColor="@color/gray_33"
+            android:textSize="@dimen/text_16"
+            tools:text="主题社区" />
+
+        <ImageView
+            android:id="@+id/choose"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_publish_choose" />
+
+        <TextView
+            android:id="@+id/share_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_b8"
+            android:textSize="@dimen/text_12"
+            android:visibility="gone"
+            android:text="已分享"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/dimen_0.5"-->
+    <!--android:background="@color/divider" />-->
+
+</LinearLayout>

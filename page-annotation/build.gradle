@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+task copyJar(type: Copy) {
+
+    def outputPath = [project.rootDir.absolutePath, "aars"].join(File.separator)
+
+    println("path -------------- ${outputPath}")
+    println("path -------------- ${configurations.runtime}")
+    from("build/libs/")
+    into(outputPath) // 目标位置
+
+}
+
+//把JAR复制到目标目录
+task release(type: Copy, dependsOn: [build, copyJar]) {
+
+}

@@ -1,0 +1,111 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        flavorDimensions "versionCode"
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [eventBusIndex: 'org.greenrobot.eventbusperf.MyEventBusIndex']
+            }
+        }
+    }
+
+    productFlavors {
+        local {
+            //本地开发网络请求地址
+            buildConfigField "String", "HOST", LOCAL_HOST
+        }
+        dev {
+            //测试网络请求地址
+            buildConfigField "String", "HOST", DEV_HOST
+        }
+
+        pro {
+            //生产灰度网络请求地址
+            buildConfigField "String", "HOST", HOST
+        }
+
+        rel {
+            //生产网络请求地址
+            buildConfigField "String", "HOST", HOST
+        }
+    }
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+        }
+
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+
+    }
+    compileOptions {
+        targetCompatibility = '1.8'
+        sourceCompatibility = '1.8'
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+}
+
+
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+
+    api project(':BaseModule')
+
+    kapt project(':page-compiler')
+
+    kapt rootProject.ext.room["room-compiler"]
+
+    //TIM
+//    api rootProject.ext.dependencies["imsdk"]
+
+    api rootProject.ext.jiguang["jmessage"]
+
+    api rootProject.ext.jiguang["jpush"]
+
+    api rootProject.ext.jiguang["core"]
+
+    api rootProject.ext.dependencies["circleprogress"]
+
+    api rootProject.ext.dependencies["scale_image"]
+
+    api rootProject.ext.dependencies["sonic"]
+
+    api rootProject.ext.dependencies["bugly"]
+
+    api rootProject.ext.web_agent["agentweb"]
+    api rootProject.ext.web_agent["filechooser"]
+    api rootProject.ext.web_agent["download"]
+
+}

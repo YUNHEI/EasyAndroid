@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_150"
+    android:background="@drawable/sha_bg_project_card">
+
+    <ImageView
+        android:id="@+id/_rec"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_15"
+        android:layout_marginStart="@dimen/dimen_3"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:src="@mipmap/ic_project_rec"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/_ensure"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:src="@mipmap/ic_projcet_ensure"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/dimen_3"
+        app:layout_constraintStart_toEndOf="@id/_rec"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginStart="@dimen/dimen_5"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_appeal_fail"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.chen.basemodule.view.round_image.CircleImageView
+        android:id="@+id/_avatar"
+        android:layout_width="@dimen/dimen_40"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:src="@mipmap/ic_default_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_4"
+        android:background="@drawable/bg_project_type"
+        android:paddingStart="@dimen/dimen_5"
+        android:paddingEnd="@dimen/dimen_5"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_10"
+        app:layout_constraintEnd_toStartOf="@id/_app"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_avatar"
+        tools:text="注册" />
+
+    <TextView
+        android:id="@+id/_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxWidth="@dimen/dimen_60"
+        android:maxLines="1"
+        android:textColor="@color/gray_66"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintBottom_toBottomOf="@id/_type"
+        android:layout_marginStart="@dimen/dimen_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/_type"
+        tools:text="微信投票" />
+
+    <com.chen.baseextend.view.ExpandableTextView
+        android:id="@+id/_title"
+        android:layout_width="@dimen/dimen_70"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:layout_marginEnd="@dimen/dimen_15"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1.18"
+        android:textColor="@color/gray_22"
+        android:textSize="@dimen/text_14"
+        android:gravity="center"
+        app:collapseExpandTextColor="@color/text_link_color"
+        app:contentTextColor="@color/gray_22"
+        app:contentTextSize="@dimen/text_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_type"
+        app:maxCollapsedLines="1"
+        tools:text="刚刚，微信订阅号逆天改版！到底会带来哪些影响？快…" />
+
+    <TextView
+        android:id="@+id/_remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_1"
+        android:text="0人已赚丨剩余0"
+        android:textColor="@color/gray_66"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_title" />
+
+    <TextView
+        android:id="@+id/_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_2"
+        android:textColor="@color/price_text"
+        android:textSize="@dimen/text_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_remaining"
+        tools:text="+100元" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

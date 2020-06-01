@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:id="@+id/parent"
+    android:paddingLeft="@dimen/dimen_20"
+    android:paddingTop="@dimen/dimen_10"
+    android:paddingRight="@dimen/dimen_20"
+    android:paddingBottom="@dimen/dimen_10">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/dimen_24"
+        android:layout_height="@dimen/dimen_24"
+        android:scaleType="centerCrop" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_6"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/gray_22"
+        android:textSize="@dimen/text_14"
+        tools:text="招银云创" />
+
+</LinearLayout>

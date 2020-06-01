@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/_toolbar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_45"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/img_left_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_15"
+        android:scaleType="centerInside"/>
+
+    <TextView
+        android:id="@+id/tv_left_text"
+        style="@style/layout_common_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/text_16"
+        android:visibility="gone"
+        tools:text="返回"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/tv_center_title"
+        style="@style/layout_common_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dimen_45"
+        android:layout_marginRight="@dimen/dimen_45"
+        android:textSize="@dimen/text_18"
+        tools:text="标题"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/img_right_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/dimen_15"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/tv_right_text"
+        style="@style/layout_common_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/text_16"
+        tools:text="完成"
+        tools:visibility="gone"/>
+
+</RelativeLayout>

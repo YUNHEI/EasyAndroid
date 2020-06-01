@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingTop="@dimen/dimen_15"
+    android:clipToPadding="true"
+    android:paddingBottom="@dimen/dimen_5">
+
+    <com.chen.basemodule.view.round_image.RoundImageView
+        app:riv_radius="@dimen/dimen_4"
+        android:id="@+id/_avatar"
+        android:layout_width="@dimen/dimen_30"
+        android:layout_height="@dimen/dimen_30"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_2"
+        android:src="@mipmap/ic_default_avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_12"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/text_link_color"
+        android:textSize="@dimen/text_14"
+        android:drawablePadding="@dimen/dimen_6"
+        app:layout_constraintStart_toEndOf="@id/_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="是"/>
+
+    <TextView
+        android:id="@+id/identity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_12"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="@dimen/dimen_2"
+        android:textColor="@color/gray_99"
+        android:textSize="@dimen/text_11"
+        app:layout_constraintStart_toEndOf="@id/_avatar"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="作者"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_12"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:clickable="false"
+        android:lineSpacingMultiplier="1.3"
+        android:maxLines="20"
+        tools:text="jwjefjaklwjekj@waek ljf\njjjawe jf"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/_avatar"
+        app:layout_constraintTop_toBottomOf="@id/identity"/>
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_12"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_11"
+        app:layout_constraintStart_toEndOf="@id/_avatar"
+        app:layout_constraintTop_toBottomOf="@id/content"
+        tools:text="5分钟前 ·"/>
+
+    <TextView
+        android:id="@+id/reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_4"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:background="@drawable/bg_comment_reply"
+        android:paddingBottom="@dimen/dimen_3"
+        android:paddingLeft="@dimen/dimen_10"
+        android:paddingRight="@dimen/text_10"
+        android:paddingTop="@dimen/dimen_3"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_11"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@id/time"
+        app:layout_constraintStart_toEndOf="@id/time"
+        tools:text="回复"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dimen_5"
+        android:paddingBottom="@dimen/dimen_3"
+        android:paddingLeft="@dimen/dimen_10"
+        android:paddingRight="@dimen/text_10"
+        android:paddingTop="@dimen/dimen_3"
+        android:text="删除"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_11"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@id/time"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

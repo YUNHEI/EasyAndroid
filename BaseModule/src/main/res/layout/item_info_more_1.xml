@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+
+    <com.chen.basemodule.view.round_image.RoundImageView
+        app:riv_radius="3dp"
+        tools:src="@mipmap/ic_cmb_logo"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:id="@+id/icon"
+        android:layout_width="@dimen/dimen_24"
+        android:layout_height="@dimen/dimen_24"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_6"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_5"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:gravity="center_vertical"
+        android:drawableRight="@mipmap/ic_list_comm_gray"
+        android:textColor="@color/gray_66"
+        android:textSize="@dimen/text_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="@+id/icon"
+        tools:text="招商银行"
+        tools:visibility="visible" />
+
+
+    <View
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:id="@+id/label_line"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_05"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:background="@color/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1.18"
+        android:maxLines="3"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_17"
+        app:layout_constraintEnd_toStartOf="@id/cover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_line"
+        tools:text="刚刚，微信订阅号逆天改版！到底会带来哪些影响？快刚刚，微信订阅号逆天改版！到底会带来哪些影响？快刚刚，微信订阅号逆天改版！到底会带来哪些影响？快刚刚，微信订阅号逆天改版！到底会带来哪些影响？快" />
+
+
+    <LinearLayout
+        android:id="@+id/image_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14.5dp"
+        android:layout_marginRight="14.5dp"
+        android:layout_marginTop="@dimen/dimen_9"
+        android:paddingBottom="10dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        tools:visibility="visible">
+
+        <com.chen.basemodule.view.round_image.RoundImageView
+            android:id="@+id/image_one"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="1.5dp"
+            android:layout_weight="1"
+            app:riv_borderColor="@color/gray_ef"
+            app:riv_borderWidth="@dimen/dimen_02" />
+
+        <com.chen.basemodule.view.round_image.RoundImageView
+            android:id="@+id/image_second"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="1.5dp"
+            android:layout_marginRight="1.5dp"
+            android:layout_weight="1"
+            app:riv_borderColor="@color/gray_ef"
+            app:riv_borderWidth="@dimen/dimen_02" />
+
+        <com.chen.basemodule.view.round_image.RoundImageView
+            android:id="@+id/image_three"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="1.5dp"
+            android:layout_weight="1"
+            app:riv_borderColor="@color/gray_ef"
+            app:riv_borderWidth="@dimen/dimen_02" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:layout_marginBottom="@dimen/dimen_12"
+        app:layout_constraintBottom_toTopOf="@+id/divider_container"
+        app:layout_constraintTop_toBottomOf="@id/image_container">
+
+        <TextView
+            android:id="@+id/stick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dimen_6"
+            android:text="置顶"
+            android:textColor="@color/main_theme"
+            android:textSize="@dimen/text_12"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dimen_10"
+            android:text="精选"
+            android:textColor="@color/main_theme_text"
+            android:textSize="@dimen/text_12"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:id="@+id/information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dimen_6"
+            android:textColor="@color/gray_99"
+            android:textSize="@dimen/text_12"
+            android:visibility="visible"
+            tools:text="EaseAndroid广场·小新EaseAndroid广场·小新EaseAndroid广场·小新EaseAndroid小新EaseAndroid小新EaseAndroid小新EaseAndroid小新EaseAndroid小新EaseAndroid"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+
+    <com.chen.basemodule.view.round_image.RoundImageView
+        android:id="@+id/cover"
+        android:layout_width="@dimen/dimen_112"
+        android:layout_height="@dimen/dimen_74"
+        android:layout_margin="@dimen/dimen_15"
+        android:src="@drawable/ic_placeholder"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_radius="@dimen/dimen_8" />
+
+
+    <LinearLayout
+        android:id="@+id/divider_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <View
+            android:layout_marginRight="@dimen/dimen_15"
+            android:layout_marginLeft="@dimen/dimen_15"
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_05"
+            android:background="@color/divider"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

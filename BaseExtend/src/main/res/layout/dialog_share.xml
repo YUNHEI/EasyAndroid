@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/_wechat"
+        android:layout_width="@dimen/dimen_80"
+        android:layout_height="@dimen/dimen_100"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:drawableTop="@mipmap/ic_wechat"
+        android:gravity="center"
+        android:paddingTop="@dimen/dimen_15"
+        android:paddingBottom="@dimen/dimen_15"
+        android:text="微信"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/_circle"
+        android:layout_width="@dimen/dimen_80"
+        android:layout_height="@dimen/dimen_100"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:drawableTop="@mipmap/ic_wechat_moment"
+        android:gravity="center"
+        android:paddingTop="@dimen/dimen_15"
+        android:paddingBottom="@dimen/dimen_15"
+        android:text="朋友圈"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintStart_toEndOf="@id/_wechat"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:background="@drawable/bg_item_white_2_ef_line"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/gray_22"
+        android:textSize="@dimen/dimen_17"
+        app:layout_constraintTop_toBottomOf="@id/_wechat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

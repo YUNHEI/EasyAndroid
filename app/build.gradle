@@ -1,0 +1,190 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.alibaba.arouter'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'bugly'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+android {
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    signingConfigs {
+        release {
+
+            storeFile file { "../easy_android.keystore.jks" }//存放签名key的本地路径
+            //签名密码
+            storePassword "123456"
+            //别名
+            keyAlias "key0"
+            //别名密码
+            keyPassword "123456"
+        }
+    }
+
+    defaultConfig {
+
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+
+        applicationId rootProject.ext.android.applicationId
+
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        flavorDimensions "versionCode"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "**********", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+        }
+
+        multiDexEnabled true
+    }
+
+
+    productFlavors {
+
+        rel {
+
+            /*生产环境发布*/
+            resValue "string", "app_name", "EaseAndroid"
+
+            buildConfigField "String", "APP_NAME_CH", "\"EaseAndroid客户端\""
+
+            buildConfigField "String", "WECHAT_ID", WECHAT_ID
+
+        }
+
+        pro {
+            /*生产环境内测*/
+            resValue "string", "app_name", "EaseAndroid-内测"
+
+            buildConfigField "String", "APP_NAME_CH", "\"EaseAndroid客户端\""
+
+            buildConfigField "String", "WECHAT_ID", WECHAT_ID
+
+        }
+
+        dev {
+
+            /*测试环境开发*/
+            resValue "string", "app_name", "EaseAndroid-开发"
+
+//            applicationId rootProject.ext.android.applicationId + ".dev"
+
+            applicationIdSuffix ".dev"
+
+            buildConfigField "String", "APP_NAME_CH", "\"EaseAndroid客户端-开发版\""
+
+            buildConfigField "String", "WECHAT_ID", DEV_WECHAT_ID
+
+//            buildConfigField "String", "WECHAT_ID", WECHAT_ID
+
+            manifestPlaceholders = [
+                    JPUSH_PKGNAME: rootProject.ext.android.applicationId + ".dev",
+                    JPUSH_APPKEY : "**********", //JPush上注册的包名对应的appkey.
+                    JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+            ]
+
+        }
+
+        local {
+
+            /*本地开发环境*/
+            resValue "string", "app_name", "EaseAndroid-本地"
+
+            applicationIdSuffix ".local"
+
+            buildConfigField "String", "APP_NAME_CH", "\"EaseAndroid客户端-开发版\""
+
+            buildConfigField "String", "WECHAT_ID", DEV_WECHAT_ID
+
+            manifestPlaceholders = [
+                    JPUSH_PKGNAME: rootProject.ext.android.applicationId + ".dev",
+                    JPUSH_APPKEY : "4e69c7e5161814b43e10888e", //JPush上注册的包名对应的appkey.
+                    JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+            ]
+
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+
+            signingConfig signingConfigs.release
+        }
+
+        release {
+
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+
+            signingConfig signingConfigs.release
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+//        checkReleaseBuilds true
+        abortOnError false
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+bugly {
+//    debug = true
+    appId = '******'
+    appKey = '**********'
+}
+
+dependencies {
+
+
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
+    implementation project(':BaseExtend')
+
+    kapt project(':page-compiler')
+
+    //微信支付
+    implementation rootProject.ext.dependencies["wechat-sdk"]
+
+//    if (UserModuleIsModule.toBoolean()) {
+//        implementation project(':UserModule')
+//    }
+
+}

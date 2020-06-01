@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/comment_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0"
+        android:background="@drawable/bg_item_white_2_e3_line"
+        android:maxHeight="@dimen/dimen_95"
+        android:minHeight="@dimen/dimen_56"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <EditText
+            android:id="@+id/edit_input"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_10"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/bg_comment_input_radius"
+            android:gravity="center_vertical"
+            android:hint="写评论..."
+            android:lineSpacingMultiplier="1.2"
+            android:maxHeight="@dimen/dimen_75"
+            android:paddingTop="@dimen/dimen_6"
+            android:paddingBottom="@dimen/dimen_6"
+            android:paddingLeft="@dimen/dimen_18"
+            android:paddingRight="@dimen/dimen_18"
+            android:textSize="@dimen/text_16"/>
+
+        <TextView
+            android:id="@+id/post"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_56"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen_12"
+            android:paddingRight="@dimen/dimen_15"
+            android:text="发送"
+            android:textColor="@color/blue_grey"
+            android:textSize="@dimen/text_16"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="73dp">
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_gravity="right"
+        android:background="@drawable/bg_publish_delete"
+        android:scaleType="centerInside"
+        android:src="@mipmap/ic_publish_delete" />
+
+
+</FrameLayout>

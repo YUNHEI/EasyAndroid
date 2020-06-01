@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/_cover"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/_reset"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:layout_marginEnd="@dimen/dimen_15"
+        android:background="@drawable/btn_cancel"
+        android:gravity="center"
+        android:padding="@dimen/dimen_8"
+        android:text="重置"
+        android:textColor="@color/gray_22"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toStartOf="@id/_confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_recycler" />
+
+    <TextView
+        android:id="@+id/_confirm"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_15"
+        android:background="@drawable/sel_bg_button"
+        android:gravity="center"
+        android:padding="@dimen/dimen_8"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintBottom_toBottomOf="@id/_reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/_reset" />
+
+    <View
+        android:id="@+id/_cover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:background="@color/tran_40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_confirm" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,125 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        flavorDimensions "versionCode"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [eventBusIndex: 'org.greenrobot.eventbusperf.MyEventBusIndex']
+            }
+        }
+    }
+
+    //注意，这里的配置是为了去除gradle对library module默认只编译release buildType的限制
+//    publishNonDefault true
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+
+//    packagingAAR(project, android)
+
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+
+    api rootProject.ext.android_x["appcompat"]
+    api rootProject.ext.android_x["material"]
+    api rootProject.ext.android_x["recyclerview"]
+    api rootProject.ext.android_x["constraintlayout"]
+    api rootProject.ext.android_x["ktx"]
+    api rootProject.ext.android_x["viewpager2"]
+
+    api rootProject.ext.kotlinx_coroutines["core"]
+    api rootProject.ext.kotlinx_coroutines["android"]
+
+    api rootProject.ext.retrofit_network["retrofit"]
+    api rootProject.ext.retrofit_network["adapter-rxjava2"]
+    api rootProject.ext.retrofit_network["converter-gson"]
+    api rootProject.ext.retrofit_network["logging-interceptor"]
+
+    api rootProject.ext.glide["glide"]
+    api rootProject.ext.glide["glide-okhttp3-integration"]
+    kapt rootProject.ext.glide["glide-compiler"]
+
+    api rootProject.ext.lifecycle["runtime"]
+    api rootProject.ext.lifecycle["extensions"]
+    api rootProject.ext.lifecycle["reactivestreams"]
+    api rootProject.ext.lifecycle["ktx"]
+    kapt rootProject.ext.lifecycle["compiler"]
+
+    api rootProject.ext.rxjava["rxjava"]
+    api rootProject.ext.rxjava["rxandroid"]
+//    api rootProject.ext.rxjava["rxbinding"]
+
+//    api rootProject.ext.work["work"]
+//    api rootProject.ext.work["work-ktx"]
+
+    api rootProject.ext.room["room"]
+    api rootProject.ext.room["room-rxjava2"]
+    api rootProject.ext.room["coroutines"]
+    kapt rootProject.ext.room["room-compiler"]
+
+    api project(':page-api')
+    api project(':page-annotation')
+
+    api rootProject.ext.eventbus["livebus"]
+
+    api rootProject.ext.dependencies["securedpreferencestore"]
+
+    api rootProject.ext.dependencies["qiniu-android-sdk"]
+
+    api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+
+    api rootProject.ext.dependencies["switch-button"]
+
+    api rootProject.ext.dependencies["progressmanager"]
+
+    api rootProject.ext.dependencies["zxing"]
+
+    api rootProject.ext.dependencies["fastjson"]
+
+    api rootProject.ext.dependencies["wechat-sdk"]
+
+    api rootProject.ext.dependencies["rxpermissions"]
+
+    api rootProject.ext.dependencies["smart-swipe"]
+
+    api rootProject.ext.dependencies["MagicIndicator"]
+
+    api rootProject.ext.dependencies["smart-swipe"]
+
+    api rootProject.ext.dependencies["kotlin-reflect"]
+}

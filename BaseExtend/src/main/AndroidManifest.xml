@@ -1,0 +1,73 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.chen.baseextend">
+
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="com.chen.baseextend.base.activity.BaseInputActivity"
+            android:theme="@style/InputTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity android:name="com.chen.baseextend.base.activity.BaseStandardActivity" />
+
+        <activity
+            android:name="com.chen.baseextend.base.activity.BaseCoverActivity"
+            android:theme="@style/CoverTheme" />
+
+        <activity
+            android:name="com.chen.baseextend.base.activity.BaseFullActivity"
+            android:theme="@style/FullScreenTheme" />
+
+        <activity
+            android:name="com.chen.baseextend.base.activity.BaseSingleTopActivity"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name="com.chen.baseextend.base.activity.BaseDeepLinkActivity"
+            android:theme="@style/activityNotAnimation">
+
+            <intent-filter>
+                <!-- 协议部分配置 ,要在web配置相同的-->
+                <data
+                    android:host="fintech.link"
+                    android:scheme="xinzhao" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+        </activity>
+
+        <!--如果你的应用需要用到视频 ， 那么请你在使用 AgentWeb 的 Activity 对应的清单文件里加入如下配置-->
+        <activity
+            android:name="com.chen.baseextend.ui.WebActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:process=":browser" />
+
+
+        <activity android:name="com.chen.baseextend.widget.image_view.ImageViewerActivity" />
+
+        <!--        <service android:name=".repos.offline.OfflineService" />-->
+
+        <service
+            android:name="com.chen.baseextend.repos.offline.OfflineService"
+            android:process=":offline" />
+
+    </application>
+</manifest>

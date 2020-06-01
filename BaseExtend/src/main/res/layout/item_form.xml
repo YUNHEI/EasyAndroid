@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="@dimen/dimen_50"
+    android:background="@drawable/bg_item_with_divider">
+
+    <View
+        android:id="@+id/_divider_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_05"
+        android:background="@color/divider"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/_divider_cover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_05"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/_icon"
+        android:layout_width="@dimen/dimen_20"
+        android:layout_height="@dimen/dimen_20"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/_item_title"
+        android:layout_width="@dimen/dimen_90"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:textColor="@color/gray_22"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="昵称" />
+
+    <EditText
+        android:id="@+id/_content"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:imeOptions="actionNext"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:nextFocusForward="@+id/emp_id"
+        android:paddingStart="@dimen/dimen_15"
+        android:paddingEnd="@dimen/dimen_15"
+        android:textColor="@color/gray_33"
+        android:textColorHint="@color/gray_d9"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/_image"
+        app:layout_constraintStart_toEndOf="@id/_item_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.chen.basemodule.view.round_image.RoundImageView
+        android:id="@+id/_image"
+        android:layout_width="@dimen/dimen_45"
+        android:layout_height="@dimen/dimen_45"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:src="@drawable/ic_errorholder"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/_forward"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_radius="@dimen/dimen_5" />
+
+    <ImageView
+        android:id="@+id/_forward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:src="@mipmap/ic_forward_gray"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginRight="@dimen/dimen_20"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

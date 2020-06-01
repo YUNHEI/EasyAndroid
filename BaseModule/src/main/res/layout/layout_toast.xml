@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loading_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_loading_dialog"
+    android:maxWidth="@dimen/dimen_200"
+    android:minHeight="@dimen/dimen_92"
+    android:minWidth="@dimen/dimen_110"
+    android:padding="@dimen/dimen_18">
+
+    <ImageView
+        android:id="@+id/_icon"
+        android:layout_width="@dimen/dimen_25"
+        android:layout_height="@dimen/dimen_25"
+        android:src="@mipmap/ic_load_suc"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginTop="@dimen/dimen_20"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxHeight="@dimen/dimen_100"
+        android:maxWidth="@dimen/dimen_160"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_17"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_icon"
+        tools:text="慰废物辣口味慰废物范记录卡家乐福分辣口味慰废物范记录卡家乐福分辣口味味" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

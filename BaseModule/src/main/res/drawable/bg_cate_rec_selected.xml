@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="rectangle">
+
+            <corners android:radius="@dimen/dimen_5"/>
+
+            <stroke
+                android:width="@dimen/dimen_05"
+                android:color="@color/main_theme"/>
+
+        </shape>
+    </item>
+    <item android:gravity="bottom|right"
+         android:width="@dimen/dimen_13" android:height="@dimen/dimen_13">
+        <bitmap android:src="@mipmap/ic_cate_selected" />
+    </item>
+</layer-list>

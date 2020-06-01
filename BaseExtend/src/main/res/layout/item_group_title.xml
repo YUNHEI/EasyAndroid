@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/divider"
+    android:paddingStart="@dimen/dimen_15"
+    android:paddingEnd="@dimen/dimen_15"
+    android:paddingTop="@dimen/dimen_6"
+    android:paddingBottom="@dimen/dimen_4"
+    android:textSize="@dimen/text_12"
+    android:textColor="@color/gray_66"
+    tools:text="标题" />

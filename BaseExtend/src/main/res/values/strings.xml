@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">BaseExtend</string>
+
+
+    <!--运营数据-->
+    <string name="data_register">注册：%1$d</string>
+    <string name="data_yesterday_add">比上一日 +%1$d</string>
+    <string name="data_yesterday">比上一日 %1$d</string>
+    <string name="data_week_add">当周累计 +%1$d</string>
+    <string name="data_week">当周累计 %1$d</string>
+    <string name="data_cen">认证：%1$d</string>
+    <string name="data_login">登录：%1$d</string>
+    <string name="data_news">分享：%1$d</string>
+    <string name="data_read">浏览：%1$d</string>
+    <string name="data_comment">评论：%1$d</string>
+    <string name="data_visit">访问：%1$d</string>
+    <string name="data_collect">收藏：%1$d</string>
+    <string name="data_share">转发：%1$d</string>
+
+    <string name="update_progress">更新中%s%%</string>
+    <string name="news_compose">文章排版中，为你展示原文内容</string>
+    <string name="news_compose_fail">文章排版失败，为你展示原文内容</string>
+
+
+    <string name="behavior_user_bar">com.chen.basemodule.widget.behavior.UserInforamtionBarBehavior</string>
+
+    <string name="information_desc">简介：%1$s</string>
+
+    <string name="comm_count">%1$d人</string>
+    <string name="comm_list_count">社区成员(%1$d)</string>
+
+    <string name="feed_back_tv_count">%1$d/500</string>
+    <string name="feed_back_iv_count">%1$d/4</string>
+
+
+    <string name="theme_comm">专业社区(%1$d)</string>
+    <string name="staff_comm">员工社区(%1$d)</string>
+
+    <string name="comm_count_title">%1$s(%2$d)</string>
+
+
+    <string name="net_time_out">请求超时，请检查网络是否通畅</string>
+
+</resources>

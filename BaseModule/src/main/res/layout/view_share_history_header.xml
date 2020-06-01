@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_15"
+        android:textColor="@color/gray_22"
+        android:textSize="@dimen/text_22"
+        tools:text="以前腾讯是帝国心态，现在改变思路走生态模式 " />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_6"
+        android:background="@color/gray_f5" />
+
+</LinearLayout>

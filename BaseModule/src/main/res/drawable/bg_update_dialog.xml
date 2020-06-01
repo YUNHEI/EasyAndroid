@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:width="@dimen/dimen_290"
+        android:height="@dimen/dimen_370">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+            <corners android:radius="@dimen/dimen_6"/>
+        </shape>
+    </item>
+
+    <item
+        android:width="@dimen/dimen_290"
+        android:height="@dimen/dimen_180"
+        android:gravity="top">
+        <bitmap android:src="@mipmap/bg_dialog_update_header"/>
+    </item>
+
+</layer-list>

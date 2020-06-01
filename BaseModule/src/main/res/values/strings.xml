@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">EaseAndroid</string>
+
+    <!--smartRefresh-->
+    <string name="srl_header_pulling">下拉刷新</string>
+    <string name="srl_header_refreshing">正在刷新</string>
+    <string name="srl_header_loading">正在加载</string>
+    <string name="srl_header_release">松开立即刷新</string>
+    <string name="srl_header_finish">已更新</string>
+    <string name="srl_header_failed">刷新失败</string>
+    <string name="srl_header_update">上次更新 M-d HH:mm</string>
+    <string name="srl_header_secondary">释放进入二楼</string>
+
+    <string name="srl_footer_pulling">上拉加载更多</string>
+    <string name="srl_footer_release">释放立即加载</string>
+    <string name="srl_footer_loading">正在加载…</string>
+    <string name="srl_footer_refreshing">正在刷新…</string>
+    <string name="srl_footer_finish">加载完成</string>
+    <string name="srl_footer_failed">加载失败</string>
+    <string name="srl_footer_nothing">没有更多数据了</string>
+
+    <string name="srl_content_empty">SmartRefreshLayout中没有找到内容视图。您是否忘记在xml布局文件中添加？</string>
+    <string name="srl_component_falsify" formatted="false">%s 虚假区域\n代表运行时拖动的高度【%.1fdp】 \n而不会显示任何东西</string>
+
+    <string name="fgh_mask_top_pull">下拉开始游戏!</string>
+    <string name="fgh_mask_top_release">释放立刻开始!</string>
+    <string name="fgh_mask_bottom">上下滑动控制游戏</string>
+
+    <string name="fgh_text_game_over">游戏结束</string>
+    <string name="fgh_text_loading">玩个游戏解解闷</string>
+    <string name="fgh_text_loading_finish">刷新完成</string>
+    <string name="fgh_text_loading_failed">刷新失败</string>
+    <!--smartRefresh-->
+
+    <string name="complete">完成</string>
+    <string name="edit">编辑</string>
+
+
+    <!--photoPicker-->
+    <string name="__picker_title">图片</string>
+    <string name="__picker_delete">删除</string>
+    <string name="__picker_done">完成</string>
+    <string name="__picker_done_with_count">完成(%1$d/%2$d)</string>
+    <string name="__picker_image_index">%1$d/%2$d</string>
+    <string name="__picker_undo">撤销</string>
+    <string name="__picker_deleted_a_photo">删除一张</string>
+    <string name="__picker_confirm_to_delete">确定删除?</string>
+    <string name="__picker_yes">确定</string>
+    <string name="__picker_cancel">取消</string>
+    <string name="__picker_all_image">所有图片</string>
+    <string name="__picker_image_count">%1$d</string>
+    <string name="__picker_over_max_count_tips">最多选取 %1$d 张图片</string>
+    <!--photoPicker-->
+
+    <string-array name="WheelArrayDefault">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17.</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+    </string-array>
+
+    <string name="no_more_content">没有更多内容</string>
+
+</resources>

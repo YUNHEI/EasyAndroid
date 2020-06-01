@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:gravity="bottom|right" android:bottom="@dimen/dimen_2">
+        <bitmap android:src="@mipmap/ic_button_pick_photo_sel"/>
+    </item>
+
+</layer-list>

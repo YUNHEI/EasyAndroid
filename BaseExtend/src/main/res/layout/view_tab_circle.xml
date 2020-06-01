@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.chen.baseextend.view.TabCircleView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="@dimen/dimen_10"
+        android:paddingEnd="@dimen/dimen_10"
+        tools:text="点赞" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/dimen_17"
+        android:layout_marginBottom="@dimen/dimen_8"
+        android:background="@drawable/bg_comment_count"
+        android:paddingLeft="@dimen/dimen_4"
+        android:paddingTop="@dimen/dimen_1"
+        android:paddingRight="@dimen/dimen_4"
+        android:paddingBottom="@dimen/dimen_1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_8"
+        android:visibility="gone"
+        tools:text="15"
+        tools:visibility="visible" />
+
+</FrameLayout>

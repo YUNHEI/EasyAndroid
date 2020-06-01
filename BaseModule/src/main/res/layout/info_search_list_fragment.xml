@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/img_left_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_45"
+        android:padding="@dimen/dimen_15"
+        android:scaleType="centerInside"
+        android:layout_marginTop="@dimen/dimen_20"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_back"/>
+    
+    <com.chen.basemodule.view.CleanableEditText
+        android:id="@+id/search_edit"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_comment_input_radius"
+        app:layout_constraintStart_toEndOf="@id/img_left_icon"
+        app:layout_constraintEnd_toStartOf="@id/search"
+        app:layout_constraintTop_toTopOf="@id/img_left_icon"
+        android:hint="用户 | 科技 | 金融 | 创新"
+        android:inputType="text"
+        android:textColorHint="@color/gray_99"
+        android:textColor="@color/gray_33"
+        android:imeOptions="actionSearch"
+        android:textSize="@dimen/text_13"
+        android:paddingTop="@dimen/dimen_7"
+        android:maxLines="1"
+        android:paddingBottom="@dimen/dimen_7"
+        android:paddingLeft="@dimen/dimen_12"
+        android:paddingRight="@dimen/dimen_12"
+        android:drawableLeft="@mipmap/ic_search_gray"
+        android:drawablePadding="@dimen/dimen_8"
+        app:layout_constraintBottom_toBottomOf="@id/img_left_icon"/>
+
+    <TextView
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_45"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/text_16"
+        android:textColor="@color/gray_33"
+        android:text="搜索"
+        app:layout_constraintBottom_toBottomOf="@id/img_left_icon"
+        android:paddingLeft="@dimen/dimen_15"
+        android:paddingRight="@dimen/dimen_15"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_05"
+        android:background="@color/divider"
+        app:layout_constraintTop_toBottomOf="@id/img_left_icon"/>
+
+    <TextView
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="加载中"
+        android:textColor="@color/gray_d0"
+        android:textSize="@dimen/text_16"
+        android:layout_marginTop="@dimen/dimen_35"
+        android:drawablePadding="@dimen/dimen_6"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/empty_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_14"
+        android:textColor="@color/gray_99"
+        android:text="没有符合该搜索条件的资讯"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.432"
+        android:visibility="gone"/>
+
+    <com.chen.basemodule.widget.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="visible">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.chen.basemodule.widget.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.chen.basemodule.widget.smartrefresh.layout.SmartRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

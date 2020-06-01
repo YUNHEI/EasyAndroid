@@ -1,0 +1,15 @@
+rootProject.name='EasyAndroid'
+include ':app'
+
+include ':BaseExtend'
+
+include ':BaseModule'
+
+/** BaseExtend*/
+include 'page-api'
+
+/** page-api, UserModule, SystemModule, AdminModule*/
+include 'page-compiler'
+
+/**page-api*/
+include 'page-annotation'

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dimen_15"
+    android:paddingTop="@dimen/dimen_15"
+    android:paddingRight="@dimen/dimen_15">
+
+
+    <TextView
+        android:paddingBottom="@dimen/dimen_10"
+        android:id="@+id/comm_check"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/dimen_11"
+        android:text="员工社区"
+        android:textColor="@color/gray_b8"
+        android:textSize="@dimen/text_12" />
+
+
+</LinearLayout>

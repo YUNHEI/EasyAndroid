@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/_toolbar"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_45"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/img_left_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dimen_15"
+        android:paddingTop="@dimen/dimen_15"
+        android:paddingRight="@dimen/dimen_10"
+        android:paddingBottom="@dimen/dimen_15"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@mipmap/ic_back"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_left_text"
+        style="@style/layout_common_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/text_16"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_left_icon"
+        app:layout_constraintTop_toTopOf="@+id/img_left_icon"
+        tools:text="返回"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_left_text_2"
+        style="@style/layout_common_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/img_left_icon"
+        android:paddingLeft="@dimen/dimen_2"
+        android:paddingRight="@dimen/dimen_8"
+        android:textSize="@dimen/text_16"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_left_text"
+        app:layout_constraintTop_toTopOf="@+id/img_left_icon"
+        tools:text="你好"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_center_title"
+        style="@style/layout_common_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/dimen_50"
+        android:layout_marginRight="@dimen/dimen_50"
+        android:textSize="@dimen/text_19"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="标题"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/img_right_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/dimen_15"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_right_text"
+        style="@style/layout_common_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_right_icon"
+        tools:text="完成"
+        tools:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/tv_right_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_28"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dimen_15"
+        android:background="@drawable/btn_main_theme"
+        android:gravity="center"
+        android:paddingStart="@dimen/dimen_12"
+        android:paddingTop="@dimen/dimen_4"
+        android:paddingEnd="@dimen/dimen_12"
+        android:paddingBottom="@dimen/dimen_4"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_right_text"
+        app:layout_constraintTop_toTopOf="@+id/tv_center_title"
+        tools:text="完成"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_radius">
+
+    <TextView
+        android:id="@+id/_title"
+        android:layout_width="@dimen/dimen_190"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_42"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_42"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.4"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_17"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/_msg"
+        android:layout_width="@dimen/dimen_250"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:lineSpacingMultiplier="1.2"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_title" />
+
+    <View
+        android:id="@+id/_divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_05"
+        android:layout_marginTop="@dimen/dimen_24"
+        android:background="@color/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_msg" />
+
+    <TextView
+        android:id="@+id/_confirm"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="@dimen/dimen_45"
+        android:gravity="center"
+        android:text="同意"
+        android:textColor="@color/blue_text"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/_cancel"
+        app:layout_constraintTop_toBottomOf="@id/_divider" />
+
+    <TextView
+        android:id="@+id/_cancel"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="@dimen/dimen_45"
+        android:background="@drawable/bg_item_trans_verti_line"
+        android:gravity="center"
+        android:text="不同意"
+        android:textColor="@color/gray_99"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintEnd_toStartOf="@id/_confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_divider"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

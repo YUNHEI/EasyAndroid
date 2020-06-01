@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_item_white_2_ef_line"
+    android:gravity="center_vertical"
+    android:paddingTop="@dimen/dimen_14"
+    android:paddingBottom="@dimen/dimen_14">
+
+    <com.chen.basemodule.view.round_image.RoundImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/dimen_29"
+        android:layout_height="@dimen/dimen_29"
+        app:riv_radius="@dimen/dimen_4" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_13"
+        android:layout_weight="1"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_16"
+        tools:text="李晓明" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray_99"
+        android:textSize="@dimen/text_14"
+        tools:text="已分享5152篇" />
+
+
+</LinearLayout>

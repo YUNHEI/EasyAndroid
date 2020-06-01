@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <com.chen.basemodule.widget.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_container">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.chen.basemodule.widget.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <FrameLayout
+        android:id="@+id/shimmer_cover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0"
+        android:background="@color/bg_common_gray"
+        app:layout_constraintBottom_toTopOf="@id/bottom_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <com.chen.basemodule.widget.ShimmerLayout
+            android:id="@+id/shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dimen_30"
+            app:shimmer_auto_start="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_load_logo" />
+
+        </com.chen.basemodule.widget.ShimmerLayout>
+
+        <ViewStub
+            android:id="@+id/net_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/layout_net_error"/>
+
+    </FrameLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:background="@drawable/bg_item_white_2_e3_line"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="@dimen/dimen_34"
+            android:layout_marginLeft="@dimen/dimen_13"
+            android:layout_marginRight="@dimen/text_13"
+            android:layout_weight="1"
+            android:background="@drawable/bg_comment_input_radius"
+            android:drawableLeft="@mipmap/ic_input"
+            android:drawablePadding="@dimen/dimen_11"
+            android:gravity="center|left"
+            android:paddingLeft="@dimen/dimen_12"
+            android:text="写回复..."
+            android:textColor="@color/gray_99"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
