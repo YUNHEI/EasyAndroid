@@ -14,8 +14,8 @@ object AppealRepos : BaseSimpleRepos<AppealRepos.AppealService>() {
 
     interface AppealService {
 
-        /*根据位置列出广告列表 spaceId;  1-启动页 2-资讯banner) */
-        @POST("order/appeal/getAppealsByType")
+
+        @POST("")
         suspend fun listAppealsByType(@Body request: AppealTypePageRequest): BaseResponse<MutableList<AppealBean>>
 
     }

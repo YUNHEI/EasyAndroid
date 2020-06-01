@@ -30,36 +30,11 @@ object SystemRepos : BaseSimpleRepos<SystemRepos.SystemService>() {
         fun getQiNiuToken(): Observable<BaseResponse<String>>
 
         /**(获取七牛token new) */
-        @POST("manager/banner/show")
+        @POST("*************")
         suspend fun listBanner(@Body request: BannerRequest): BaseResponse<MutableList<AdvertBean>>
 
         /**获取更新日志*/
-        @POST("manager/version/check")
+        @POST("*************")
         suspend fun getLastedVersion(@Body request: BaseRequest): BaseResponse<VersionBean>
-
-        /**获取更新日志*/
-        @POST("manager/version/checkIsReview")
-        suspend fun getReviewVersion(@Body request: ReviewVersionRequest = ReviewVersionRequest()): BaseResponse<Int>
-
-        /**更新日志列表*/
-        @POST("manager/version/list")
-        suspend fun listVersionInfo(@Body request: BasePageRequest): BaseResponse<MutableList<HistoryVersionBean>>
-
-        /**提现配置 */
-        @POST("manager/cashout/getCashOutConfig")
-        suspend fun withdrawConfig(@Body request: RechargeRequest): BaseResponse<WithdrawConfigBean>
-
-        /**提现配置 */
-        @POST("manager/cashout/getCashOutInfo")
-        suspend fun withdrawInfo(@Body request: WithdrawRequest): BaseResponse<WithdrawInfoBean>
-
-
-        /**通知列表 */
-        @POST("user/notice/list")
-        suspend fun listNotice(@Body request: NoticePageRequest): BaseResponse<MutableList<NoticeBean>>
-
-        /*获取任务类型 */
-        @POST("manager/item/getByItemType")
-        suspend fun listItems(@Body request: ItemTypeRequest): BaseResponse<MutableList<ItemTypeBean>>
     }
 }

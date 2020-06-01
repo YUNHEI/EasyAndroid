@@ -4,10 +4,6 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import com.chen.baseextend.BaseExtendApplication
 import com.chen.baseextend.extend.commonFailInterrupt
-import com.chen.baseextend.repos.admin.AdFileRepos
-import com.chen.baseextend.repos.admin.AdProjectRepos
-import com.chen.baseextend.repos.admin.AdSystemRepos
-import com.chen.baseextend.repos.admin.AdUserRepos
 import com.chen.basemodule.basem.BaseViewModel
 import com.chen.basemodule.network.base.BaseResponse
 import kotlinx.coroutines.CoroutineScope
@@ -20,21 +16,6 @@ open class MainViewModel : BaseViewModel() {
     val database by lazy { BaseExtendApplication.database }
 
     //service
-
-//#########################################################################################
-
-
-    //管理端
-
-
-    val adUserService by lazy { AdUserRepos.service }
-
-    val adSystemService by lazy { AdSystemRepos.service }
-
-    val adProjectService by lazy { AdProjectRepos.service }
-
-    val adFileService by lazy { AdFileRepos.service }
-
 
 //    ###################################################################################
 

@@ -58,86 +58,74 @@ object UserRepos : BaseSimpleRepos<UserRepos.UserService>() {
         /**
          * 微信登录
          */
-        @POST("user/wx/login")
+        @POST("*************")
         suspend fun wxLogin(@Body request: WxLoginRequest): BaseResponse<String>
 
         /**
          * 账号密码登录
          */
-        @POST("user/password/login")
+        @POST("*************")
         suspend fun accountLogin(@Body request: LoginRequest): BaseResponse<String>
 
         /**
          * 发送手机绑定验证码
          */
-        @POST("user/sendLoginMsg")
+        @POST("*************")
         suspend fun sendBindingSms(@Body request: SendSmsRequest): BaseResponse<String>
 
         /**
          * 绑定手机号，邀请码
          */
-        @POST("user/bindInfo")
+        @POST("*************")
         suspend fun bindInfo(@Body request: BindingRequest): BaseResponse<String>
 
         /**
          * 获取IM 签名
          */
-        @POST("user/getIMSign")
+        @POST("*************")
         suspend fun getIMSign(@Body request: BaseRequest): BaseResponse<String>
 
         /**
          * 获取用户信息
          */
-        @POST("user/getInfoByToken")
+        @POST("*************")
         suspend fun getUserInfo(@Body request: BaseRequest): BaseResponse<UserInfoAndAccountBean>
 
         /**
          * 获取用户其他信息
          */
-        @POST("user/getShopInfoByUserId")
+        @POST("*************")
         suspend fun getShopInfoByUserId(@Body request: IdRequest): BaseResponse<UserShopInfoBean>
 
         /**
          * 更新用户信息
          */
-        @POST("user/updateBasicInfo")
+        @POST("*************")
         suspend fun updateUserInfo(@Body request: UserInfoUpdateRequest): BaseResponse<Any>
 
 
         /**创建微信支付订单 */
-        @POST("user/userwallet/pay")
+        @POST("*************")
         suspend fun createWxOrder(@Body request: RechargeRequest): BaseResponse<WxPayInfo>
 
         /**提现 */
-        @POST("user/userwallet/wxCashOut")
+        @POST("*************")
         suspend fun withdraw(@Body request: RechargeRequest): BaseResponse<String>
 
         /**提现审核 */
-        @POST("user/userwallet/cashOutApply")
+        @POST("*************")
         suspend fun withdrawApply(@Body request: RechargeRequest): BaseResponse<String>
 
         /**获取提现信息 */
-        @POST("user/userwallet/preCashOutInfo")
+        @POST("*************")
         suspend fun preWithdraw(@Body request: RechargeRequest): BaseResponse<WithdrawInfo>
 
         /**用户订单*/
-        @POST("user/userBill/queryBillList")
+        @POST("*************")
         suspend fun listBill(@Body request: BillPageRequest): BaseResponse<MutableList<BillBean>>
 
         /**用户邀请列表*/
-        @POST("user/friend")
+        @POST("*************")
         suspend fun listInviteFriends(@Body request: BasePageRequest): BaseResponse<MutableList<InviteUserBean>>
-
-        /**获取客服id*/
-        @POST("order/counsel/getCustomerService")
-        suspend fun getServiceId(@Body request: BaseRequest = BaseRequest()): BaseResponse<ServerBean>
-
-        /**根据userId获取用户标识信息*/
-        @POST("user/getUserIdentify")
-        suspend fun getUserIdentify(@Body request: BaseRequest = BaseRequest()): BaseResponse<GuideBean>
-
-        /**更新是否需要新手引导*/
-        @POST("user/updateIsGuide")
-        suspend fun updateIsGuide(@Body request: GuideRequest): BaseResponse<Any>
     }
 }
