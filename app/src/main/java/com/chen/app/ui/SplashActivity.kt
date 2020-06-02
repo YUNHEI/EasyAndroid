@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import com.alibaba.fastjson.JSON
 import com.chen.app.R
+import com.chen.app.ui.main.MainActivity
 import com.chen.baseextend.base.activity.BaseFragmentActivity
 import com.chen.baseextend.bean.ADRequest
 import com.chen.baseextend.bean.AdvertBean
@@ -80,7 +81,7 @@ class SplashActivity : BaseFragmentActivity() {
 
             if (bean.jumpType == 2) {
                 _iv_advert.setOnClickListener {
-//                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     WebActivity.toWebView(this, "www.baidu.com")
                     if (timer != null) {
                         timer!!.cancel()
@@ -122,8 +123,8 @@ class SplashActivity : BaseFragmentActivity() {
                 Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_PHONE_STATE).subscribe {
             if (it) {
-//                startActivity(Intent(this, MainActivity::class.java))
-//                finish()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             } else {
                 dialog.setMsg("请授权相关权限")
                         .setConfirm("退出", R.color.error) {

@@ -22,9 +22,9 @@ import kotlinx.android.synthetic.main.base_mlist_fragment.*
 abstract class BaseGListFragment<P : RootBean, C : RootBean> : BaseMListFragment<BaseGListFragment.DataWrapBean>() {
 
     override fun customerDelegateWithParams(): MutableList<Class<out BaseItemViewDelegate<DataWrapBean>>>? = null
-
+    //是否可展开 默认false
     var expandable = false
-
+    //可展开下是否默认收起  默认收起
     var defaultHide = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

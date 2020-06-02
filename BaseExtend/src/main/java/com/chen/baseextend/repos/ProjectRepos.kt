@@ -6,6 +6,7 @@ import com.chen.baseextend.bean.IdRequest
 import com.chen.baseextend.bean.UserIdRequest
 import com.chen.baseextend.bean.project.*
 import com.chen.baseextend.bean.tim.GroupBean
+import com.chen.basemodule.basem.BaseBean
 import com.chen.basemodule.network.base.BasePageRequest
 import com.chen.basemodule.network.base.BaseRequest
 import com.chen.basemodule.network.base.BaseResponse
@@ -45,6 +46,10 @@ object ProjectRepos : BaseSimpleRepos<ProjectRepos.ProjectService>() {
         /*任务列表 */
         @POST("")
         suspend fun listProject(@Body request: ProjectPageRequest): BaseResponse<MutableList<ProjectBean>>
+
+
+        @POST("musicRankings")
+        suspend fun listMultiItems(@Body request: ItemTypeRequest): BaseResponse<MutableList<ItemTypeBean>>
 
     }
 }

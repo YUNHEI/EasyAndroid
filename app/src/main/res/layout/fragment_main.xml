@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/level_1_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_02"
+        android:background="@color/divider_2"
+        app:layout_constraintBottom_toTopOf="@+id/_tab_host" />
+
+    <com.chen.baseextend.widget.FragmentNewTabHost
+        android:id="@+id/_tab_host"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/_wait_process"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_32"
+        android:layout_marginEnd="@dimen/dimen_15"
+        android:layout_marginBottom="@dimen/dimen_66"
+        android:background="@drawable/bg_video_length_text"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dimen_10"
+        android:paddingEnd="@dimen/dimen_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="悬浮窗"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_13" />
+
+        <TextView
+            android:id="@+id/_wait_process_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:background="@drawable/ic_red_dot"
+            android:paddingStart="@dimen/dimen_6"
+            android:paddingEnd="@dimen/dimen_6"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_13"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,7 @@
 # EasyAndroid
 一个完整基于kotlin的安卓开发框架,采用了mvvm设计模式。涵盖了：
-
-1、基于retrofit2封装的通过kotlin协程实现的网络框架 
-
-2、基于阿里开源router修改的api-router实现项目模块化 
-
+1、基于retrofit2封装的通过kotlin协程实现的网络框架
+2、基于阿里开源router修改的api-router实现项目模块化
 3、基于glide的图片加载缓存框架 
 
 4、基于room实现的往来数据缓存加载 
