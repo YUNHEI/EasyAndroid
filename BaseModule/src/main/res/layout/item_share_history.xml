@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/icon"
         app:layout_constraintTop_toTopOf="@+id/icon"
-        tools:text="招商银行"
+        tools:text=""
         tools:visibility="visible" />
 
 

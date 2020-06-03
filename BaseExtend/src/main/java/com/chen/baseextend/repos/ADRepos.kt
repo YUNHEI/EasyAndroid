@@ -16,7 +16,7 @@ object ADRepos : BaseSimpleRepos<ADRepos.ADService>() {
 
         /*根据位置列出广告列表 */
         @POST("musicRankings")
-        suspend fun listAdvertise(@Body request: ADRequest): BaseResponse<List<AdvertBean>>
+        suspend fun listAdvertise(@Body request: ADRequest): BaseResponse<MutableList<AdvertBean>>
 
     }
 }

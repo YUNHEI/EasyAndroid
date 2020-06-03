@@ -34,6 +34,8 @@ open class MainViewModel : BaseViewModel() {
 
     val activityService by lazy { ActivityRepos.service }
 
+    val weatherService by lazy { WeatherRepos.service }
+
 
     //repos
 

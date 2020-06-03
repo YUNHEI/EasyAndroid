@@ -6,8 +6,8 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.chen.app.R
 import com.chen.app.ui.list.ListSampleFragment
+import com.chen.app.ui.simple.SamplePageFragment
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
-import com.chen.baseextend.extend.startPage
 import com.chen.baseextend.extend.stickSide
 import com.chen.baseextend.util.ReLoginUtil
 import com.chen.basemodule.extend.color
@@ -23,8 +23,8 @@ class MainFragment : BaseSimpleFragment() {
 
     private val tabs by lazy {
         mutableListOf(
+                Tab(SamplePageFragment::class.java, R.drawable.ic_bottom_project, "简单"),
                 Tab(ListSampleFragment::class.java, R.drawable.ic_bottom_home, "列表")
-//                Tab(ProjectFragment::class.java, R.drawable.ic_bottom_project, "任务"),
 //                Tab(MessageListFragment::class.java, R.drawable.ic_bottom_message, "消息"),
 //                Tab(MineFragment::class.java, R.drawable.ic_bottom_mine, "我的")
         )

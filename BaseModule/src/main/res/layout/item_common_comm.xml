@@ -26,6 +26,6 @@
         android:maxLines="1"
         android:textColor="@color/gray_22"
         android:textSize="@dimen/text_14"
-        tools:text="招银云创" />
+        tools:text="云创" />
 
 </LinearLayout>
