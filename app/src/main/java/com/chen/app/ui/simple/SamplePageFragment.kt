@@ -31,20 +31,20 @@ class SamplePageFragment : GroupSSListFragment() {
         mutableListOf(
                 Group("简单页面",
 
-                        Item("页面一")
+                        Item("新建一个简单页面")
                         { v, t ->
 //                    "点击 单一样式列表: $t".toastSuc()
                             startPage(SimpleFirstFragment::class)
                         },
 
-                        Item("页面二")
+                        Item("自定义toobar样式")
                         { v, t ->
-                            startPage(SimpleSecondFragment::class)
+                            startPage(SimpleToolbarFragment::class)
                         },
 
-                        Item("item1-3")
+                        Item("没有toolbar")
                         { v, t ->
-                            "item: $t".toastSuc()
+                            startPage(SimpleWithoutToolbarFragment::class)
                         },
                         titleStyle = TitleStyle(40, 14f, R.color.white, backgroundResource = R.color.blue_lightest, padding = Rect(10, 10, 20, 10))
                 )

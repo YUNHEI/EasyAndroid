@@ -29,7 +29,7 @@ class SimpleFirstFragment : BaseSimpleFragment() {
         listenClick(_next) {
             when (it) {
                 _next -> {
-                    startPage(SimpleSecondFragment::class)
+                    startPage(SimpleToolbarFragment::class)
                 }
                 else -> {
                 }

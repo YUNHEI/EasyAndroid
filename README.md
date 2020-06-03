@@ -30,6 +30,17 @@
 效果图  <img src = "/image/简单页面1.jpg" width = "200" height = "400" />
 对应代码  <img src = "/image/简单页面代码1.png" width = "350" height = "400" />
 
+##### 创建步骤 
+ 1. 新建 SimpleFirstFragment 继承 BaseSimpleFragment
+ 2. 添加注解 @Launch 
+ 3. 设置布局contentLayoutId 为自己创建的布局文件 例如 R.layout.fragment_1
+ 4. 实现 initAndObserve 初始化方法
+
+在 initAndObserve 初始化方法 中可以设置toolbar样式 设置页面内容 设置点击事件等
+页面跳转操作非常简单  startPage(SimpleSecondFragment::class)  其中 SimpleSecondFragment 就是对应页面的文件
+，复杂跳转操作，带参数跳转等后面还将展开说明。
+
+
 
 
 
