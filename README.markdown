@@ -27,7 +27,8 @@
  3. 运行项目app
  
 #### 2. 简单页面创建
-图片一  <img src = "/image/简单页面1.jpg" width = "200" height = "400" />
+效果图  <img src = "/image/简单页面1.jpg" width = "200" height = "400" />
+对应代码  <img src = "/image/简单页面代码1.jpg" width = "350" height = "400" />
 
 
 
