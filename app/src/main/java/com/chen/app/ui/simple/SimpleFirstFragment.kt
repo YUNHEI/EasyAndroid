@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.fragment_1.*
 @Launch
 class SimpleFirstFragment : BaseSimpleFragment() {
 
-    //返回布局文件
+    //设置布局文件
     override val contentLayoutId = R.layout.fragment_1
 
     override fun initAndObserve() {
@@ -25,6 +25,7 @@ class SimpleFirstFragment : BaseSimpleFragment() {
 
         _title.text = "简单页面1"
 
+        //添加点击事件
         listenClick(_next) {
             when (it) {
                 _next -> {
