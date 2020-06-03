@@ -41,7 +41,20 @@ class SimpleToolbarFragment : BaseSimpleFragment() {
 
             _share = right("分享") { "点击了更多".toastSuc() }
 
+            //设置toolbar背景图片
+            backgroundR = R.drawable.bg_item_white_e3_line
 
+            //设置toolbar背景色
+            backgroundC = R.color.white
+
+            //是否开启沉浸式, 默认跟随主题
+            isImmerse = true
+
+            //是否开启亮色主题, 默认亮色
+            isLight = true
+
+            //toobar分割线
+            divider(R.dimen.dimen_05, R.color.gray_f5)
         }
 
         _topic.text = "Toolbar 灵活设置"
