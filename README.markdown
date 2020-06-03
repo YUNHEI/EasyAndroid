@@ -27,7 +27,7 @@
  3. 运行项目app
  
 #### 2. 简单页面创建
-图片一  <img src = "/image/简单页面1.jpg" width = "100" height = "100" div align=right />![简单页面](/image/简单页面1.jpg "简单页面1")
+图片一  <img src = "/image/简单页面1.jpg" width = "200" height = "400" />
 
 
 
