@@ -41,6 +41,18 @@
 ，复杂跳转操作，带参数跳转等后面还将展开说明。
 
 
+#### 3. toolbar的灵活设置于扩展(支持线性布局，约束布局，帧布局，不再支持相对布局)
+<img src = "/image/toolbar不出现.jpg" width = "200" height = "400" />
+<img src = "/image/toolbar灵活设置.jpg" width = "200" height = "400" />
+<img src = "/image/toolbar扩展悬浮.jpg" width = "200" height = "400" />
+<img src = "/image/toolbar扩展搜索1.jpg" width = "200" height = "400" />
+<img src = "/image/toolbar扩展搜索2.jpg" width = "200" height = "400" />
+<img src = "/image/toolbar扩展1.jpg" width = "200" height = "400" />
+<img src = "/image/toolbar扩展2.jpg" width = "200" height = "400" />
+<img src = "/image/toolbar扩展3.jpg" width = "200" height = "400" />
+<img src = "/image/toolbar扩展4.jpg" width = "200" height = "400" />
+
+
 
 
 
