@@ -58,7 +58,7 @@
 status  200..289 表示成功回到success   300..399表示错误，默认会将网络返回的消息toast  400..499 表示网络异常  状态具体的对应需要根据实际接口进行调整，
 可以新建一个Response自定义返回结果
 
-<img src = "/image/网络请求2.png" width = "430" height = "550" />
+<img src = "/image/网络返回.png" width = "430" height = "550" />
 
 
 
