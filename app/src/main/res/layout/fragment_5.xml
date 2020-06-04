@@ -27,38 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="@dimen/text_20"
         android:textColor="@color/gray_22"
-        android:orientation="vertical"
-        android:text="toolbar随机背景颜色">
-
-        <TextView
-            android:id="@+id/_random_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_20"
-            android:textColor="@color/gray_22"
-            android:gravity="center"
-            android:padding="@dimen/dimen_10"
-            android:text="toolbar随机背景颜色"/>
-
-        <TextView
-            android:id="@+id/_immerse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_20"
-            android:textColor="@color/gray_22"
-            android:gravity="center"
-            android:padding="@dimen/dimen_10"
-            android:text="是否沉浸式"/>
-
-        <TextView
-            android:id="@+id/_random_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_20"
-            android:textColor="@color/gray_22"
-            android:gravity="center"
-            android:padding="@dimen/dimen_10"
-            android:text="随机标题"/>
+        android:orientation="vertical">
 
     </LinearLayout>
 

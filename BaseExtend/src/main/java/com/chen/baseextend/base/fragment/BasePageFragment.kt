@@ -62,17 +62,20 @@ abstract class BasePageFragment<T : RootBean> : BaseSimpleFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         toolbar.run {
-            /**0在extend left 1在center  left 2、extend center*/
+            /**0在extend left 1在center  left 2、extend center  3 center center*/
             when (indicateType) {
                 0 -> {
                     mIndicator = extend(MagicIndicator(context), parentSize = -1 to 40)
                 }
                 1 -> {
-                    mIndicator = center(MagicIndicator(context))
+                    mIndicator = center(MagicIndicator(context), true)
                 }
                 2 -> {
                     mIndicator = extend(MagicIndicator(context), size = -2 to -1, parentSize = -1 to 40)
                     (mIndicator.layoutParams as FrameLayout.LayoutParams).gravity = Gravity.CENTER
+                }
+                3 -> {
+                    mIndicator = center(MagicIndicator(context))
                 }
                 else -> {
 

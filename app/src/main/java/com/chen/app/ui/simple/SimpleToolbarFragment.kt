@@ -1,5 +1,6 @@
 package com.chen.app.ui.simple
 
+import android.graphics.Color
 import android.graphics.Rect
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,6 +10,7 @@ import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.basemodule.extend.listenClick
 import com.chen.basemodule.extend.toastSuc
 import kotlinx.android.synthetic.main.fragment_2.*
+import java.util.*
 
 @Launch
 class SimpleToolbarFragment : BaseSimpleFragment() {
@@ -39,7 +41,7 @@ class SimpleToolbarFragment : BaseSimpleFragment() {
 
             _more = right(R.mipmap.ic_more) { "点击了更多".toastSuc() }
 
-            _share = right("分享") { "点击了更多".toastSuc() }
+            _share = right("分享") { "点击了分享".toastSuc() }
 
             //设置toolbar背景图片
             backgroundR = R.drawable.bg_item_white_e3_line
@@ -59,10 +61,16 @@ class SimpleToolbarFragment : BaseSimpleFragment() {
 
         _topic.text = "Toolbar 灵活设置"
 
-        listenClick(_next) {
+        listenClick(_random_bg, _immerse, _random_title) {
             when (it) {
-                _next -> {
-
+                _random_bg -> {
+                    toolbar.setBackgroundColor(Random().run { Color.rgb(nextInt(256), nextInt(256), nextInt(256)) })
+                }
+                _immerse -> {
+                    toolbar.isImmerse = !toolbar.isImmerse
+                }
+                _random_title -> {
+                    _title.text = "随机标题${Random().nextInt(100)}"
                 }
                 else -> {
                 }
