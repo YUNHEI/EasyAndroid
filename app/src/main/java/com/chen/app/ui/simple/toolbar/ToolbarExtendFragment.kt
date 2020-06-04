@@ -1,4 +1,4 @@
-package com.chen.app.ui.simple
+package com.chen.app.ui.simple.toolbar
 
 import android.view.inputmethod.EditorInfo
 import android.widget.FrameLayout

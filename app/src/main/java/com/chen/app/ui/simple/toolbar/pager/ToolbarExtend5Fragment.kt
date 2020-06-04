@@ -1,4 +1,4 @@
-package com.chen.app.ui.simple.pager
+package com.chen.app.ui.simple.toolbar.pager
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData

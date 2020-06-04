@@ -3,13 +3,14 @@ package com.chen.app.ui.simple
 import android.graphics.Rect
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
-import com.chen.app.ui.simple.pager.ToolbarExtend3Fragment
-import com.chen.app.ui.simple.pager.ToolbarExtend4Fragment
-import com.chen.app.ui.simple.pager.ToolbarExtend5Fragment
-import com.chen.app.ui.simple.pager.ToolbarExtend6Fragment
+import com.chen.app.ui.simple.net.WeatherDetailFragment
+import com.chen.app.ui.simple.toolbar.*
+import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend3Fragment
+import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend4Fragment
+import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend5Fragment
+import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend6Fragment
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
-import com.chen.basemodule.extend.toastSuc
 
 @Launch
 class SamplePageFragment : GroupSSListFragment() {
@@ -94,9 +95,11 @@ class SamplePageFragment : GroupSSListFragment() {
                             startPage(ToolbarExtend6Fragment::class)
                         }
                 ),
-                Group(
-                        "标题3",
-                        Item("item3-1"),
+                Group("retrofit2 协程 网络请求",
+                        Item("简单的网络请求")
+                        { v, t ->
+                            startPage(WeatherDetailFragment::class)
+                        },
                         Item("item3-2"),
                         Item("item3-3")
                 )

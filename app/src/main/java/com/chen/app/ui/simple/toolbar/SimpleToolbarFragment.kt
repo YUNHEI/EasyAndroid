@@ -1,4 +1,4 @@
-package com.chen.app.ui.simple
+package com.chen.app.ui.simple.toolbar
 
 import android.graphics.Color
 import android.graphics.Rect

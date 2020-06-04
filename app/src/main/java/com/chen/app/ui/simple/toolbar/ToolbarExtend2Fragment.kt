@@ -1,14 +1,11 @@
-package com.chen.app.ui.simple
+package com.chen.app.ui.simple.toolbar
 
 import android.graphics.Rect
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.view.CleanableEditText
-import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.extend.toastSuc
 import kotlinx.android.synthetic.main.fragment_5.*
 

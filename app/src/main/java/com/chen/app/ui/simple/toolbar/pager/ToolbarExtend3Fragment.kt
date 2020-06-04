@@ -1,4 +1,4 @@
-package com.chen.app.ui.simple.pager
+package com.chen.app.ui.simple.toolbar.pager
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
@@ -16,16 +16,17 @@ import kotlin.coroutines.suspendCoroutine
  * @date 2019/3/27
  */
 @Launch
-class ToolbarExtend6Fragment : BasePageFragment<StringBean>() {
+class ToolbarExtend3Fragment : BasePageFragment<StringBean>() {
 
     /**0在extend left 1在center  left 2、extend center 3、center center*/
-    override val indicateType = 3
+    override val indicateType = 0
 
     override fun getTitle(data: StringBean): String = data.title
 
     override fun initAndObserve() {
 
         toolbar.run {
+            center("高级扩展")
             left(R.mipmap.ic_back) { activity?.finish() }
             divider(0)
         }

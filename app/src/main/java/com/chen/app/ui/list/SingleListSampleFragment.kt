@@ -34,7 +34,7 @@ class SingleListSampleFragment : SingleListFragment<WeatherBean>() {
     override fun loadData(refresh: Boolean, lastItem: WeatherBean?): LiveData<BaseResponse<MutableList<WeatherBean>>>? {
         return viewModel.run {
             requestData(
-                    { weatherService.getWeather(BaseRequest()).apply { status = 200 } }
+                    { weatherService.getWeekWeather(BaseRequest()).apply { status = 200 } }
             )
         }
     }

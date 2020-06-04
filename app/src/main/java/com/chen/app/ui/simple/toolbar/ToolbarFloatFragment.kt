@@ -1,7 +1,6 @@
-package com.chen.app.ui.simple
+package com.chen.app.ui.simple.toolbar
 
 import android.graphics.Rect
-import android.util.Log
 import androidx.core.widget.NestedScrollView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R

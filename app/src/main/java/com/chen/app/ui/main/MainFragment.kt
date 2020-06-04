@@ -9,9 +9,9 @@ import com.chen.app.ui.list.ListSampleFragment
 import com.chen.app.ui.simple.SamplePageFragment
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.extend.stickSide
-import com.chen.baseextend.util.ReLoginUtil
 import com.chen.basemodule.extend.color
 import com.chen.basemodule.extend.listenClick
+import com.chen.basemodule.extend.toastSuc
 import com.chen.basemodule.util.ThemeColorUtil
 import com.chen.basemodule.util.WindowsUtil
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -72,15 +72,14 @@ class MainFragment : BaseSimpleFragment() {
         _wait_process.stickSide()
 
         listenClick(_wait_process) {
-            if (ReLoginUtil.requestLogin(this)) {
-                when (it) {
-                    _wait_process -> {
-//                        startPage(ProjectReceivingFragment::class)
-                    }
-                    else -> {
-                    }
+            when (it) {
+                _wait_process -> {
+                    "点击悬浮窗".toastSuc()
+                }
+                else -> {
                 }
             }
+
         }
 
     }

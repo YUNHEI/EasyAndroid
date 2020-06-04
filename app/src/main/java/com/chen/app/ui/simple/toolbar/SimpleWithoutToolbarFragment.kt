@@ -1,4 +1,4 @@
-package com.chen.app.ui.simple
+package com.chen.app.ui.simple.toolbar
 
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
