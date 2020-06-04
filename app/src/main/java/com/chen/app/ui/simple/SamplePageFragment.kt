@@ -4,6 +4,7 @@ import android.graphics.Rect
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.app.ui.simple.net.WeatherDetailFragment
+import com.chen.app.ui.simple.net.WeatherDetailLoadingFragment
 import com.chen.app.ui.simple.toolbar.*
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend3Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend4Fragment
@@ -96,10 +97,17 @@ class SamplePageFragment : GroupSSListFragment() {
                         }
                 ),
                 Group("retrofit2 协程 网络请求",
+
                         Item("简单的网络请求")
                         { v, t ->
                             startPage(WeatherDetailFragment::class)
                         },
+
+                        Item("简单的网络请求 带加载状态")
+                        { v, t ->
+                            startPage(WeatherDetailLoadingFragment::class)
+                        },
+
                         Item("item3-2"),
                         Item("item3-3")
                 )

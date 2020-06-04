@@ -20,7 +20,7 @@ class WeatherDetailFragment : BaseSimpleFragment(){
 
         viewModel.run {
             requestData(
-                    { weatherService.getWeatherDetail(BaseRequest()).apply { status = 200 } },
+                    { weatherService.getWeatherDetail(BaseRequest()).apply { if (!data.isNullOrEmpty()) status = 200 } },
                     {
                         it.data?.getOrNull(0)?.run {
                             _day.text = day

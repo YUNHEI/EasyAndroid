@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName
 open class BaseResponse<K>(
     //根据自己的接口映射到对应字段
 //    @SerializedName("result")
-    val data: K? = null,
+    open val data: K? = null,
 //    @SerializedName("code")
-    var status: Int = 300,
-    var message: String? = null,
+    open var status: Int = 300,
+    open var message: String? = null,
     val fromCache: Boolean = false
 ) : RootResponse() {
 
