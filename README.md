@@ -48,10 +48,16 @@
 
 
 #### 4. 网络请求 （导入快捷模板代码  android studio-> File -> Import Setting -> 项目根目录下的setting.zip -> 导入模板代码）
+定义接口，接口包含了请求方式@POST、suspen协程、请求URL、请求参数BaseRequest和结果返回BaseResponse
 <img src = "/image/网络请求1.png" width = "510" height = "300" />
-定义接口，接口包含了请求方式@POST、请求URL、请求参数BaseRequest和结果返回BaseResponse
 
+通过模板代码快速输入 req 完成网络请求
 <img src = "/image/网络请求2.png" width = "840" height = "330" />
+
+网络返回需要根绝实际返回字段名称进行映射, data 通过注解 @SerializedName("result") 可以映射接收 result的内容 
+status  200..289 表示成功回到success   300..399表示错误，默认会将网络返回的消息toast  400..499 表示网络异常  状态具体的对应需要根据实际接口进行调整，
+可以新建一个Response自定义返回结果
+<img src = "/image/网络请求2.png" width = "430" height = "550" />
 
 
 
