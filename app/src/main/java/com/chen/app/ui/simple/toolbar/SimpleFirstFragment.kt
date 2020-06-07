@@ -4,10 +4,11 @@ import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.extend.startPage
+import com.chen.baseextend.route.AppRoute.APP_SIMPLE_FIRST_FRAGMENT
 import com.chen.basemodule.extend.listenClick
 import kotlinx.android.synthetic.main.fragment_1.*
 
-@Launch
+@Launch(path = APP_SIMPLE_FIRST_FRAGMENT)
 class SimpleFirstFragment : BaseSimpleFragment() {
 
     //设置布局文件

@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chen.baseextend.R
 import com.chen.baseextend.repos.MainViewModel
-import com.chen.baseextend.route.AppRoute.Login.Companion.PATH_LOGIN_ACCOUNT_FRAGMENT
 import com.chen.baseextend.route.StaffRoute.MEETING_ROOM
 import com.chen.basemodule.basem.BaseActivity
 import com.chen.basemodule.basem.BaseFragment
@@ -58,10 +57,10 @@ class BaseDeepLinkActivity : BaseActivity() {
 
         } else {
 
-            ARouter.getInstance()
-                    .build(PATH_LOGIN_ACCOUNT_FRAGMENT)
-                    .withTransition(R.anim.activity_bottom_enter, 0)
-                    .navigation(this)
+//            ARouter.getInstance()
+//                    .build(PATH_LOGIN_ACCOUNT_FRAGMENT)
+//                    .withTransition(R.anim.activity_bottom_enter, 0)
+//                    .navigation(this)
 
         }
     }

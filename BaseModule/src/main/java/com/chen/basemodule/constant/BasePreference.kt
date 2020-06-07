@@ -15,6 +15,9 @@ object BasePreference : PreferenceHolder() {
     /**下载记录id*/
     var _DOWNLOAD_ID: Long by bindToPreferenceField(0)
 
+    /**信息存储*/
+    var INFO: String? by bindToPreferenceFieldNullable()
+
     /**下载包名*/
     var _DOWNLOAD_APK_NAME: String? by bindToPreferenceFieldNullable()
 

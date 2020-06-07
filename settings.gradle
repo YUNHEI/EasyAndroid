@@ -1,4 +1,3 @@
-rootProject.name='EasyAndroid'
 include ':app'
 
 include ':BaseExtend'
@@ -13,3 +12,4 @@ include 'page-compiler'
 
 /**page-api*/
 include 'page-annotation'
+include ':module1'

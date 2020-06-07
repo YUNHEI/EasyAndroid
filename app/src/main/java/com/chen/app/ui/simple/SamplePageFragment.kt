@@ -5,6 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.app.ui.simple.net.WeatherDetailFragment
 import com.chen.app.ui.simple.net.WeatherDetailLoadingFragment
+import com.chen.app.ui.simple.preference.PreferenceFragment
 import com.chen.app.ui.simple.toolbar.*
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend3Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend4Fragment
@@ -12,6 +13,7 @@ import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend5Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend6Fragment
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
+import com.chen.baseextend.route.Module1Route.MODULE1_FRAGMENT
 
 @Launch
 class SamplePageFragment : GroupSSListFragment() {
@@ -106,10 +108,21 @@ class SamplePageFragment : GroupSSListFragment() {
                         Item("简单的网络请求 带加载状态")
                         { v, t ->
                             startPage(WeatherDetailLoadingFragment::class)
-                        },
+                        }
+                ),
+                Group("本地存储",
 
-                        Item("item3-2"),
-                        Item("item3-3")
+                        Item("PreferenceHolder")
+                        { v, t ->
+                            startPage(PreferenceFragment::class)
+                        }
+                ),
+                Group("模块化",
+
+                        Item("模块间页面跳转")
+                        { v, t ->
+                            startPage(route = MODULE1_FRAGMENT)
+                        }
                 )
         )
     }

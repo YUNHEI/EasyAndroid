@@ -183,8 +183,8 @@ dependencies {
     //微信支付
     implementation rootProject.ext.dependencies["wechat-sdk"]
 
-//    if (UserModuleIsModule.toBoolean()) {
-//        implementation project(':UserModule')
-//    }
+    if (Module1IsModule.toBoolean()) {
+        implementation project(':module1')
+    }
 
 }
