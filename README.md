@@ -49,7 +49,7 @@
 
 
 #### 4. 网络请求 （导入快捷模板代码  android studio-> File -> Import Setting -> 项目根目录下的setting.zip -> 导入模板代码）
-定义接口，接口包含了请求方式@POST、suspen协程、请求URL、请求参数BaseRequest和结果返回BaseResponse
+定义接口，接口包含了请求方式@POST、suspend协程、请求URL、请求参数BaseRequest和结果返回BaseResponse
 <img src = "/image/网络请求1.png" width = "510" height = "300" />
 
 通过模板代码快速输入 req 完成网络请求
