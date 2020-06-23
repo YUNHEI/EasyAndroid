@@ -24,7 +24,10 @@ import com.chen.basemodule.basem.argument.ArgFloat
 import com.chen.basemodule.basem.argument.ArgInt
 import com.chen.basemodule.basem.argument.ArgString
 import com.chen.basemodule.basem.argument.ArgStringNull
+import com.chen.basemodule.extend.toastDebug
+import com.chen.basemodule.extend.toastError
 import com.chen.basemodule.extend.toastSuc
+import com.chen.basemodule.extend.toastWarn
 
 @Launch
 class SamplePageFragment : GroupSSListFragment() {
@@ -177,6 +180,26 @@ class SamplePageFragment : GroupSSListFragment() {
                 Item("消息回传")
                 { v, t ->
                     startPage(EventFragment::class)
+                }
+            ),
+            Group("Toast",
+                Item("Toast成功")
+                { v, t ->
+                    "成功".toastSuc()
+                },
+                Item("Toast错误")
+                { v, t ->
+                    "错误".toastWarn()
+                },
+                Item("Toast异常")
+                { v, t ->
+                    "异常".toastError()
+                    loadingDialog
+                },
+                Item("Toast debug")
+                { v, t ->
+                    "debug".toastDebug()
+                    loadingDialog
                 }
             )
         )

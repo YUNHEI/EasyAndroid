@@ -56,10 +56,7 @@ fun String.toastCus(@DrawableRes resId: Int = 0, duration: Int = 0) {
 
 fun String.toastDebug() {
     if (BuildConfig.DEBUG) {
-        Toast.makeText(BaseModuleLoad.context, this, Toast.LENGTH_SHORT).run {
-            setGravity(Gravity.BOTTOM, 0, 100)
-            show()
-        }
+        toastSuc()
     }
 }
 
