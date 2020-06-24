@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.navigationtest.MainActivity
 import com.chen.app.ui.simple.event.EventFragment
 import com.chen.app.ui.simple.net.WeatherDetailFragment
 import com.chen.app.ui.simple.net.WeatherDetailLoadingFragment
@@ -194,12 +195,14 @@ class SamplePageFragment : GroupSSListFragment() {
                 Item("Toast异常")
                 { v, t ->
                     "异常".toastError()
-                    loadingDialog
                 },
                 Item("Toast debug")
                 { v, t ->
                     "debug".toastDebug()
-                    loadingDialog
+                },
+                Item("Navigation")
+                { v, t ->
+                    startActivity(Intent(activity, MainActivity::class.java))
                 }
             )
         )

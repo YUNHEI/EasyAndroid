@@ -25,6 +25,7 @@ ext {
             "constraintlayout" : "androidx.constraintlayout:constraintlayout:2.0.0-beta3",
             "navigation"       : "androidx.navigation:navigation-fragment:$navigation_version",
             "navigation-fg-ktx": "androidx.navigation:navigation-fragment-ktx:$navigation_version",
+            "navigation-ui"   : "androidx.navigation:navigation-ui:$navigation_version",
             "navigation-ktx"   : "androidx.navigation:navigation-ui-ktx:$navigation_version",
             "viewpager2"       : "androidx.viewpager2:viewpager2:1.0.0@aar"
     ]

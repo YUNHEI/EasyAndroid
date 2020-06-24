@@ -62,6 +62,12 @@ dependencies {
     api rootProject.ext.android_x["ktx"]
     api rootProject.ext.android_x["viewpager2"]
 
+    api rootProject.ext.android_x["navigation"]
+    api rootProject.ext.android_x["navigation-fg-ktx"]
+    api rootProject.ext.android_x["navigation-ui"]
+    api rootProject.ext.android_x["navigation-ktx"]
+
+
     api rootProject.ext.kotlinx_coroutines["core"]
     api rootProject.ext.kotlinx_coroutines["android"]
 

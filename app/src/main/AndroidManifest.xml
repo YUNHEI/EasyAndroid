@@ -144,5 +144,10 @@
             android:exported="true"
             android:launchMode="singleTop" />
 
+        <activity android:name=".navigationtest.MainActivity" />
+        <activity android:name=".navigationtest.simple.SimpleActivity"/>
+        <activity android:name=".navigationtest.navigation.BottomNavigationActivity">
+
+        </activity>
     </application>
 </manifest>
