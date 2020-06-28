@@ -99,7 +99,7 @@
     public <init>(android.content.Context);
 }
 
-## fragment 通过反射实例化，需要禁止混淆构造函数
+## fragment 通过反射实例化，需要禁止混淆构造函数（可以混淆）
 #-keep class * extends androidx.fragment.app.Fragment
 
 ##TIM
