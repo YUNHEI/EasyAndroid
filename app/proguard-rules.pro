@@ -100,7 +100,7 @@
 }
 
 ## fragment 通过反射实例化，需要禁止混淆构造函数
--keep class * extends androidx.fragment.app.Fragment
+#-keep class * extends androidx.fragment.app.Fragment
 
 ##TIM
 -keep class com.tencent.** { *; }

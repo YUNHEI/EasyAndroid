@@ -9,6 +9,7 @@ import android.util.Size
 import androidx.fragment.app.FragmentActivity
 import com.alibaba.android.arouter.core.LogisticsCenter
 import com.alibaba.android.arouter.exception.NoRouteFoundException
+import com.alibaba.android.arouter.facade.annotation.Launch
 import com.alibaba.android.arouter.facade.enums.LaunchType
 import com.alibaba.android.arouter.facade.enums.SwipeType
 import com.alibaba.android.arouter.launcher.ARouter
@@ -19,13 +20,12 @@ import com.chen.basemodule.extend.FRAGMENT_SWIPE_TYPE
 import com.google.gson.Gson
 import java.io.Serializable
 import kotlin.reflect.KClass
-import kotlin.reflect.jvm.jvmName
 
 /**
  *  Created by chen on 2019/6/10
  **/
-fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, Any?>,
-                   fragmentArg: Bundle = Bundle(), route: String? = null, type: LaunchType? = null, flags: Int? = null): Intent {
+fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, Any?>, fragmentArg: Bundle = Bundle(), route: String? = null,
+                   type: LaunchType? = null, flags: Int? = null): Intent {
 
     var launchType: LaunchType? = type
 
@@ -63,20 +63,26 @@ fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, A
         //默认启用侧滑
         fragmentArg.putSerializable(FRAGMENT_SWIPE_TYPE, SwipeType.FROM_LEFT)
 
+        fragmentClass?.java?.run {
 
-        var path: String? = null
+            getAnnotation(Launch::class.java)?.let {
 
-        fragmentClass?.run {
+                if (launchType == null) {
+                    launchType = it.launchType
+                }
 
-            path = jvmName.replaceFirst("com.", "/").replaceFirst('.', '_')
-                    .replace('.', '/')
+                fragmentArg.putSerializable(FRAGMENT_SWIPE_TYPE, it.swipeType)
+
+            }
+
+            (getConstructor().newInstance() as? BaseFragment)?.run {
+                arguments = fragmentArg
+                fragmentQueue.offer(this)
+            } ?: throw NullPointerException("页面：${fragmentClass} 不存在")
+
         }
 
         route?.run {
-            path = this
-        }
-
-        path?.run {
             ARouter.getInstance().build(this).run {
                 try {
                     LogisticsCenter.completion(this)
@@ -90,7 +96,7 @@ fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, A
 
                 fragmentArg.putSerializable(FRAGMENT_SWIPE_TYPE, swipeType)
 
-                ((fragmentClass?.java ?: destination).getConstructor().newInstance() as BaseFragment?)?.run {
+                (destination.getConstructor().newInstance() as? BaseFragment)?.run {
                     arguments = fragmentArg
                     fragmentQueue.offer(this)
                 } ?: throw NullPointerException("页面：${path} 未添加 @Launch 注解")
@@ -118,20 +124,17 @@ fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, A
     }
 }
 
-fun Context.startPage(fragmentClass: KClass<*>? = null, vararg args: Pair<String, Any?>, bundle: Bundle = Bundle(),
-                      route: String? = null, type: LaunchType? = null, requestCode: Int? = null, flags: Int? = null,
-                      option: Bundle? = null) {
+fun Context.startPage(fragmentClass: KClass<*>? = null, vararg args: Pair<String, Any?>, bundle: Bundle = Bundle(), route: String? = null, type: LaunchType? = null, requestCode: Int? = null, flags: Int? = null, option: Bundle? = null)
 
-    intent(fragmentClass, args = *args, fragmentArg = bundle, route = route, type = type, flags = flags).run {
+        = intent(fragmentClass, args = *args, fragmentArg = bundle, route = route, type = type, flags = flags).run {
 
-        if (this@startPage is FragmentActivity) {
-            if (requestCode == null || requestCode == -1) {
-                startActivity(this, option)
+            if (this@startPage is FragmentActivity) {
+                if (requestCode == null || requestCode == -1) {
+                    startActivity(this, option)
+                } else {
+                    startActivityForResult(this, requestCode, option)
+                }
             } else {
-                startActivityForResult(this, requestCode, option)
+                startActivity(this, option)
             }
-        } else {
-            startActivity(this, option)
         }
-    }
-}

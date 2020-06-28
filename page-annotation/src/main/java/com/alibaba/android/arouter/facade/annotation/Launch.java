@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
  * @since 16/8/15 下午9:29
  */
 @Target({ElementType.TYPE})
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Launch {
 
     /**

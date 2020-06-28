@@ -199,10 +199,10 @@ public class RouteProcessor extends BaseProcessor {
                 } else if (types.isSubtype(tm, fragmentTm) || types.isSubtype(tm, fragmentTmV4)) {
                     logger.info(">>> Found fragment route: " + tm.toString() + " <<<");
                     routeMeta = new RouteMeta(launch, element, RouteType.parse(FRAGMENT), null);
-                    RouteMeta routeLMeta = new RouteMeta(launch, element, RouteType.parse(FRAGMENT), null);
-                    String path = element.toString().replace("com.", "/").replaceFirst("\\.", "_").replace('.', '/');
-                    routeLMeta.setPath(path);
-                    categories(routeLMeta);
+//                    RouteMeta routeLMeta = new RouteMeta(launch, element, RouteType.parse(FRAGMENT), null);
+//                    String path = element.toString().replace("com.", "/").replaceFirst("\\.", "_").replace('.', '/');
+//                    routeLMeta.setPath(path);
+//                    categories(routeLMeta);
                 } else {
                     throw new RuntimeException("ARouter::Compiler >>> Found unsupported class type, type = [" + types.toString() + "].");
                 }

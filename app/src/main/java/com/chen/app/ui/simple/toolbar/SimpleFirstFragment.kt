@@ -1,6 +1,8 @@
 package com.chen.app.ui.simple.toolbar
 
 import com.alibaba.android.arouter.facade.annotation.Launch
+import com.alibaba.android.arouter.facade.enums.LaunchType
+import com.alibaba.android.arouter.facade.enums.SwipeType
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.extend.startPage
@@ -8,7 +10,7 @@ import com.chen.baseextend.route.AppRoute.APP_SIMPLE_FIRST_FRAGMENT
 import com.chen.basemodule.extend.listenClick
 import kotlinx.android.synthetic.main.fragment_1.*
 
-@Launch(path = APP_SIMPLE_FIRST_FRAGMENT)
+@Launch(path = APP_SIMPLE_FIRST_FRAGMENT, swipeType = SwipeType.FROM_TOP, launchType = LaunchType.COVER)
 class SimpleFirstFragment : BaseSimpleFragment() {
 
     //设置布局文件
