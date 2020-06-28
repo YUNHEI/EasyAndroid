@@ -90,7 +90,7 @@ fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, A
 
                 fragmentArg.putSerializable(FRAGMENT_SWIPE_TYPE, swipeType)
 
-                (destination.getConstructor().newInstance() as BaseFragment?)?.run {
+                ((fragmentClass?.java ?: destination).getConstructor().newInstance() as BaseFragment?)?.run {
                     arguments = fragmentArg
                     fragmentQueue.offer(this)
                 } ?: throw NullPointerException("页面：${path} 未添加 @Launch 注解")
