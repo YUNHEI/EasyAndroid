@@ -1,14 +1,10 @@
 package com.chen.app.navigationtest
 
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDestinationBuilder
 import androidx.navigation.Navigation
 import com.chen.app.R
-import com.chen.app.ui.simple.toolbar.SimpleFirstFragment
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.basemodule.extend.listenClick
 import kotlinx.android.synthetic.main.fragment_main1.*
-import kotlin.reflect.jvm.jvmName
 
 /**
  * @author CE Chen

@@ -19,7 +19,7 @@ fun Context.color(@ColorRes color: Int): Int {
 
 fun Fragment.color(@ColorRes color: Int): Int {
     return context?.color(color) ?: run {
-        "context is null".toastDebug()
+        "get color fail, context is null".toastDebug()
         -1
     }
 }
@@ -34,7 +34,7 @@ fun Context.drawable(@DrawableRes drawableId: Int): Drawable? {
 
 fun Fragment.drawable(@DrawableRes drawableId: Int): Drawable? {
     return context?.drawable(drawableId) ?: run {
-        "context is null".toastDebug()
+        "get drawable fail, context is null".toastDebug()
         null
     }
 }
@@ -49,7 +49,7 @@ fun Context.dimen(@DimenRes dimen: Int): Int {
 
 fun Fragment.dimen(@DimenRes dimen: Int): Int {
     return context?.dimen(dimen) ?: run {
-        "context is null".toastDebug()
+        "get dimen fail, context is null".toastDebug()
         0
     }
 }

@@ -5,7 +5,7 @@ import com.chen.basemodule.basem.BaseSimActivity
 
 class MainActivity : BaseSimActivity() {
 
-    override val fragment = MainFragment()
+    override val fragment by lazy { MainFragment() }
     
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
 

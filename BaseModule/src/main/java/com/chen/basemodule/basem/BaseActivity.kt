@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.WindowManager
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import com.chen.basemodule.R
 import com.chen.basemodule.allroot.RootActivity
 import com.chen.basemodule.extend.color
-import com.chen.basemodule.util.AppManager
 
 abstract class BaseActivity : RootActivity() {
 
@@ -21,8 +21,6 @@ abstract class BaseActivity : RootActivity() {
     @SuppressLint("PrivateApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        AppManager.addActivity(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -65,9 +63,11 @@ abstract class BaseActivity : RootActivity() {
                 .commitAllowingStateLoss()
     }
 
-
-    override fun onDestroy() {
-        AppManager.removeActivity(this)
-        super.onDestroy()
+    override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
+        return if (fragment is BaseFragment) {
+            (fragment as BaseFragment).onKeyUp(keyCode, event) || super.onKeyUp(keyCode, event)
+        } else {
+            super.onKeyUp(keyCode, event)
+        }
     }
 }

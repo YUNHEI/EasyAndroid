@@ -5,17 +5,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Size
 import androidx.fragment.app.FragmentActivity
 import com.alibaba.android.arouter.core.LogisticsCenter
 import com.alibaba.android.arouter.exception.NoRouteFoundException
 import com.alibaba.android.arouter.facade.enums.LaunchType
 import com.alibaba.android.arouter.facade.enums.SwipeType
 import com.alibaba.android.arouter.launcher.ARouter
-import com.google.gson.Gson
 import com.chen.baseextend.base.activity.*
 import com.chen.basemodule.basem.BaseFragment
-import com.chen.basemodule.basem.FragmentCache.preFragment
+import com.chen.basemodule.basem.fragmentQueue
 import com.chen.basemodule.extend.FRAGMENT_SWIPE_TYPE
+import com.google.gson.Gson
 import java.io.Serializable
 import kotlin.reflect.KClass
 import kotlin.reflect.jvm.jvmName
@@ -24,7 +25,7 @@ import kotlin.reflect.jvm.jvmName
  *  Created by chen on 2019/6/10
  **/
 fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, Any?>,
-                   fragmentArg: Bundle = Bundle(), route: String? = null, type: LaunchType? = null, flags: Int? = null): Pair<Intent, LaunchType> {
+                   fragmentArg: Bundle = Bundle(), route: String? = null, type: LaunchType? = null, flags: Int? = null): Intent {
 
     var launchType: LaunchType? = type
 
@@ -40,6 +41,9 @@ fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, A
             fragmentArg.run {
                 it.second?.run {
                     when (this) {
+                        is Byte -> putByte(it.first, this)
+                        is Char -> putChar(it.first, this)
+                        is Size -> putSize(it.first, this)
                         is Int -> putInt(it.first, this)
                         is Short -> putShort(it.first, this)
                         is Long -> putLong(it.first, this)
@@ -63,7 +67,9 @@ fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, A
         var path: String? = null
 
         fragmentClass?.run {
-            path = jvmName.replace("com.chen.", "/").replace('.', '/')
+
+            path = jvmName.replaceFirst("com.", "/").replaceFirst('.', '_')
+                    .replace('.', '/')
         }
 
         route?.run {
@@ -83,19 +89,16 @@ fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, A
                 }
 
                 fragmentArg.putSerializable(FRAGMENT_SWIPE_TYPE, swipeType)
-                with(fragmentArg)
 
-                navigation()?.run {
-                    preFragment = this as BaseFragment
+                (destination.getConstructor().newInstance() as BaseFragment?)?.run {
+                    arguments = fragmentArg
+                    fragmentQueue.offer(this)
                 } ?: throw NullPointerException("页面：${path} 未添加 @Launch 注解")
+
             }
         }
 
-        if (launchType == null) {
-            launchType = LaunchType.STANDARD
-        }
-
-        component = when (launchType!!) {
+        component = when (launchType ?: LaunchType.STANDARD) {
             LaunchType.STANDARD -> {
                 ComponentName(this@intent, BaseStandardActivity::class.java)
             }
@@ -112,7 +115,7 @@ fun Context.intent(fragmentClass: KClass<*>? = null, vararg args: Pair<String, A
                 ComponentName(this@intent, BaseFullActivity::class.java)
             }
         }
-    } to launchType!!
+    }
 }
 
 fun Context.startPage(fragmentClass: KClass<*>? = null, vararg args: Pair<String, Any?>, bundle: Bundle = Bundle(),
@@ -121,14 +124,14 @@ fun Context.startPage(fragmentClass: KClass<*>? = null, vararg args: Pair<String
 
     intent(fragmentClass, args = *args, fragmentArg = bundle, route = route, type = type, flags = flags).run {
 
-        if (this is FragmentActivity) {
+        if (this@startPage is FragmentActivity) {
             if (requestCode == null || requestCode == -1) {
-                startActivity(first, option)
+                startActivity(this, option)
             } else {
-                startActivityForResult(first, requestCode, option)
+                startActivityForResult(this, requestCode, option)
             }
         } else {
-            startActivity(first, option)
+            startActivity(this, option)
         }
     }
 }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
@@ -18,9 +19,11 @@ import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend3Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend4Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend5Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend6Fragment
+import com.chen.baseextend.base.activity.BaseStandardActivity
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.baseextend.route.Module1Route.MODULE1_FRAGMENT
+import com.chen.basemodule.basem.BaseSimActivity
 import com.chen.basemodule.basem.argument.ArgFloat
 import com.chen.basemodule.basem.argument.ArgInt
 import com.chen.basemodule.basem.argument.ArgString
@@ -29,6 +32,7 @@ import com.chen.basemodule.extend.toastDebug
 import com.chen.basemodule.extend.toastError
 import com.chen.basemodule.extend.toastSuc
 import com.chen.basemodule.extend.toastWarn
+import java.util.*
 
 @Launch
 class SamplePageFragment : GroupSSListFragment() {
@@ -203,6 +207,26 @@ class SamplePageFragment : GroupSSListFragment() {
                 Item("Navigation")
                 { v, t ->
                     startActivity(Intent(activity, MainActivity::class.java))
+                },
+                Item("性能测试")
+                { v, t ->
+
+
+//                    Log.e("start-------", Date().toString())
+//                    for (i in 0 until 200) {
+//                        startActivity(Intent(activity, MainActivity::class.java))
+//                    }
+//
+//                    Log.e("end-------", Date().toString())
+
+                    Log.e("start1-------", Date().toString())
+                    for (i in 0 until 400) {
+                        startPage(SimpleFirstFragment::class)
+//                        startPage(SimpleToolbarFragment::class)
+//                        startActivity(Intent(activity, BaseStandardActivity::class.java))
+                    }
+
+                    Log.e("end1-------", Date().toString())
                 }
             )
         )

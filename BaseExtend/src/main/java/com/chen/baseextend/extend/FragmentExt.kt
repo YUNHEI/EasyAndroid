@@ -14,9 +14,9 @@ fun Fragment.startPage(fragmentClass: KClass<*>? = null, vararg args: Pair<Strin
 
     activity?.intent(fragmentClass, args = *args, fragmentArg = bundle, route = route, type = type)?.run {
         if (requestCode == null || requestCode == -1) {
-            startActivity(first, option)
+            startActivity(this, option)
         } else {
-            startActivityForResult(first, requestCode, option)
+            startActivityForResult(this, requestCode, option)
         }
     }
 }
