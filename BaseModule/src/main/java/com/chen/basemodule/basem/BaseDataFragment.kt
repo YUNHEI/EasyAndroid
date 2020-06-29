@@ -120,6 +120,8 @@ abstract class BaseDataFragment : BaseFragment() {
                         text = blankTip
                     }
 
+                    findViewById<View>(R.id._empty_container)?.setOnClickListener {  startLoadData() }
+
                     visibility = View.VISIBLE
 
                 } else {

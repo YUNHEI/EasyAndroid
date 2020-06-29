@@ -19,19 +19,11 @@ import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend3Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend4Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend5Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend6Fragment
-import com.chen.baseextend.base.activity.BaseStandardActivity
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.baseextend.route.Module1Route.MODULE1_FRAGMENT
-import com.chen.basemodule.basem.BaseSimActivity
-import com.chen.basemodule.basem.argument.ArgFloat
-import com.chen.basemodule.basem.argument.ArgInt
-import com.chen.basemodule.basem.argument.ArgString
-import com.chen.basemodule.basem.argument.ArgStringNull
 import com.chen.basemodule.extend.toastDebug
-import com.chen.basemodule.extend.toastError
 import com.chen.basemodule.extend.toastSuc
-import com.chen.basemodule.extend.toastWarn
 import java.util.*
 
 @Launch
@@ -61,117 +53,73 @@ class SamplePageFragment : GroupSSListFragment() {
         }
     }
 
-    override val titleStyle = TitleStyle(
-        40,
-        14f,
-        R.color.red,
-        backgroundResource = R.color.gray_f5,
-        padding = Rect(10, 10, 20, 10)
-    )
+    override val titleStyle = TitleStyle(40, 14f, R.color.red, backgroundResource = R.color.gray_f5, padding = Rect(10, 10, 20, 10))
 
     override val wrapData = {
-        mutableListOf(
-            Group(
-                "简单页面",
 
-                Item("新建一个简单页面")
-                { v, t ->
+        DATA {
+            Group("简单页面", TitleStyle(40, 14f, R.color.white, backgroundResource = R.color.blue_lightest, padding = Rect(10, 10, 20, 10))) {
+                Item("新建一个简单页面") {
 //                    "点击 单一样式列表: $t".toastSuc()
                     startPage(SimpleFirstFragment::class)
-                },
-
-                titleStyle = TitleStyle(
-                    40,
-                    14f,
-                    R.color.white,
-                    backgroundResource = R.color.blue_lightest,
-                    padding = Rect(10, 10, 20, 10)
-                )
-            )
-            { v, t ->
-//                    "标题内嵌点击: $t".toastSuc()
-            },
-
-            Group("toolbar的使用",
-
-                Item("自定义toobar样式")
-                { v, t ->
+                }
+            }
+            Group("toolbar的使用") {
+                Item("自定义toobar样式") {
                     startPage(SimpleToolbarFragment::class)
-                },
-
-                Item("没有toolbar")
-                { v, t ->
+                }
+                Item("没有toolbar") {
                     startPage(SimpleWithoutToolbarFragment::class)
-                },
-
-                Item("toolbar悬浮")
-                { v, t ->
+                }
+                Item("toolbar悬浮") {
                     startPage(ToolbarFloatFragment::class)
-                },
-
-                Item("toolbar扩展")
-                { v, t ->
+                }
+                Item("toolbar扩展") {
                     startPage(ToolbarExtendFragment::class)
-                },
-
-                Item("toolbar扩展2")
-                { v, t ->
+                }
+                Item("toolbar扩展2") {
                     startPage(ToolbarExtend2Fragment::class)
-                },
-
-                Item("toolbar扩展3")
-                { v, t ->
+                }
+                Item("toolbar扩展3") {
                     startPage(ToolbarExtend3Fragment::class)
-                },
-
-                Item("toolbar扩展4")
-                { v, t ->
+                }
+                Item("toolbar扩展4") {
                     startPage(ToolbarExtend4Fragment::class)
-                },
-
-                Item("toolbar扩展5")
-                { v, t ->
+                }
+                Item("toolbar扩展5") {
                     startPage(ToolbarExtend5Fragment::class)
-                },
-
-                Item("toolbar扩展6")
-                { v, t ->
+                }
+                Item("toolbar扩展6") {
                     startPage(ToolbarExtend6Fragment::class)
                 }
-            ),
-            Group("retrofit2 协程 网络请求",
-
-                Item("简单的网络请求")
-                { v, t ->
+                Item("自定义toobar样式") {
+                    startPage(SimpleToolbarFragment::class)
+                }
+                Item("自定义toobar样式") {
+                    startPage(SimpleToolbarFragment::class)
+                }
+            }
+            Group("retrofit2 协程 网络请求") {
+                Item("简单的网络请求") {
                     startPage(WeatherDetailFragment::class)
-                },
-
-                Item("简单的网络请求 带加载状态")
-                { v, t ->
+                }
+                Item("简单的网络请求 带加载状态") {
                     startPage(WeatherDetailLoadingFragment::class)
                 }
-            ),
-            Group("本地存储",
-
-                Item("PreferenceHolder")
-                { v, t ->
+            }
+            Group("本地存储") {
+                Item("PreferenceHolder") {
                     startPage(PreferenceFragment::class)
                 }
-            ),
-            Group("页面跳转---模块化",
-
-                Item("模块间页面跳转")
-                { v, t ->
+            }
+            Group("页面跳转---模块化") {
+                Item("模块间页面跳转") {
                     startPage(route = MODULE1_FRAGMENT)
-                },
-
-                Item("页面参数传递,参数较少")
-                { v, t ->
+                }
+                Item("页面参数传递,参数较少") {
                     startPage(ParamsFragment::class, "day" to "第一天", "week" to 3, "wea" to 30.5F)
-                },
-
-                Item("页面参数传递,参数较多")
-                { v, t ->
+                }
+                Item("页面参数传递,参数较多") {
                     Bundle().run {
                         putString("day", "第一天")
                         putInt("week", 3)
@@ -179,45 +127,31 @@ class SamplePageFragment : GroupSSListFragment() {
                         startPage(ParamsFragment::class, bundle = this, requestCode = 101)
                     }
                 }
-            ),
-            Group("event-bus 通知",
-
-                Item("消息回传")
-                { v, t ->
+            }
+            Group("event-bus 通知") {
+                Item("消息回传") {
                     startPage(EventFragment::class)
                 }
-            ),
-            Group("Toast",
-                Item("Toast成功")
-                { v, t ->
+            }
+            Group("Toast") {
+                Item("Toast成功") {
                     "成功".toastSuc()
-                },
-                Item("Toast错误")
-                { v, t ->
-                    "错误".toastWarn()
-                },
-                Item("Toast异常")
-                { v, t ->
-                    "异常".toastError()
-                },
-                Item("Toast debug")
-                { v, t ->
+                }
+                Item("Toast错误") {
+                    "错误".toastSuc()
+                }
+                Item("Toast异常") {
+                    "异常".toastSuc()
+                }
+                Item("Toast debug") {
                     "debug".toastDebug()
-                },
-                Item("Navigation")
-                { v, t ->
+                }
+            }
+            Group("其他功能") {
+                Item("Navigation") {
                     startActivity(Intent(activity, MainActivity::class.java))
-                },
-                Item("性能测试")
-                { v, t ->
-
-
-//                    Log.e("start-------", Date().toString())
-//                    for (i in 0 until 200) {
-//                        startActivity(Intent(activity, MainActivity::class.java))
-//                    }
-//
-//                    Log.e("end-------", Date().toString())
+                }
+                Item("性能测试") {
 
                     Log.e("start1-------", Date().toString())
                     for (i in 0 until 400) {
@@ -228,8 +162,14 @@ class SamplePageFragment : GroupSSListFragment() {
 
                     Log.e("end1-------", Date().toString())
                 }
-            )
-        )
+                Item("Toast异常") {
+                    "异常".toastSuc()
+                }
+                Item("Toast debug") {
+                    "debug".toastDebug()
+                }
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -244,11 +184,11 @@ class SamplePageFragment : GroupSSListFragment() {
     override fun initClickListener() {
         listenItemClick { _, _, data, id, p, _ ->
             if (data is GroupWrapBean<*, *>) {
-                (data as GroupWrapBean<Group, Item>).run {
+                (data as GroupWrapBean<GroupBean, ItemBean>).run {
 //                    "标题监听点击: ${groupData?.title}".toastSuc()
                 }
             } else if (data is ItemWrapBean<*>) {
-                (data as ItemWrapBean<Item>).run {
+                (data as ItemWrapBean<ItemBean>).run {
 //                    "item: ${itemData?.title}".toastSuc()
                 }
             }
