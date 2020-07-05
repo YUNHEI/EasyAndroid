@@ -21,12 +21,12 @@ class SimpleFirstFragment : BaseSimpleFragment() {
         //设置toolbar
         toolbar.run {
             //toolbar 标题
-            center("简单页面")
+            center("标题")
             //toolbar 左侧返回图标
             left(R.mipmap.ic_back) { activity?.finish() }
         }
 
-        _title.text = "简单页面1"
+        _title.text = "Hello World"
 
         //添加点击事件
         listenClick(_next) {
