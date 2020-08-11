@@ -6,6 +6,10 @@ import com.chen.app.R
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.basemodule.extend.toastSuc
+import org.w3c.dom.NodeList
+import java.lang.StrictMath.max
+import java.util.*
+import kotlin.collections.HashMap
 
 @Launch
 class ListSampleFragment : GroupSSListFragment() {
@@ -22,14 +26,30 @@ class ListSampleFragment : GroupSSListFragment() {
         defaultHide = true
 
         //item 列数
-        columns = 1
+        columns = 4
+
     }
 
-    override val titleStyle = TitleStyle(40, 14f, R.color.red, backgroundResource = R.color.gray_f5, padding = Rect(10, 10, 20, 10))
+    override val titleStyle = TitleStyle(
+        40,
+        14f,
+        R.color.red,
+        backgroundResource = R.color.gray_f5,
+        padding = Rect(10, 10, 20, 10)
+    )
 
     override val wrapData = {
         DATA {
-            Group("简单列表", titleStyle = TitleStyle(40, 14f, R.color.white, backgroundResource = R.color.main_theme, padding = Rect(10, 10, 20, 10)) ) {
+            Group(
+                "简单列表",
+                titleStyle = TitleStyle(
+                    40,
+                    14f,
+                    R.color.white,
+                    backgroundResource = R.color.main_theme,
+                    padding = Rect(10, 10, 20, 10)
+                )
+            ) {
                 Item("简单单一样式列表") {
 //                    "点击 单一样式列表: $t".toastSuc()
                     startPage(SingleListSampleFragment::class)
@@ -40,26 +60,35 @@ class ListSampleFragment : GroupSSListFragment() {
                 Item("item1-3") {
                     "item: $title".toastSuc()
                 }
+                Item("item1-4") {
+                    "item: $title".toastSuc()
+                }
+                Item("item1-5") {
+                    "item: $title".toastSuc()
+                }
+                Item("item1-6") {
+                    "item: $title".toastSuc()
+                }
             }
             Group("标题2") {
-                Item("item2-1"){
+                Item("item2-1") {
 
                 }
-                Item("item2-2"){
+                Item("item2-2") {
 
                 }
-                Item("item2-3"){
+                Item("item2-3") {
 
                 }
             }
-            Group("标题3" ) {
-                Item("item3-1"){
+            Group("标题3") {
+                Item("item3-1") {
 
                 }
-                Item("item3-2"){
+                Item("item3-2") {
 
                 }
-                Item("item3-3"){
+                Item("item3-3") {
 
                 }
             }

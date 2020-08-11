@@ -46,7 +46,7 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
 
     protected var PAGE_SIZE = 20
 
-    protected val mPadding by lazy { dp2px(10) }
+    protected open val mPadding by lazy { dp2px(10) }
 
     var showEmpty = true
 

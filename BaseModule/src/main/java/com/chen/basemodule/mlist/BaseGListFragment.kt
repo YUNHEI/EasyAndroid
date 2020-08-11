@@ -22,10 +22,14 @@ import kotlinx.android.synthetic.main.base_mlist_fragment.*
 abstract class BaseGListFragment<P : RootBean, C : RootBean> : BaseMListFragment<BaseGListFragment.DataWrapBean>() {
 
     override fun customerDelegateWithParams(): MutableList<Class<out BaseItemViewDelegate<DataWrapBean>>>? = null
+
     //是否可展开 默认false
     var expandable = false
+
     //可展开下是否默认收起  默认收起
     var defaultHide = true
+
+    override var mPadding = 30
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,16 +69,15 @@ abstract class BaseGListFragment<P : RootBean, C : RootBean> : BaseMListFragment
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                 super.getItemOffsets(outRect, view, parent, state)
                 val position = parent.getChildAdapterPosition(view)
-                if (mAdapter.getDataByPosition(position) !is GroupWrapBean<*, *>) {
-                    val realP = position - mAdapter.headerViewDelegates.size
-                    val row = realP.rem(columns)
+
+                val groupIdx = positionToGroupIndex(position)
+                if (groupIdx.first >= 0 && groupIdx.second >= 0) {
+                    val row = groupIdx.second.rem(columns)
                     outRect.run {
-                        left = mPadding - row * mPadding / columns
-                        right = row.inc() * mPadding / columns
+                        left = mPadding - mPadding / columns * row
+                        right = mPadding / columns * row.inc()
                         bottom = mPadding
-                        if (realP < columns) {
-                            top = mPadding
-                        }
+                        top = mPadding
                     }
                 }
             }
@@ -164,6 +167,19 @@ abstract class BaseGListFragment<P : RootBean, C : RootBean> : BaseMListFragment
                 }
             })
         }
+    }
+
+    fun positionToGroupIndex(position: Int): Pair<Int, Int> {
+        var groupIdx = -1
+        var itemIdx = -1
+        for (i in position downTo 0) {
+            mAdapter.getDataByPosition(i).run {
+                if (this == null) return -1 to -1
+                if (groupIdx < 0 && this !is GroupWrapBean<*, *>) itemIdx++
+                if (this is GroupWrapBean<*, *>) groupIdx++
+            }
+        }
+        return groupIdx to itemIdx
     }
 
     abstract val groupLayoutId: Int

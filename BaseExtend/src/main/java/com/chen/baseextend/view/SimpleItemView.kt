@@ -12,27 +12,28 @@ import android.widget.FrameLayout
 import com.chen.baseextend.R
 import com.chen.basemodule.extend.color
 import com.chen.basemodule.extend.load
+import com.chen.basemodule.extend.visible
 import com.chen.basemodule.widget.smartrefresh.layout.util.DensityUtil
 import kotlinx.android.synthetic.main.layout_user_info_item.view.*
 
 class SimpleItemView(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
 
-    lateinit var view: View
-
     var content: String?
         get() = _content.text.toString()
-        set(content: String?) {
+        set(value) {
             _content.visibility = View.VISIBLE
-            _content.text = content
+            _content.text = value
+        }
+
+    var title: String?
+        get() = _title.text.toString()
+        set(value) {
+            _title.text = value
         }
 
     init {
-        initView(context, attrs)
-    }
 
-    private fun initView(context: Context, attrs: AttributeSet?) {
-
-        view = LayoutInflater.from(context).inflate(R.layout.layout_user_info_item, this)
+        LayoutInflater.from(context).inflate(R.layout.layout_user_info_item, this)
 
         if (attrs != null) {
             val ta = getContext().obtainStyledAttributes(attrs, R.styleable.SimpleItemView)
@@ -47,11 +48,9 @@ class SimpleItemView(context: Context, attrs: AttributeSet? = null) : FrameLayou
 
             val gravity = ta.getInt(R.styleable.SimpleItemView_item_content_gravity, 1)
 
-
-            _title.visibility = if (title == null) View.GONE else View.VISIBLE
             _title.text = title
 
-            _content.visibility = if (content == null) View.GONE else View.VISIBLE
+            _content.visible(!content.isNullOrEmpty())
             _content.text = content
             _content.gravity = if (gravity == 0) Gravity.START else Gravity.END
 
@@ -87,11 +86,6 @@ class SimpleItemView(context: Context, attrs: AttributeSet? = null) : FrameLayou
 
             ta.recycle()
         }
-    }
-
-    fun setTitle(title: String) {
-        _title.visibility = View.VISIBLE
-        _title.text = title
     }
 
     fun setTitleParams(params: ConstraintLayout.LayoutParams) {
