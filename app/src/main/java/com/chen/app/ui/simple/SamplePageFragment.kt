@@ -63,6 +63,9 @@ class SamplePageFragment : GroupSSListFragment() {
 //                    "点击 单一样式列表: $t".toastSuc()
                     startPage(SimpleFirstFragment::class)
                 }
+                Item("Hello World") {
+                    startPage(HelloWorldFragment::class)
+                }
             }
             Group("toolbar的使用") {
                 Item("自定义toobar样式") {
