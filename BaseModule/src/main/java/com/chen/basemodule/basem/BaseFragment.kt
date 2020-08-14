@@ -21,9 +21,15 @@ import kotlin.reflect.jvm.jvmName
 
 abstract class BaseFragment : RootFragment() {
 
-    private val toolbarLazy = lazy { ToolbarView(activity!!).apply { attachToolbar(view) } }
+    private var toolbarView: ToolbarView? = null
 
-    val toolbar: ToolbarView by toolbarLazy
+    val toolbar: ToolbarView
+        get() {
+            if (toolbarView == null) {
+                toolbarView = ToolbarView(activity!!).apply { attachToolbar(view) }
+            }
+            return toolbarView!!
+        }
 
     val swipe by lazy {
         SmartSwipe.wrap(activity)
@@ -98,13 +104,12 @@ abstract class BaseFragment : RootFragment() {
     open fun onKeyUp(keyCode: Int, event: KeyEvent) = false//默认不拦截返回事件
 
     override fun onDestroyView() {
-        super.onDestroyView()
-        if (toolbarLazy.isInitialized()) {
-            toolbar.parent?.run {
-                if (this is ViewGroup) {
-                    removeView(toolbar)
-                }
+        toolbarView?.run {
+            if (parent is ViewGroup) {
+                removeView(toolbarView)
             }
+            toolbarView = null
         }
+        super.onDestroyView()
     }
 }
