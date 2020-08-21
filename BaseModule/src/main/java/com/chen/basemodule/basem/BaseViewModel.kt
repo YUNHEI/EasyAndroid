@@ -30,7 +30,9 @@ open class BaseViewModel : RootViewModel() {
 
     protected val compositeDisposable by lazy { CompositeDisposable() }
 
-    val preferences by lazy { BaseModuleLoad.context.run { getSharedPreferences(packageName + "cache_preferences", Context.MODE_PRIVATE) } }
+    val preferences by lazy {
+        BaseModuleLoad.context.run { getSharedPreferences(packageName + "cache_preferences", Context.MODE_PRIVATE) }
+    }
 
     fun <R, E : BaseResponse<R>> exe(ob: Observable<E>): LiveData<BaseResponse<R>> {
         return transToLiveData(ob, MutableLiveData())
@@ -65,12 +67,14 @@ open class BaseViewModel : RootViewModel() {
     }
 
 
-    open fun <T> requestData(block: suspend CoroutineScope.() -> BaseResponse<T>,
-                             success: ((response: BaseResponse<T>) -> Unit)? = null,
-                             fail: ((response: BaseResponse<T>) -> Unit)? = { it.toast() },
-                             preHandle: ((response: BaseResponse<T>) -> Unit)? = null,
-                             successInterrupt: ((context: Context, response: BaseResponse<T>) -> Boolean)? = null,
-                             failInterrupt: ((context: Context, response: BaseResponse<T>) -> Boolean)? = null): LiveData<BaseResponse<T>> {
+    open fun <T> requestData(
+            block: suspend CoroutineScope.() -> BaseResponse<T>,
+            success: ((response: BaseResponse<T>) -> Unit)? = null,
+            fail: ((response: BaseResponse<T>) -> Unit)? = { it.toast() },
+            preHandle: ((response: BaseResponse<T>) -> Unit)? = null,
+            successInterrupt: ((context: Context, response: BaseResponse<T>) -> Boolean)? = null,
+            failInterrupt: ((context: Context, response: BaseResponse<T>) -> Boolean)? = null
+    ): LiveData<BaseResponse<T>> {
 
         val liveData = MutableLiveData<BaseResponse<T>>()
 
@@ -81,7 +85,7 @@ open class BaseViewModel : RootViewModel() {
         }
 
         viewModelScope.launch(exceptionHandler) {
-            async(Dispatchers.Default, block = block).run {
+            async(Dispatchers.IO, block = block).run {
                 liveData.value = await()
             }
         }
@@ -117,12 +121,14 @@ open class BaseViewModel : RootViewModel() {
 
 
     /**cacheType 缓存加载类型 0：初始化  1：刷新  2：加载更多,不缓存 */
-    fun <T : BaseRoomBean> requestData(block: suspend CoroutineScope.() -> BaseResponse<MutableList<T>>,
-                                       dao: BaseCacheDao<T>,
-                                       cacheType: Int = 0,
-                                       category: String? = null,
-                                       prefix: String = "",
-                                       netSuc: ((data: List<T>) -> Unit)? = null): LiveData<BaseResponse<MutableList<T>>> {
+    fun <T : BaseRoomBean> requestData(
+            block: suspend CoroutineScope.() -> BaseResponse<MutableList<T>>,
+            dao: BaseCacheDao<T>,
+            cacheType: Int = 0,
+            category: String? = null,
+            prefix: String = "",
+            netSuc: ((data: List<T>) -> Unit)? = null
+    ): LiveData<BaseResponse<MutableList<T>>> {
 
         val liveData = MutableLiveData<BaseResponse<MutableList<T>>>()
 
@@ -170,7 +176,8 @@ open class BaseViewModel : RootViewModel() {
                                 dao.deleteAll("${prefix}_$category${DataBaseCategory.SUFFIX_CACHE}")
                                 dao.addAll(data.orEmpty().map {
                                     it.also {
-                                        it.category = "${prefix}_$category${DataBaseCategory.SUFFIX_CACHE}"
+                                        it.category =
+                                                "${prefix}_$category${DataBaseCategory.SUFFIX_CACHE}"
                                     }
                                 })
                             }.run {
@@ -199,7 +206,8 @@ open class BaseViewModel : RootViewModel() {
                             async(Dispatchers.Default) { dao.listCache(prefix + "_" + category.orEmpty()) }.run {
                                 data.addAll(await())
                             }
-                            liveData.value = if (data.isEmpty()) this else BaseResponse(data, 290, "缓存更新")
+                            liveData.value =
+                                    if (data.isEmpty()) this else BaseResponse(data, 290, "缓存更新")
                         } else {
                             liveData.value = this
                         }

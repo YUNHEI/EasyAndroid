@@ -37,7 +37,7 @@ class SplashActivity : BaseFragmentActivity() {
         }
         setContentView(R.layout.activity_splash)
 
-        if (!BasePreference._FIRST_START) {
+        if (!BasePreference._FIRST_START && false) {
             viewModel.run {
                 requestData(
                         { adService.listAdvertise(ADRequest("1")) },

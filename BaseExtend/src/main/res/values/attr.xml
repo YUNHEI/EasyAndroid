@@ -120,4 +120,19 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="CircleProgressView">
+        <!--圆弧背景色-->
+        <attr name="circleProgressBgColor" format="reference" />
+        <!--圆弧进度条颜色-->
+        <attr name="circleProgressColor" format="reference" />
+        <!--圆弧宽度-->
+        <attr name="circleProgressRadius" format="float" />
+        <!--渐变开始颜色-->
+        <attr name="circleProgressStartColor" format="reference" />
+        <!--渐变结束颜色-->
+        <attr name="circleProgressEndColor" format="reference" />
+        <!--是否渐变-->
+        <attr name="circleProgressIsGradient" format="boolean" />
+    </declare-styleable>
+
 </resources>

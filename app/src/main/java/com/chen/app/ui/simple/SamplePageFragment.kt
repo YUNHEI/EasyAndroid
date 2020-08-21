@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.app.navigationtest.MainActivity
+import com.chen.app.ui.simple.download.DownloadFragment
 import com.chen.app.ui.simple.event.EventFragment
 import com.chen.app.ui.simple.net.WeatherDetailFragment
 import com.chen.app.ui.simple.net.WeatherDetailLoadingFragment
@@ -58,6 +59,11 @@ class SamplePageFragment : GroupSSListFragment() {
     override val wrapData = {
 
         DATA {
+            Group("下载") {
+                Item("下载pdf") {
+                    startPage(DownloadFragment::class)
+                }
+            }
             Group("简单页面", TitleStyle(40, 14f, R.color.white, backgroundResource = R.color.blue_lightest, padding = Rect(10, 10, 20, 10))) {
                 Item("新建一个简单页面") {
 //                    "点击 单一样式列表: $t".toastSuc()

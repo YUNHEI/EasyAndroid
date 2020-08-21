@@ -6,8 +6,6 @@ import java.math.BigDecimal
 /**
  *  Created by chen on 2019/6/10
  **/
-class TestTT {
-}
 
 fun main(args: Array<String>) {
 

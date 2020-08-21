@@ -38,7 +38,7 @@ ext {
     ]
 
     /*retrofit 网络框架*/
-    retrofit_version = "2.7.2"
+    retrofit_version = "2.9.0"
 
     retrofit_network = [
             "retrofit"           : "com.squareup.retrofit2:retrofit:$retrofit_version",
@@ -84,7 +84,7 @@ ext {
     /*event_bus*/
     eventbus_version = "3.1.1"
     eventbus = [
-            "livebus": "com.jeremyliao:live-event-bus-x:1.5.0"
+            "livebus": "com.jeremyliao:live-event-bus-x:1.7.2"
     ]
 
     jiguang = [

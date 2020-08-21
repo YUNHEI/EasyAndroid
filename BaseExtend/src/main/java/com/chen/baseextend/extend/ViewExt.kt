@@ -29,15 +29,24 @@ fun View.stickSide() {
                 MotionEvent.ACTION_MOVE -> {
                     if (abs(pointF.x - event.x) > 10 || abs(pointF.y - event.y) > 10) {
                         drag = true
-                        val marginEnd = max((parent as ConstraintLayout).width - event.rawX.toInt() - width.shr(1), dp2px(15))
-                        val marginBottom = min(max((parent as ConstraintLayout).height - event.rawY.toInt() - height.shr(1), dp2px(15)), (parent as ConstraintLayout).height - 200)
+                        val marginEnd = max(
+                            (parent as ConstraintLayout).width - event.rawX.toInt() - width.shr(1),
+                            dp2px(15)
+                        )
+                        val marginBottom = min(
+                            max(
+                                (parent as ConstraintLayout).height - event.rawY.toInt() - height.shr(
+                                    1
+                                ), dp2px(15)
+                            ), (parent as ConstraintLayout).height - 200
+                        )
                         lp.setMargins(0, 0, marginEnd, marginBottom)
                         v.requestLayout()
                         return@setOnTouchListener true
                     }
                 }
                 MotionEvent.ACTION_UP -> {
-                    return@setOnTouchListener if (drag) {
+                    if (drag) {
                         drag = false
                         if (lp.rightMargin > dp2px(15)) {
                             startValueAnimate(lp.rightMargin, dp2px(15), 100, {}, {
@@ -46,8 +55,10 @@ fun View.stickSide() {
                             })
                         }
                         BasePreference._WAIT_PROCESS_Y = lp.bottomMargin
-                        true
-                    } else false
+                    } else {
+                        performClick()
+                    }
+                    return@setOnTouchListener true
                 }
             }
             false

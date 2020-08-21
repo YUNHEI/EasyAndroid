@@ -32,7 +32,7 @@ object BaseModuleLoad {
         initSecureSharePreference(storeFileName)
 
         LiveEventBus.config()
-                .supportBroadcast(app)
+                .setContext(app)
                 .lifecycleObserverAlwaysActive(true)
                 .autoClear(true)
     }
