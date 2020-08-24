@@ -59,11 +59,6 @@ class SamplePageFragment : GroupSSListFragment() {
     override val wrapData = {
 
         DATA {
-            Group("下载") {
-                Item("下载pdf") {
-                    startPage(DownloadFragment::class)
-                }
-            }
             Group("简单页面", TitleStyle(40, 14f, R.color.white, backgroundResource = R.color.blue_lightest, padding = Rect(10, 10, 20, 10))) {
                 Item("新建一个简单页面") {
 //                    "点击 单一样式列表: $t".toastSuc()
@@ -176,6 +171,11 @@ class SamplePageFragment : GroupSSListFragment() {
                 }
                 Item("Toast debug") {
                     "debug".toastDebug()
+                }
+            }
+            Group("下载") {
+                Item("下载pdf") {
+                    startPage(DownloadFragment::class)
                 }
             }
         }

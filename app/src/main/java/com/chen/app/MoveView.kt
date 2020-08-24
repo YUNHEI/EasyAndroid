@@ -1,11 +1,13 @@
 package com.chen.app
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.View
 import android.view.ViewConfiguration
+import android.view.animation.LinearInterpolator
 
 
 class MoveView(context: Context, attt: AttributeSet? = null) : View(context, attt) {
@@ -16,13 +18,15 @@ class MoveView(context: Context, attt: AttributeSet? = null) : View(context, att
     private var mCanMove = false
     private var mScrollPointerId = 0
     private val mVelocityTracker by lazy { VelocityTracker.obtain() }
+    private val vc by lazy { ViewConfiguration.get(context) }
 
     init {
-        mTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
+        mTouchSlop = vc.scaledTouchSlop
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val actionIndex = event.actionIndex
+        val vtev = MotionEvent.obtain(event)
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
                 mScrollPointerId = event.getPointerId(0)
@@ -66,15 +70,36 @@ class MoveView(context: Context, attt: AttributeSet? = null) : View(context, att
             }
             MotionEvent.ACTION_POINTER_UP -> onPointerUp(event)
             MotionEvent.ACTION_UP -> {
-                val vtev = MotionEvent.obtain(event)
                 mVelocityTracker.addMovement(vtev)
-                mVelocityTracker.computeCurrentVelocity(1000, 10000f)
+                mVelocityTracker.computeCurrentVelocity(
+                    1000,
+                    vc.scaledMaximumFlingVelocity.toFloat()
+                )
                 val xvel: Float = -mVelocityTracker.getXVelocity(mScrollPointerId)
                 val yvel: Float = -mVelocityTracker.getYVelocity(mScrollPointerId)
 
+                ValueAnimator.ofFloat(yvel, 0f).run {
+                    duration = 1000
+                    interpolator = LinearInterpolator()
+                    addUpdateListener {
+                        offsetTopAndBottom(-(it.animatedValue as Float).toInt())
+                    }
+                }
+                ValueAnimator.ofFloat(xvel, 0f).run {
+                    duration = 1000
+                    interpolator = LinearInterpolator()
+                    addUpdateListener {
+                        offsetLeftAndRight(-(it.animatedValue as Float).toInt())
+                    }
+                    start()
+                }
+
                 if (!mCanMove) performClick()
+
             }
         }
+        mVelocityTracker.addMovement(vtev)
+        vtev.recycle()
         return true
     }
 

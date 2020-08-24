@@ -55,6 +55,10 @@ object DownloadRepos : BaseSimpleRepos<DownloadRepos.DownloadService>() {
         }
         val file = File("${downloadDir.absolutePath}/$fileName")
 
+        val randomAccessFile = RandomAccessFile(file, "rwd")
+
+        val lock = randomAccessFile.channel.tryLock() ?: return BaseResponse(null, 301, "文件正在下载")
+
         var length = if (file.exists()) file.length() else 0
 
         var totalByte = 0L
@@ -69,7 +73,7 @@ object DownloadRepos : BaseSimpleRepos<DownloadRepos.DownloadService>() {
                     totalByte = it.readText().toLong()
                     it.close()
                     if (length >= totalByte) {
-                        fileInfo.deleteOnExit()
+                        fileInfo.delete()
                         return BaseResponse(file.path, 200, "下载完成")
                     }
                 }
@@ -90,7 +94,6 @@ object DownloadRepos : BaseSimpleRepos<DownloadRepos.DownloadService>() {
 
         val buffer = ByteArray(1024 * 64)
 
-        val randomAccessFile = RandomAccessFile(file, "rwd")
         randomAccessFile.seek(length)
 
         coroutineScope {
@@ -109,6 +112,7 @@ object DownloadRepos : BaseSimpleRepos<DownloadRepos.DownloadService>() {
                 } catch (e: IOException) {
                     throw BaseNetException(410, "文件下载错误")
                 } finally {
+                    lock.release()
                     randomAccessFile.close()
                 }
             }
