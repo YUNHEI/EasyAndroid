@@ -24,23 +24,23 @@ object DownloadRepos : BaseSimpleRepos<DownloadRepos.DownloadService>() {
 
     override fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(BuildConfig.HOST)
-                .client(createHttpClient())
-                .build()
+            .baseUrl(BuildConfig.HOST)
+            .client(createHttpClient())
+            .build()
     }
 
     override fun createHttpClient(): OkHttpClient {
 
         return OkHttpClient.Builder()
-                .retryOnConnectionFailure(NetConfig.RETRY_TO_CONNECT)
-                .connectTimeout(NetConfig.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(NetConfig.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(NetConfig.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(createAuthInterceptor())
-                .build()
+            .retryOnConnectionFailure(NetConfig.RETRY_TO_CONNECT)
+            .connectTimeout(NetConfig.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(NetConfig.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+            .writeTimeout(NetConfig.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+            .addInterceptor(createAuthInterceptor())
+            .build()
     }
 
-    suspend fun downloadFile(fileUrl: String?): BaseResponse<String> {
+    suspend fun downloadFile(fileUrl: String?, fileLength: Long = -1L): BaseResponse<String> {
         if (fileUrl.isNullOrEmpty()) return BaseResponse(null, 300, "文件不存在")
 
         val fileName = fileUrl.substringAfterLast("/")
@@ -59,22 +59,30 @@ object DownloadRepos : BaseSimpleRepos<DownloadRepos.DownloadService>() {
 
         val lock = randomAccessFile.channel.tryLock() ?: return BaseResponse(null, 301, "文件正在下载")
 
-        var length = if (file.exists()) file.length() else 0
+        var length = if (file.exists()) file.length() else 0L
 
-        var totalByte = 0L
+        var totalByte = if (fileLength > 0) fileLength else 0L
 
         val fileInfo = File("${downloadDir.absolutePath}/$fileName.tmp")
 
-        if (length > 0) {
+        if (length > 0 && length == totalByte) {
+            lock.release()
+            return BaseResponse(file.path, 200, "下载完成")
+        } else if (length > 0) {
             if (!fileInfo.exists()) {
+                lock.release()
                 return BaseResponse(file.path, 200, "下载完成")
             } else {
                 fileInfo.bufferedReader().use {
                     totalByte = it.readText().toLong()
-                    it.close()
                     if (length >= totalByte) {
                         fileInfo.delete()
-                        return BaseResponse(file.path, 200, "下载完成")
+                        if (totalByte > 0) {
+                            lock.release()
+                            return BaseResponse(file.path, 200, "下载完成")
+                        } else {
+                            file.delete()
+                        }
                     }
                 }
             }
@@ -108,7 +116,7 @@ object DownloadRepos : BaseSimpleRepos<DownloadRepos.DownloadService>() {
                         downloadByte += len.toLong()
                         yield()
                     }
-                    if (totalByte == downloadByte) fileInfo.delete()
+                    if (totalByte <= downloadByte) fileInfo.delete()
                 } catch (e: IOException) {
                     throw BaseNetException(410, "文件下载错误")
                 } finally {
@@ -125,6 +133,9 @@ object DownloadRepos : BaseSimpleRepos<DownloadRepos.DownloadService>() {
 
         @Streaming
         @GET
-        suspend fun downloadFile(@Url fileUrl: String?, @Header("Range") range: String): ResponseBody
+        suspend fun downloadFile(
+            @Url fileUrl: String?,
+            @Header("Range") range: String
+        ): ResponseBody
     }
 }

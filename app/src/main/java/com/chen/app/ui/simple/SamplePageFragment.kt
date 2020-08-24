@@ -56,7 +56,7 @@ class SamplePageFragment : GroupSSListFragment() {
 
     override val titleStyle = TitleStyle(40, 14f, R.color.red, backgroundResource = R.color.gray_f5, padding = Rect(10, 10, 20, 10))
 
-    override val wrapData = {
+    override val wrapData by lazy {
 
         DATA {
             Group("简单页面", TitleStyle(40, 14f, R.color.white, backgroundResource = R.color.blue_lightest, padding = Rect(10, 10, 20, 10))) {

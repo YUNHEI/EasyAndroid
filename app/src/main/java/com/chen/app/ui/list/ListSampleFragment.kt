@@ -38,7 +38,7 @@ class ListSampleFragment : GroupSSListFragment() {
         padding = Rect(10, 10, 20, 10)
     )
 
-    override val wrapData = {
+    override val wrapData by lazy {
         DATA {
             Group(
                 "简单列表",
@@ -94,7 +94,6 @@ class ListSampleFragment : GroupSSListFragment() {
             }
         }
     }
-
 
     //监听点击事件  需要在此方法内进行监听
     override fun initClickListener() {

@@ -29,7 +29,7 @@ class DownloadFragment : BaseSimpleFragment() {
             left(R.mipmap.ic_back) { activity?.finish() }
         }
 
-        listenClick(_download, _move) {
+        listenClick(_download) {
             when (it) {
                 _download -> {
                     viewModel.run {
@@ -44,9 +44,6 @@ class DownloadFragment : BaseSimpleFragment() {
                             }
                         )
                     }
-                }
-                _move -> {
-                    "点击".toastSuc()
                 }
                 else -> {
                 }
