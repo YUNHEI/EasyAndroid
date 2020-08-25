@@ -34,12 +34,7 @@ class DownloadFragment : BaseSimpleFragment() {
 
     val fileName by lazy { url.substringAfterLast("/") }
 
-    private val progressOb by lazy {
-        LiveEventBus.get(
-            LiveBusKey.EVENT_PROGRESS,
-            BaseProgressEvent::class.java
-        )!!
-    }
+    private val progressOb by lazy { LiveEventBus.get(LiveBusKey.EVENT_PROGRESS, BaseProgressEvent::class.java)!! }
 
     override fun initAndObserve() {
 
@@ -72,17 +67,17 @@ class DownloadFragment : BaseSimpleFragment() {
 
                     viewModel.run {
                         requestData(
-                            { downloadRepos.downloadFile(url) },
-                            {
-                                it.data?.run {
+                                { downloadRepos.downloadFile(url) },
+                                {
+                                    it.data?.run {
 
+                                    }
+                                    it.toast()
+                                },
+                                preHandle = {
+                                    _download.visibility = View.VISIBLE
+                                    _progress.visibility = View.GONE
                                 }
-                                it.toast()
-                            },
-                            preHandle = {
-                                _download.visibility = View.VISIBLE
-                                _progress.visibility = View.GONE
-                            }
                         )
                     }
                 }
