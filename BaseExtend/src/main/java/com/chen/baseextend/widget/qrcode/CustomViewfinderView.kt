@@ -8,10 +8,10 @@ import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.MotionEvent
-import com.journeyapps.barcodescanner.ViewfinderView
 import com.chen.baseextend.R
 import com.chen.basemodule.extend.color
 import com.chen.basemodule.extend.dp2px
+import com.journeyapps.barcodescanner.ViewfinderView
 
 /**
  * @author alan

@@ -10,10 +10,10 @@ import cn.jpush.im.android.api.callback.DownloadCompletionCallback
 import cn.jpush.im.android.api.callback.ProgressUpdateCallback
 import cn.jpush.im.android.api.content.ImageContent
 import cn.jpush.im.android.api.model.Message
-import com.davemorrissey.labs.subscaleview.ImageSource
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.basemodule.extend.argString
+import com.davemorrissey.labs.subscaleview.ImageSource
 import kotlinx.android.synthetic.main.fragment_image_item.*
 import java.io.File
 

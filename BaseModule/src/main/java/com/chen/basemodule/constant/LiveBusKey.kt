@@ -11,6 +11,9 @@ object LiveBusKey {
     //live bus 页面关闭通知
     const val EVENT_CLOSE = "event_close"
 
+    //live bus 请求进度
+    const val EVENT_PROGRESS = "event_progress"
+
     const val EVENT_NETWORK = "event_network"
 
     const val EVENT_LOGIN = "event_login"

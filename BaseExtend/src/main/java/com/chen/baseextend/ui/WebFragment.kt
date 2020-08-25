@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.net.toUri
-import com.just.agentweb.*
 import com.chen.baseextend.BaseExtendApplication
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
@@ -25,6 +24,7 @@ import com.chen.basemodule.basem.argument.ArgString
 import com.chen.basemodule.constant.BasePreference
 import com.chen.basemodule.extend.toastWarn
 import com.chen.basemodule.extend.visible
+import com.just.agentweb.*
 import com.tencent.sonic.sdk.SonicConfig
 import com.tencent.sonic.sdk.SonicEngine
 import com.tencent.sonic.sdk.SonicSessionConfig

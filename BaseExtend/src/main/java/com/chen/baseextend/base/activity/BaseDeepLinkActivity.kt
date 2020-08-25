@@ -2,8 +2,6 @@ package com.chen.baseextend.base.activity
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.alibaba.android.arouter.launcher.ARouter
-import com.chen.baseextend.R
 import com.chen.baseextend.repos.MainViewModel
 import com.chen.baseextend.route.StaffRoute.MEETING_ROOM
 import com.chen.basemodule.basem.BaseActivity

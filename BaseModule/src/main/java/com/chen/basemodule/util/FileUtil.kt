@@ -144,6 +144,21 @@ object FileUtil {
         return mediaStorageDir.path + File.separator + uuid
     }
 
+    /**
+     * 文本大小
+     */
+    fun getFileSize(byteCount: Long): String? {
+        var text = ""
+        if (byteCount in 0 until 1024) {
+            text = byteCount.toString() + "B"
+        } else if (byteCount >= 1024 && byteCount < 1024 * 1024) {
+            text = "${byteCount / 1024}K"
+        } else if (byteCount >= 1024 * 1024 && byteCount < 1024 * 1024 * 1024) {
+            text = "${byteCount / 1024 / 1024}M"
+        }
+        return text
+    }
+
     fun isLocalPath(path: String?): Boolean {
         return path != null && path.startsWith("/storage/emulated/")
     }

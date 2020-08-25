@@ -1,8 +1,10 @@
 package com.chen.baseextend.widget.scissors2;
 
 import android.graphics.Bitmap;
-import androidx.annotation.Nullable;
 import android.view.ViewTreeObserver;
+
+import androidx.annotation.Nullable;
+
 import com.chen.baseextend.widget.scissors2.CropView.Extensions.LoaderType;
 
 

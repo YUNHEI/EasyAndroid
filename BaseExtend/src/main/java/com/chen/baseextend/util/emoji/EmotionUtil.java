@@ -10,9 +10,9 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
 import android.widget.EditText;
 
-import com.chen.baseextend.R;
-
 import androidx.collection.ArrayMap;
+
+import com.chen.baseextend.R;
 
 
 /**

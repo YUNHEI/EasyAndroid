@@ -1,14 +1,9 @@
 package com.chen.baseextend.repos
 
 import com.chen.baseextend.base.BaseSimpleRepos
-import com.chen.baseextend.bean.AppealDetailBean
 import com.chen.baseextend.bean.IdRequest
 import com.chen.baseextend.bean.UserIdRequest
 import com.chen.baseextend.bean.project.*
-import com.chen.baseextend.bean.tim.GroupBean
-import com.chen.basemodule.basem.BaseBean
-import com.chen.basemodule.network.base.BasePageRequest
-import com.chen.basemodule.network.base.BaseRequest
 import com.chen.basemodule.network.base.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.Body

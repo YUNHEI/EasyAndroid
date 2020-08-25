@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.View
 import cn.jpush.im.android.api.content.CustomContent
 import cn.jpush.im.android.api.enums.ContentType
-import com.google.gson.Gson
 import com.chen.baseextend.R
 import com.chen.baseextend.bean.project.ProjectBean
 import com.chen.baseextend.bean.tim.TMessage
@@ -14,6 +13,7 @@ import com.chen.baseextend.route.MainRoute.PATH_PROJECT_DETAIL_FRAGMENT
 import com.chen.basemodule.extend.load
 import com.chen.basemodule.mlist.BaseItemViewDelegate
 import com.chen.basemodule.mlist.BaseItemViewHolder
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.item_project.view.*
 
 /**

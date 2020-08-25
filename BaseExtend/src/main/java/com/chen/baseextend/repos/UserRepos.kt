@@ -1,7 +1,9 @@
 package com.chen.baseextend.repos
 
 import com.chen.baseextend.base.BaseSimpleRepos
-import com.chen.baseextend.bean.*
+import com.chen.baseextend.bean.IdRequest
+import com.chen.baseextend.bean.UserInfoUpdateRequest
+import com.chen.baseextend.bean.UserShopInfoBean
 import com.chen.baseextend.bean.admin.LoginRequest
 import com.chen.baseextend.bean.mz.*
 import com.chen.baseextend.bean.system.WxPayInfo

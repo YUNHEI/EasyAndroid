@@ -1,14 +1,14 @@
 package com.chen.baseextend.view
 
 import android.content.Context
-import androidx.annotation.ColorRes
-import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.ColorRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.chen.baseextend.R
 import com.chen.basemodule.extend.color
 import com.chen.basemodule.extend.load

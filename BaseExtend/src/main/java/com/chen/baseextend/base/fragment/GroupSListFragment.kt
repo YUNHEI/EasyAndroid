@@ -9,7 +9,10 @@ import com.chen.baseextend.R
 import com.chen.baseextend.extend.commonFailInterrupt
 import com.chen.baseextend.repos.MainViewModel
 import com.chen.basemodule.allroot.RootBean
-import com.chen.basemodule.extend.*
+import com.chen.basemodule.extend.color
+import com.chen.basemodule.extend.dp2px
+import com.chen.basemodule.extend.drawable
+import com.chen.basemodule.extend.requestData
 import com.chen.basemodule.mlist.BaseGListFragment
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.network.base.BaseResponse

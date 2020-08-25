@@ -6,12 +6,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import cn.jpush.im.android.api.model.Message
-import com.chen.baseextend.R
-import com.chen.baseextend.base.fragment.BaseSimpleFragment
-import com.chen.basemodule.extend.argString
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.alibaba.android.arouter.facade.enums.LaunchType
 import com.alibaba.android.arouter.facade.enums.SwipeType
+import com.chen.baseextend.R
+import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.basemodule.extend.argString
 import com.chen.basemodule.util.WindowsUtil
 import kotlinx.android.synthetic.main.fragment_image_viewer.*
 

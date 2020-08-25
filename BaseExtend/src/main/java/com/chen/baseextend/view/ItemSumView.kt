@@ -2,9 +2,9 @@ package com.chen.baseextend.view
 
 import android.content.Context
 import android.graphics.Color
-import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.chen.baseextend.R
 import kotlinx.android.synthetic.main.item_sum.view.*
 

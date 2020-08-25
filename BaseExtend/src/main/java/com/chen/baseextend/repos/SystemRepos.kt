@@ -1,16 +1,9 @@
 package com.chen.baseextend.repos
 
 import com.chen.baseextend.base.BaseSimpleRepos
-import com.chen.baseextend.bean.*
-import com.chen.baseextend.bean.notice.NoticeBean
-import com.chen.baseextend.bean.notice.NoticePageRequest
-import com.chen.baseextend.bean.project.ItemTypeBean
-import com.chen.baseextend.bean.project.ItemTypeRequest
-import com.chen.baseextend.bean.wallet.RechargeRequest
-import com.chen.baseextend.bean.wallet.WithdrawConfigBean
-import com.chen.baseextend.bean.wallet.WithdrawInfoBean
-import com.chen.baseextend.bean.wallet.WithdrawRequest
-import com.chen.basemodule.network.base.BasePageRequest
+import com.chen.baseextend.bean.AdvertBean
+import com.chen.baseextend.bean.BannerRequest
+import com.chen.baseextend.bean.VersionBean
 import com.chen.basemodule.network.base.BaseRequest
 import com.chen.basemodule.network.base.BaseResponse
 import io.reactivex.Observable

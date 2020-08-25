@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 
 import com.chen.baseextend.R;
 import com.chen.baseextend.widget.photopicker.PhotoPicker;
@@ -11,10 +14,6 @@ import com.chen.baseextend.widget.photopicker.entity.PhotoDirectory;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.fragment.app.FragmentActivity;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 
 import static android.provider.BaseColumns._ID;
 import static android.provider.MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME;

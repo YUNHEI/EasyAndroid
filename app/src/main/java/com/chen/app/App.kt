@@ -32,13 +32,13 @@ class App : Application() {
 
         BaseExtendApplication.init(this, BuildConfig.APPLICATION_ID, BuildConfig.WECHAT_ID,true)
 
-        JPushInterface.setDebugMode(true)
-        JPushInterface.init(this)
+//        JPushInterface.setDebugMode(true)
+//        JPushInterface.init(this)
 
-        JMessageClient.init(applicationContext, false)// 是否启用消息漫游
-        JMessageClient.setDebugMode(BuildConfig.DEBUG)
-        //设置Notification的模式
-        JMessageClient.setNotificationFlag(JMessageClient.FLAG_NOTIFY_WITH_SOUND or JMessageClient.FLAG_NOTIFY_WITH_LED or JMessageClient.FLAG_NOTIFY_WITH_VIBRATE)
+//        JMessageClient.init(applicationContext, false)// 是否启用消息漫游
+//        JMessageClient.setDebugMode(BuildConfig.DEBUG)
+//        //设置Notification的模式
+//        JMessageClient.setNotificationFlag(JMessageClient.FLAG_NOTIFY_WITH_SOUND or JMessageClient.FLAG_NOTIFY_WITH_LED or JMessageClient.FLAG_NOTIFY_WITH_VIBRATE)
 
         //注册通知栏点击
 //        NotiClickEvent()
@@ -65,11 +65,11 @@ class App : Application() {
 
         // 设置是否为上报进程
         // 初始化Bugly
-        Bugly.init(applicationContext, "6db0766c6a", BuildConfig.DEBUG || true, UserStrategy(applicationContext).apply {
-            isUploadProcess = processName == null || processName == applicationContext.packageName
-            appChannel = BuildConfig.FLAVOR
-            deviceID = BasePreference._OAID
-        })
+//        Bugly.init(applicationContext, "6db0766c6a", BuildConfig.DEBUG || true, UserStrategy(applicationContext).apply {
+//            isUploadProcess = processName == null || processName == applicationContext.packageName
+//            appChannel = BuildConfig.FLAVOR
+//            deviceID = BasePreference._OAID
+//        })
 
 //         CrashReport.testJavaCrash()
     }

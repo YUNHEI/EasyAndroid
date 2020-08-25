@@ -1,14 +1,14 @@
 package com.chen.baseextend.repos
 
 import com.chen.baseextend.base.BaseSimpleRepos
-import com.chen.baseextend.bean.ActivityIdRequest
-import com.chen.baseextend.bean.IdRequest
-import com.chen.baseextend.bean.activity.*
+import com.chen.baseextend.bean.activity.InviteDetailBean
+import com.chen.baseextend.bean.activity.InviteRankMineBean
+import com.chen.baseextend.bean.activity.InviteRankUserBean
+import com.chen.baseextend.bean.activity.RankListBean
 import com.chen.basemodule.network.base.BaseRequest
 import com.chen.basemodule.network.base.BaseResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
-import java.math.BigDecimal
 
 /**
  *  Created by chen on 2019/6/12

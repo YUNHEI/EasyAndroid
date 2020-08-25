@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.viewpager.widget.PagerAdapter;
+
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.chen.baseextend.R;
@@ -18,8 +20,6 @@ import com.chen.basemodule.util.ImageUtil;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.viewpager.widget.PagerAdapter;
 
 /**
  * Created by donglua on 15/6/21.

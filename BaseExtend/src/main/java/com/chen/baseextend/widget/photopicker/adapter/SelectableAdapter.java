@@ -1,13 +1,13 @@
 package com.chen.baseextend.widget.photopicker.adapter;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chen.baseextend.widget.photopicker.entity.Photo;
 import com.chen.baseextend.widget.photopicker.entity.PhotoDirectory;
 import com.chen.baseextend.widget.photopicker.event.Selectable;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class SelectableAdapter<VH extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<VH> implements Selectable {

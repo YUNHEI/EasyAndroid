@@ -2,8 +2,8 @@ package com.chen.baseextend.extend
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.chen.baseextend.extend.context.intent
 import com.alibaba.android.arouter.facade.enums.LaunchType
+import com.chen.baseextend.extend.context.intent
 import kotlin.reflect.KClass
 
 /**

@@ -11,11 +11,11 @@ import android.view.View;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
-import com.chen.baseextend.R;
-
 import androidx.annotation.AnimatorRes;
 import androidx.annotation.DrawableRes;
 import androidx.viewpager.widget.ViewPager;
+
+import com.chen.baseextend.R;
 
 public class CircleIndicator extends LinearLayout {
 

@@ -5,13 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 
 import com.chen.baseextend.widget.photopicker.ui.PhotoPagerActivity;
 import com.chen.baseextend.widget.photopicker.ui.PhotoPickerActivity;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
 
 /**
  * Created by Donglua on 16/6/25.

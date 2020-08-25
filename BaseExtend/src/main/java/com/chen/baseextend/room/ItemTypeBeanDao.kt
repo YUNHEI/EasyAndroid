@@ -1,6 +1,6 @@
 package com.chen.baseextend.room
 
-import androidx.room.*
+import androidx.room.Dao
 import com.chen.baseextend.bean.project.ItemTypeBean
 import com.chen.basemodule.room.BaseCacheDao
 

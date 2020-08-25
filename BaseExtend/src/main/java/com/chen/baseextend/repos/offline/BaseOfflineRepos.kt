@@ -1,7 +1,6 @@
 package com.chen.baseextend.repos.offline
 
 import com.alibaba.fastjson.JSON
-import com.jeremyliao.liveeventbus.LiveEventBus
 import com.chen.baseextend.BaseExtendApplication
 import com.chen.baseextend.stepby.StepBy
 import com.chen.baseextend.stepby.entity.InterruptStatus
@@ -18,6 +17,7 @@ import com.chen.basemodule.room.BaseOfflineDao
 import com.chen.basemodule.room.DataBaseCategory.NOT_SHOW
 import com.chen.basemodule.room.DataBaseCategory.SUFFIX_OFFLINE
 import com.chen.basemodule.util.NetworkUtil
+import com.jeremyliao.liveeventbus.LiveEventBus
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.GlobalScope

@@ -1,8 +1,24 @@
 package com.chen.baseextend.widget.banner;
 
-import com.chen.baseextend.widget.banner.transformer.*;
-
 import androidx.viewpager.widget.ViewPager.PageTransformer;
+
+import com.chen.baseextend.widget.banner.transformer.AccordionTransformer;
+import com.chen.baseextend.widget.banner.transformer.BackgroundToForegroundTransformer;
+import com.chen.baseextend.widget.banner.transformer.CubeInTransformer;
+import com.chen.baseextend.widget.banner.transformer.CubeOutTransformer;
+import com.chen.baseextend.widget.banner.transformer.DefaultTransformer;
+import com.chen.baseextend.widget.banner.transformer.DepthPageTransformer;
+import com.chen.baseextend.widget.banner.transformer.FlipHorizontalTransformer;
+import com.chen.baseextend.widget.banner.transformer.FlipVerticalTransformer;
+import com.chen.baseextend.widget.banner.transformer.ForegroundToBackgroundTransformer;
+import com.chen.baseextend.widget.banner.transformer.RotateDownTransformer;
+import com.chen.baseextend.widget.banner.transformer.RotateUpTransformer;
+import com.chen.baseextend.widget.banner.transformer.ScaleInOutTransformer;
+import com.chen.baseextend.widget.banner.transformer.StackTransformer;
+import com.chen.baseextend.widget.banner.transformer.TabletTransformer;
+import com.chen.baseextend.widget.banner.transformer.ZoomInTransformer;
+import com.chen.baseextend.widget.banner.transformer.ZoomOutSlideTransformer;
+import com.chen.baseextend.widget.banner.transformer.ZoomOutTranformer;
 
 public class Transformer {
     public static Class<? extends PageTransformer> Default = DefaultTransformer.class;

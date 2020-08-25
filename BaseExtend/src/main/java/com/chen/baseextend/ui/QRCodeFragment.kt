@@ -7,9 +7,6 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Launch
-import com.google.zxing.DecodeHintType
-import com.google.zxing.RGBLuminanceSource
-import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.widget.photopicker.PhotoPicker
@@ -17,6 +14,9 @@ import com.chen.baseextend.widget.qrcode.UserCaptureManager
 import com.chen.basemodule.extend.toast
 import com.chen.basemodule.network.base.BaseResponse
 import com.chen.basemodule.util.WindowsUtil
+import com.google.zxing.DecodeHintType
+import com.google.zxing.RGBLuminanceSource
+import com.journeyapps.barcodescanner.DefaultDecoderFactory
 import kotlinx.android.synthetic.main.fragment_qr_code.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

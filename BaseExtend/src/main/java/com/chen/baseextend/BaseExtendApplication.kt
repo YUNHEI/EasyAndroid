@@ -6,13 +6,13 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
 import androidx.room.Room
-import com.jeremyliao.liveeventbus.LiveEventBus
 import com.chen.baseextend.repos.offline.OfflineService
 import com.chen.baseextend.room.RoomConfig
 import com.chen.baseextend.ui.sonic.SonicRuntimeImpl
 import com.chen.basemodule.BaseModuleLoad
-import com.chen.basemodule.event_bus.BaseNetworkEvent
 import com.chen.basemodule.constant.LiveBusKey.EVENT_NETWORK
+import com.chen.basemodule.event_bus.BaseNetworkEvent
+import com.jeremyliao.liveeventbus.LiveEventBus
 import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.tencent.sonic.sdk.SonicConfig

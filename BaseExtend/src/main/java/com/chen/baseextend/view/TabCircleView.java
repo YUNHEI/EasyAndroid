@@ -2,15 +2,14 @@ package com.chen.baseextend.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Rect;
 import android.graphics.Paint.FontMetrics;
+import android.graphics.Rect;
 import android.graphics.Typeface;
-
-import androidx.annotation.Nullable;
-
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.chen.basemodule.widget.smartrefresh.layout.util.DensityUtil;
 

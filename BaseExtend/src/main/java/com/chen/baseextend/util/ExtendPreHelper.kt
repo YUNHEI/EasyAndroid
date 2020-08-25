@@ -1,10 +1,10 @@
 package com.chen.baseextend.util
 
-import com.google.gson.Gson
 import com.chen.baseextend.bean.mz.UserInfoBean
 import com.chen.baseextend.bean.mz.WalletInfoBean
 import com.chen.basemodule.constant.BasePreference
 import com.chen.basemodule.util.PrefUtils
+import com.google.gson.Gson
 
 object ExtendPreHelper {
 

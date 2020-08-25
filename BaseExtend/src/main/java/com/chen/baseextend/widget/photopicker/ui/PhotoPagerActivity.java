@@ -8,20 +8,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-
-import com.google.android.material.snackbar.Snackbar;
-import com.chen.baseextend.R;
-
-import java.util.List;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.chen.baseextend.R;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
+
 import static com.chen.baseextend.widget.photopicker.PhotoPicker.KEY_SELECTED_PHOTOS;
-import static com.chen.baseextend.widget.photopicker.PhotoPreview.*;
+import static com.chen.baseextend.widget.photopicker.PhotoPreview.EXTRA_CURRENT_ITEM;
+import static com.chen.baseextend.widget.photopicker.PhotoPreview.EXTRA_PHOTOS;
+import static com.chen.baseextend.widget.photopicker.PhotoPreview.EXTRA_SHOW_DELETE;
 
 /**
  * Created by donglua on 15/6/24.

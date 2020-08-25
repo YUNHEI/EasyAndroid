@@ -17,7 +17,11 @@ class CircleProgressView(context: Context, attrs: AttributeSet? = null) : View(c
 
     private val mPaint by lazy { Paint() }
 
-    private var progressPercent = 0f
+    var progressPercent = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     private var radius = 0f //圆弧宽度
     private var rectF: RectF? = null
@@ -30,7 +34,7 @@ class CircleProgressView(context: Context, attrs: AttributeSet? = null) : View(c
 
     init {
         val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressView)
-        bgColor = typedArray.getColor(R.styleable.CircleProgressView_circleProgressBgColor, color(R.color.white))
+        bgColor = typedArray.getColor(R.styleable.CircleProgressView_circleProgressBgColor, color(R.color.gray_ef))
         progressColor = typedArray.getColor(R.styleable.CircleProgressView_circleProgressColor, color(R.color.main_theme))
         radius = typedArray.getFloat(R.styleable.CircleProgressView_circleProgressRadius, WIDTH_RADIUS_RATIO)
         isGradient = typedArray.getBoolean(R.styleable.CircleProgressView_circleProgressIsGradient, false)
@@ -62,12 +66,12 @@ class CircleProgressView(context: Context, attrs: AttributeSet? = null) : View(c
         val centerX = width / 2
         val strokeWidth = centerX / radius
         mPaint.shader = null //必须设置为null，否则背景也会加上渐变色
-        mPaint.setStrokeWidth(strokeWidth) //设置画笔的大小
+        mPaint.strokeWidth = strokeWidth //设置画笔的大小
         mPaint.color = bgColor
-        canvas.drawCircle(centerX.toFloat(), centerX.toFloat(), centerX - strokeWidth / 2f, mPaint)
+        canvas.drawCircle(centerX.toFloat(), centerX.toFloat(), centerX - strokeWidth / 2, mPaint)
         // 2、绘制比例弧
         if (rectF == null) { //外切正方形
-            rectF = RectF((strokeWidth / 2).toFloat(), (strokeWidth / 2).toFloat(), (2 * centerX - strokeWidth / 2).toFloat(), (2 * centerX - strokeWidth / 2).toFloat())
+            rectF = RectF((strokeWidth / 2), (strokeWidth / 2), (2 * centerX - strokeWidth / 2), (2 * centerX - strokeWidth / 2))
         }
         //3、是否绘制渐变色
         if (isGradient) {
@@ -76,11 +80,6 @@ class CircleProgressView(context: Context, attrs: AttributeSet? = null) : View(c
             mPaint.color = progressColor
         }
         canvas.drawArc(rectF!!, (-90).toFloat(), 3.6f * progressPercent, false, mPaint) //画比例圆弧
-    }
-
-    fun setPercentage(percentage: Float) {
-        progressPercent = percentage
-        invalidate()
     }
 
     companion object {

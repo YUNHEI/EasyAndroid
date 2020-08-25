@@ -7,9 +7,9 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import com.chen.baseextend.R;
-
 import androidx.appcompat.widget.AppCompatTextView;
+
+import com.chen.baseextend.R;
 
 
 public class AudioRecorderButton extends AppCompatTextView implements AudioManager.AudioStateListener {

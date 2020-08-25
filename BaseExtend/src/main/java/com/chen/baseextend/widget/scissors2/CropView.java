@@ -28,6 +28,10 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntDef;
@@ -35,10 +39,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
-
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.widget.ImageView;
 
 import java.io.File;
 import java.io.OutputStream;
