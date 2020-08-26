@@ -121,16 +121,10 @@ class ToolbarView(context: Context, attrs: AttributeSet? = null) : ConstraintLay
     //亮色主题，字体为gray_33
     var isLight = true
 
-    @ColorRes
-    var backgroundC: Int = R.color.white
-        set(value) {
-            setBackgroundColor(context.color(value))
-        }
-
     @DrawableRes
-    var backgroundR: Int = R.drawable.bg_item_white
+    var background: Int = R.drawable.bg_item_white
         set(value) {
-            setBackgroundResource(value)
+            setBackground(drawable(value))
         }
 
     var isImmerse: Boolean = true
@@ -143,7 +137,7 @@ class ToolbarView(context: Context, attrs: AttributeSet? = null) : ConstraintLay
         id = idParent
         isImmerse = if (context is Activity) ScreenUtils.isImmerseStatus(context) else true
         divider()
-        backgroundC = R.color.white
+        background = R.color.white
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
     }
 

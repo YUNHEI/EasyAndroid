@@ -9,6 +9,7 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -56,6 +57,9 @@ open class WebFragment : BaseSimpleFragment() {
                 mSessionClient.pageFinish(url)
             }
             mClose.visible(view?.canGoBack() == true)
+            activity?.runOnUiThread {
+                mAgentWeb.webCreator.webView.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            }
 //            mClose.postDelayed({mAgentWeb.webCreator.webView.loadUrl("javascript:android.resize(document.body.getBoundingClientRect().height)")}, 1200)
 
         }
@@ -75,7 +79,7 @@ open class WebFragment : BaseSimpleFragment() {
     val mAgentWeb: AgentWeb by lazy {
 
         AgentWeb.with(this) //
-                .setAgentWebParent(_agent_web, -1, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)) //传入AgentWeb的父控件。
+                .setAgentWebParent(_agent_web, 1, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)) //传入AgentWeb的父控件。
                 .useDefaultIndicator(-1, 3) //设置进度条颜色与高度，-1为默认值，高度为2，单位为dp。
                 .setAgentWebWebSettings(object : AbsAgentWebSettings() {
                     override fun bindAgentWebSupport(agentWeb: AgentWeb?) {
@@ -205,12 +209,5 @@ open class WebFragment : BaseSimpleFragment() {
         fun finish() {
             webFragment.activity?.finish()
         }
-
-//        @JavascriptInterface
-//        fun resize(height: Float) {
-//            webFragment.activity?.runOnUiThread {
-//                webFragment.mAgentWeb.webCreator.webView.layoutParams.height = height.toInt()
-//            }
-//        }
     }
 }

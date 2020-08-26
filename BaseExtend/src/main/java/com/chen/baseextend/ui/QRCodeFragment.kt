@@ -47,7 +47,7 @@ class QRCodeFragment : BaseSimpleFragment() {
         WindowsUtil.setDarkTheme(activity!!, true)
 
         toolbar.run {
-            backgroundC = R.color.dark
+            background = R.color.dark
             isLight = false
             center("扫一扫")
             left(R.mipmap.ic_back_white) {

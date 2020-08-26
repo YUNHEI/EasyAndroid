@@ -37,7 +37,7 @@ class ToolbarFloatFragment : BaseSimpleFragment() {
             //禁用分割线
             divider(0)
 
-            backgroundC = R.color.trans00
+            background = R.color.trans00
 
 
         }
