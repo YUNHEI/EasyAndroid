@@ -57,8 +57,7 @@
         <activity
             android:name="com.chen.baseextend.ui.WebActivity"
             android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:process=":browser" />
+            android:hardwareAccelerated="false"/>
 
 
         <activity android:name="com.chen.baseextend.widget.image_view.ImageViewerActivity" />

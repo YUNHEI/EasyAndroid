@@ -23,6 +23,7 @@ import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend6Fragment
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.baseextend.route.Module1Route.MODULE1_FRAGMENT
+import com.chen.baseextend.ui.WebActivity
 import com.chen.basemodule.extend.toastDebug
 import com.chen.basemodule.extend.toastSuc
 import java.util.*
@@ -66,6 +67,12 @@ class SamplePageFragment : GroupSSListFragment() {
                 }
                 Item("Hello World") {
                     startPage(HelloWorldFragment::class)
+                }
+            }
+            Group("打卡网页") {
+                Item("网页") {
+                    WebActivity.toWebView(context, "file:///android_asset/test.html")
+//                    WebActivity.toWebView(context, "http://baidu.com")
                 }
             }
             Group("toolbar的使用") {

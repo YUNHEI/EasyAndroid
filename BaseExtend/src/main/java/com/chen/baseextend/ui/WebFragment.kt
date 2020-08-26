@@ -1,7 +1,6 @@
 package com.chen.baseextend.ui
 
 import android.annotation.TargetApi
-import android.app.Activity
 import android.content.Intent
 import android.text.TextUtils
 import android.view.KeyEvent
@@ -57,6 +56,7 @@ open class WebFragment : BaseSimpleFragment() {
                 mSessionClient.pageFinish(url)
             }
             mClose.visible(view?.canGoBack() == true)
+//            mClose.postDelayed({mAgentWeb.webCreator.webView.loadUrl("javascript:android.resize(document.body.getBoundingClientRect().height)")}, 1200)
 
         }
 
@@ -87,7 +87,10 @@ open class WebFragment : BaseSimpleFragment() {
                 .setWebChromeClient(mWebChromeClient) //WebChromeClient
                 .setPermissionInterceptor { _, _, _ -> false } //权限拦截 2.0.0 加入。
                 .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK) //严格模式 Android 4.2.2 以下会放弃注入对象 ，使用AgentWebView没影响。
-                .setMainFrameErrorView(R.layout.agentweb_error_page, -1) //参数1是错误显示的布局，参数2点击刷新控件ID -1表示点击整个布局都刷新， AgentWeb 3.0.0 加入。
+                .setMainFrameErrorView(
+                        R.layout.agentweb_error_page,
+                        -1
+                ) //参数1是错误显示的布局，参数2点击刷新控件ID -1表示点击整个布局都刷新， AgentWeb 3.0.0 加入。
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK) //打开其他页面时，弹窗质询用户前往其他应用 AgentWeb 3.0.0 加入。
                 .interceptUnkownUrl() //拦截找不到相关页面的Url AgentWeb 3.0.0 加入。
                 .createAgentWeb() //创建AgentWeb。
@@ -123,17 +126,23 @@ open class WebFragment : BaseSimpleFragment() {
             }
         }
 
-        mAgentWeb.jsInterfaceHolder.addJavaObject("android", AndroidInterface(activity))
+        mAgentWeb.jsInterfaceHolder.addJavaObject("android", AndroidInterface(this))
 
         // init sonic engine if necessary, or maybe u can do this when application created
         if (!SonicEngine.isGetInstanceAllowed()) {
-            SonicEngine.createInstance(SonicRuntimeImpl(BaseExtendApplication.app?.applicationContext), SonicConfig.Builder().build())
+            SonicEngine.createInstance(
+                    SonicRuntimeImpl(BaseExtendApplication.app?.applicationContext),
+                    SonicConfig.Builder().build()
+            )
         }
 
         sonicSession?.run {
 
             //4. 注入 JavaScriptInterface
-            mAgentWeb.jsInterfaceHolder.addJavaObject("sonic", SonicJavaScriptInterface(mSessionClient, Intent()))
+            mAgentWeb.jsInterfaceHolder.addJavaObject(
+                    "sonic",
+                    SonicJavaScriptInterface(mSessionClient, Intent())
+            )
 
             mSessionClient.clientReady()
         } ?: run {
@@ -185,7 +194,7 @@ open class WebFragment : BaseSimpleFragment() {
         super.onDestroyView()
     }
 
-    class AndroidInterface(val activity: Activity?) {
+    class AndroidInterface(val webFragment: WebFragment) {
 
         @JavascriptInterface
         fun getToken(): String {
@@ -194,7 +203,14 @@ open class WebFragment : BaseSimpleFragment() {
 
         @JavascriptInterface
         fun finish() {
-            activity?.finish()
+            webFragment.activity?.finish()
         }
+
+//        @JavascriptInterface
+//        fun resize(height: Float) {
+//            webFragment.activity?.runOnUiThread {
+//                webFragment.mAgentWeb.webCreator.webView.layoutParams.height = height.toInt()
+//            }
+//        }
     }
 }
