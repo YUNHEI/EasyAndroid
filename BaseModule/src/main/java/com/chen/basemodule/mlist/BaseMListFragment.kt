@@ -21,6 +21,7 @@ import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.extend.toast
 import com.chen.basemodule.network.base.BaseResponse
 import com.chen.basemodule.widget.CustomRefreshFooter
+import com.chen.basemodule.widget.smartrefresh.layout.SmartRefreshLayout
 import com.chen.basemodule.widget.smartrefresh.layout.api.RefreshLayout
 import com.chen.basemodule.widget.smartrefresh.layout.footer.ClassicsFooter
 import com.chen.basemodule.widget.smartrefresh.layout.header.ClassicsHeader
@@ -61,6 +62,10 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
 
     val mRecycler: RecyclerView get() = _recycler
 
+    val mRefresh: SmartRefreshLayout get() = _refresh
+
+    open val lManager: RecyclerView.LayoutManager by lazy { LinearLayoutManager(context) }
+
     @IntDef(INIT, NULL, COMPLETE, ERROR, LOADING_MORE, LOADING_MORE_ERROR)
     @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
     annotation class LoadingStatus
@@ -72,7 +77,7 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
             _recycler.run {
                 removeItemDecoration(itemDecoration)
                 if (value <= 1) {
-                    layoutManager = LinearLayoutManager(context)
+                    layoutManager = lManager
                 } else {
                     layoutManager = GridLayoutManager(context, value).apply {
                         spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

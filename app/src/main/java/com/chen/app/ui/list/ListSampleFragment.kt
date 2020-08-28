@@ -54,14 +54,14 @@ class ListSampleFragment : GroupSSListFragment() {
 //                    "点击 单一样式列表: $t".toastSuc()
                     startPage(SingleListSampleFragment::class)
                 }
-                Item("item1-2") {
-                    "item: $title".toastSuc()
+                Item("banner列表") {
+                    startPage(BannerListSampleFragment::class)
                 }
-                Item("item1-3") {
-                    "item: $title".toastSuc()
+                Item("slide 列表") {
+                    startPage(SlideListSampleFragment::class)
                 }
-                Item("item1-4") {
-                    "item: $title".toastSuc()
+                Item("view page") {
+                    startPage(ViewPageListSampleFragment::class)
                 }
                 Item("item1-5") {
                     "item: $title".toastSuc()

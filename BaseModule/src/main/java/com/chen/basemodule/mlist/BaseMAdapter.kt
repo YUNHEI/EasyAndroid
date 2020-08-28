@@ -34,7 +34,17 @@ class BaseMAdapter<T : RootBean>(private val context: Context) : RecyclerView.Ad
 
     private val originData: MutableList<T> = mutableListOf()
 
-    val data: MutableList<T> get() = originData.filter { !it.isHideBaseListItem }.toMutableList()
+    private var dataChange = true
+
+    val data: MutableList<T> = mutableListOf()
+        get() {
+            if (dataChange) {
+                field.clear()
+                field.addAll(originData.filter { !it.isHideBaseListItem })
+            }
+            return field
+        }
+
 
     val headerViewDelegates by lazy { mutableListOf<BaseHeaderViewDelegate<T>>() }
 
@@ -290,24 +300,34 @@ class BaseMAdapter<T : RootBean>(private val context: Context) : RecyclerView.Ad
     fun addItems(data: List<T>?) {
         if (data == null) return
         this.originData.addAll(data)
+        dataChange = true
         notifyItemRangeChanged(this.data.size - data.size, data.size)
     }
 
-    fun removeItems(d: T? = null, p: Int = -1) {
-        if (d == null) return
 
-        val index = if (p >= 0) p else data.indexOf(d)
+    fun removeItem(d: T) {
+        removeItem(d, data.indexOf(d))
+    }
 
+    fun removeItem(p: Int): T {
+        val bean = data[p]
+        removeItem(bean, p)
+        return bean
+    }
+
+    private fun removeItem(d: T, p: Int) {
         originData.remove(d)
+        dataChange = true
         if (originData.isEmpty()) {
             notifyDataSetChanged()
         } else {
-            notifyItemRemoved(index)
+            notifyItemRemoved(p)
         }
     }
 
     fun replaceItems(data: List<T>?) {
         this.originData.clear()
+        dataChange = true
         if (!data.isNullOrEmpty()) {
             this.originData.addAll(data)
         }
@@ -318,6 +338,7 @@ class BaseMAdapter<T : RootBean>(private val context: Context) : RecyclerView.Ad
         val p = originData.indexOf(dataOld)
         originData.add(p, dataNew)
         originData.remove(dataOld)
+        dataChange = true
         notifyItemChanged(p)
     }
 
