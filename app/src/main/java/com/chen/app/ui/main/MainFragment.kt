@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.chen.app.R
+import com.chen.app.ui.coroutines.CoroutinesFragment
 import com.chen.app.ui.list.ListSampleFragment
 import com.chen.app.ui.simple.SamplePageFragment
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
@@ -24,8 +25,8 @@ class MainFragment : BaseSimpleFragment() {
     private val tabs by lazy {
         mutableListOf(
                 Tab(SamplePageFragment::class.java, R.drawable.ic_bottom_project, "简单"),
-                Tab(ListSampleFragment::class.java, R.drawable.ic_bottom_home, "列表")
-//                Tab(MessageListFragment::class.java, R.drawable.ic_bottom_message, "消息"),
+                Tab(ListSampleFragment::class.java, R.drawable.ic_bottom_home, "列表"),
+                Tab(CoroutinesFragment::class.java, R.drawable.ic_bottom_message, "协程")
 //                Tab(MineFragment::class.java, R.drawable.ic_bottom_mine, "我的")
         )
     }

@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.chen.basemodule.R
 import com.chen.basemodule.allroot.RootFragment
@@ -52,6 +53,8 @@ abstract class BaseDataFragment : BaseFragment() {
 
     /* viewModel 用户网络加载等操作*/
     abstract val viewModel: BaseViewModel
+
+    protected val scope by lazy { viewModel.viewModelScope }
 
     /**
      * 设置布局
