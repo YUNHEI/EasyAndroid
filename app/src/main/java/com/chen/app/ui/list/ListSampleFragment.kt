@@ -63,6 +63,9 @@ class ListSampleFragment : GroupSSListFragment() {
                 Item("view page") {
                     startPage(ViewPageListSampleFragment::class)
                 }
+                Item("Echelon list") {
+                    startPage(EchelonListSampleFragment::class)
+                }
                 Item("item1-5") {
                     "item: $title".toastSuc()
                 }

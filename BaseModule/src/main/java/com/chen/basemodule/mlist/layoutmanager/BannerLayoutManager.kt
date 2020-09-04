@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
  * github: https://github.com/DingMouRen
  * email: naildingmouren@gmail.com
  */
-class BannerLayoutManager(context: Context?, val recyclerView: RecyclerView, val realCount: Int, orientation: Int = RecyclerView.HORIZONTAL) : LinearLayoutManager(context) {
+class BannerLayoutManager(context: Context?, val recyclerView: RecyclerView, val realCount: Int, @RecyclerView.Orientation orientation: Int = RecyclerView.HORIZONTAL) : LinearLayoutManager(context, orientation, false) {
 
     private val mLinearSnapHelper by lazy { LinearSnapHelper() }
 
@@ -25,19 +25,10 @@ class BannerLayoutManager(context: Context?, val recyclerView: RecyclerView, val
     private var mCurrentPosition = 0
     private val mHandler by lazy { TaskHandler(this) }
     private var mTimeDelayed: Long = 1000
-    private var mOrientation: Int
     private var mTimeSmooth = 150f
 
-    init {
-        setOrientation(orientation)
-        this.mOrientation = orientation
-    }
-
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
-        return RecyclerView.LayoutParams(
-                RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.WRAP_CONTENT
-        )
+        return RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT)
     }
 
     override fun onAttachedToWindow(view: RecyclerView) {

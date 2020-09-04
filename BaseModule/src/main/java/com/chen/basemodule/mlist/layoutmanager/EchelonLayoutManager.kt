@@ -4,6 +4,9 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
 import java.util.*
+import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Created by 钉某人
@@ -19,8 +22,8 @@ class EchelonLayoutManager : RecyclerView.LayoutManager() {
 
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
         return RecyclerView.LayoutParams(
-            RecyclerView.LayoutParams.WRAP_CONTENT,
-            RecyclerView.LayoutParams.WRAP_CONTENT
+                RecyclerView.LayoutParams.WRAP_CONTENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT
         )
     }
 
@@ -30,15 +33,13 @@ class EchelonLayoutManager : RecyclerView.LayoutManager() {
         mItemViewWidth = (horizontalSpace * 0.87f).toInt()
         mItemViewHeight = (mItemViewWidth * 1.46f).toInt()
         mItemCount = itemCount
-        mScrollOffset =
-            Math.min(Math.max(mItemViewHeight, mScrollOffset), mItemCount * mItemViewHeight)
+        mScrollOffset = min(max(mItemViewHeight, mScrollOffset), mItemCount * mItemViewHeight)
         layoutChild(recycler)
     }
 
     override fun scrollVerticallyBy(dy: Int, recycler: Recycler, state: RecyclerView.State): Int {
         val pendingScrollOffset = mScrollOffset + dy
-        mScrollOffset =
-            Math.min(Math.max(mItemViewHeight, mScrollOffset + dy), mItemCount * mItemViewHeight)
+        mScrollOffset = min(max(mItemViewHeight, mScrollOffset + dy), mItemCount * mItemViewHeight)
         layoutChild(recycler)
         return mScrollOffset - pendingScrollOffset + dy
     }
@@ -49,53 +50,46 @@ class EchelonLayoutManager : RecyclerView.LayoutManager() {
 
     private fun layoutChild(recycler: Recycler) {
         if (itemCount == 0) return
-        var bottomItemPosition = Math.floor(mScrollOffset / mItemViewHeight.toDouble())
-            .toInt()
+        var bottomItemPosition = floor(mScrollOffset / mItemViewHeight.toDouble()).toInt()
         var remainSpace = verticalSpace - mItemViewHeight
         val bottomItemVisibleHeight = mScrollOffset % mItemViewHeight
         val offsetPercentRelativeToItemView = bottomItemVisibleHeight * 1.0f / mItemViewHeight
         val layoutInfos = ArrayList<ItemViewInfo>()
-        run {
-            var i = bottomItemPosition - 1
-            var j = 1
-            while (i >= 0) {
-                val maxOffset = (verticalSpace - mItemViewHeight) / 2 * Math.pow(0.8, j.toDouble())
-                val start = (remainSpace - offsetPercentRelativeToItemView * maxOffset).toInt()
-                val scaleXY = (Math.pow(
+
+        var i = bottomItemPosition - 1
+        var j = 1
+        while (i >= 0) {
+            val maxOffset = (verticalSpace - mItemViewHeight) / 2 * Math.pow(0.8, j.toDouble())
+            val start = (remainSpace - offsetPercentRelativeToItemView * maxOffset).toInt()
+            val scaleXY = (Math.pow(
                     mScale.toDouble(),
                     j - 1.toDouble()
-                ) * (1 - offsetPercentRelativeToItemView * (1 - mScale))).toFloat()
-                val layoutPercent = start * 1.0f / verticalSpace
-                val info = ItemViewInfo(
+            ) * (1 - offsetPercentRelativeToItemView * (1 - mScale))).toFloat()
+            val layoutPercent = start * 1.0f / verticalSpace
+            val info = ItemViewInfo(
                     start, scaleXY,
                     offsetPercentRelativeToItemView, layoutPercent
-                )
-                layoutInfos.add(0, info)
-                remainSpace = (remainSpace - maxOffset).toInt()
-                if (remainSpace <= 0) {
-                    info.top = (remainSpace + maxOffset).toInt()
-                    info.positionOffset = 0f
-                    info.layoutPercent = info.top / verticalSpace.toFloat()
-                    info.scaleXY = Math.pow(mScale.toDouble(), j - 1.toDouble()).toFloat()
-                    break
-                }
-                i--
-                j++
+            )
+            layoutInfos.add(0, info)
+            remainSpace = (remainSpace - maxOffset).toInt()
+            if (remainSpace <= 0) {
+                info.top = (remainSpace + maxOffset).toInt()
+                info.positionOffset = 0f
+                info.layoutPercent = info.top / verticalSpace.toFloat()
+                info.scaleXY = Math.pow(mScale.toDouble(), j - 1.toDouble()).toFloat()
+                break
             }
+            i--
+            j++
         }
+
         if (bottomItemPosition < mItemCount) {
             val start = verticalSpace - bottomItemVisibleHeight
             layoutInfos.add(
-                ItemViewInfo(
-                    start,
-                    1.0f,
-                    bottomItemVisibleHeight * 1.0f / mItemViewHeight,
-                    start * 1.0f / verticalSpace
-                )
-                    .setIsBottom()
+                    ItemViewInfo(start, 1.0f, bottomItemVisibleHeight * 1.0f / mItemViewHeight, start * 1.0f / verticalSpace).setIsBottom()
             )
         } else {
-            bottomItemPosition = bottomItemPosition - 1 //99
+            bottomItemPosition -= 1 //99
         }
         val layoutCount = layoutInfos.size
         val startPos = bottomItemPosition - (layoutCount - 1)
@@ -116,11 +110,11 @@ class EchelonLayoutManager : RecyclerView.LayoutManager() {
             measureChildWithExactlySize(view)
             val left = (horizontalSpace - mItemViewWidth) / 2
             layoutDecoratedWithMargins(
-                view,
-                left,
-                layoutInfo.top,
-                left + mItemViewWidth,
-                layoutInfo.top + mItemViewHeight
+                    view,
+                    left + 100,
+                    layoutInfo.top,
+                    left + mItemViewWidth - 100,
+                    layoutInfo.top + mItemViewHeight
             )
             view.pivotX = view.width / 2.toFloat()
             view.pivotY = 0f
