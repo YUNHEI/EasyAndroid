@@ -1,14 +1,10 @@
 package com.chen.app.ui.coroutines
 
-import androidx.lifecycle.viewModelScope
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
-import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
-import com.chen.basemodule.extend.listenClick
 import com.chen.basemodule.extend.toastCus
-import kotlinx.android.synthetic.main.fragment_coroutines_scope.*
 import kotlinx.coroutines.*
 
 @Launch
@@ -54,6 +50,7 @@ class GlobalScopeFragment : GroupSSListFragment() {
 
                     scope.launch {
                         async(Dispatchers.Default) {
+                            startPage(ViewModelScopeFragment::class)
                             while (isActive) {
                                 println("协作取消协程")
                                 Thread.sleep(1000)
