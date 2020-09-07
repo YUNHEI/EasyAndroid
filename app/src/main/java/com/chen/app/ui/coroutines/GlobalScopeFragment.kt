@@ -76,4 +76,9 @@ class GlobalScopeFragment : GroupSSListFragment() {
 
     }
 
+    suspend fun canCancel() = suspendCancellableCoroutine<Unit>{
+        it.invokeOnCancellation {
+
+        }
+    }
 }

@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.basemodule.extend.toastCus
+import com.chen.basemodule.util.DateUtil
 import kotlinx.coroutines.*
 
 @Launch
@@ -28,7 +29,6 @@ class ViewModelScopeFragment : GroupSSListFragment() {
                                 Thread.sleep(1000)
                             }
                         }
-
                     }
                 }
                 Item("协作取消协程") {
@@ -78,4 +78,5 @@ class ViewModelScopeFragment : GroupSSListFragment() {
             println("协程协作取消")
         }
     }
+
 }

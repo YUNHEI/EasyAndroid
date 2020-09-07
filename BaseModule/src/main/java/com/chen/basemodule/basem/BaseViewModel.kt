@@ -79,7 +79,7 @@ open class BaseViewModel : RootViewModel() {
         val liveData = MutableLiveData<BaseResponse<T>>()
 
         val exceptionHandler = CoroutineExceptionHandler { _, e ->
-            Handler(Looper.getMainLooper()).post {
+            viewModelScope.launch(Dispatchers.Main) {
                 liveData.value = BaseErrorResponse(e)
             }
         }

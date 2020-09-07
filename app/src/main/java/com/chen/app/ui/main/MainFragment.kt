@@ -24,9 +24,9 @@ class MainFragment : BaseSimpleFragment() {
 
     private val tabs by lazy {
         mutableListOf(
-                Tab(SamplePageFragment::class.java, R.drawable.ic_bottom_project, "简单"),
-                Tab(ListSampleFragment::class.java, R.drawable.ic_bottom_home, "列表"),
-                Tab(CoroutinesFragment::class.java, R.drawable.ic_bottom_message, "协程")
+            Tab(CoroutinesFragment::class.java, R.drawable.ic_bottom_message, "协程"),
+            Tab(SamplePageFragment::class.java, R.drawable.ic_bottom_project, "简单"),
+            Tab(ListSampleFragment::class.java, R.drawable.ic_bottom_home, "列表")
 //                Tab(MineFragment::class.java, R.drawable.ic_bottom_mine, "我的")
         )
     }
