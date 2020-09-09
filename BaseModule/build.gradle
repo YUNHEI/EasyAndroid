@@ -81,6 +81,7 @@ dependencies {
     kapt rootProject.ext.glide["glide-compiler"]
 
     api rootProject.ext.lifecycle["runtime"]
+    api rootProject.ext.lifecycle["runtime-ktx"]
     api rootProject.ext.lifecycle["extensions"]
     api rootProject.ext.lifecycle["reactivestreams"]
     api rootProject.ext.lifecycle["ktx"]

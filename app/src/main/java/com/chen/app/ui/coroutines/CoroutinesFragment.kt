@@ -1,5 +1,6 @@
 package com.chen.app.ui.coroutines
 
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.GroupSSListFragment
@@ -34,7 +35,7 @@ class CoroutinesFragment : GroupSSListFragment() {
                     println("main 性能测试 sum:${sum} total:${System.currentTimeMillis() - start} ${(System.currentTimeMillis() - start).toFloat() / size}")
                     sum = 0
                     for (i in 0 .. size) {
-                        scope.launch(Dispatchers.Unconfined) {
+                        lifecycleScope.launch(Dispatchers.Unconfined) {
                             sum = ln(ln(sqrt(sqrt(i.toFloat()).pow(5)))).toInt()
                         }
                     }
@@ -50,7 +51,7 @@ class CoroutinesFragment : GroupSSListFragment() {
                     printThread(length)
                     println("printThread 性能测试 ${System.currentTimeMillis() - start}")
 
-                    scope.launch {
+                    lifecycleScope.launch {
                         start = System.currentTimeMillis()
                         printIO(length)
                         println("printIO 性能测试 ${System.currentTimeMillis() - start}")
@@ -80,6 +81,10 @@ class CoroutinesFragment : GroupSSListFragment() {
         toolbar.run {
             center("协程")
             left(R.mipmap.ic_back) { activity?.finish() }
+        }
+
+        lifecycleScope.launch {
+
         }
     }
 

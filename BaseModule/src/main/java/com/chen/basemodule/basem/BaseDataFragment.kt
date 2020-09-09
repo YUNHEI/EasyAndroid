@@ -50,8 +50,6 @@ abstract class BaseDataFragment : BaseFragment() {
     /* viewModel 用户网络加载等操作*/
     abstract val viewModel: BaseViewModel
 
-    protected val scope by lazy { viewModel.viewModelScope }
-
     /**
      * 设置布局
      * @return content layout

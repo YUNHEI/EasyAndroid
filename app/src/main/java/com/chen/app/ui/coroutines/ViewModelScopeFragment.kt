@@ -1,5 +1,6 @@
 package com.chen.app.ui.coroutines
 
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.GroupSSListFragment
@@ -14,7 +15,7 @@ class ViewModelScopeFragment : GroupSSListFragment() {
         DATA {
             Group("协程作用域") {
                 Item("可取消协程") {
-                    scope.launch {
+                    lifecycleScope.launch {
                         while (true) {
                             "".toastCus(R.mipmap.ic_load_suc, 500)
                             delay(1500)
@@ -22,7 +23,7 @@ class ViewModelScopeFragment : GroupSSListFragment() {
                     }
                 }
                 Item("不可取消协程") {
-                    scope.launch {
+                    lifecycleScope.launch {
                         async(Dispatchers.Default) {
                             while (true) {
                                 println("不可取消协程")
@@ -32,7 +33,7 @@ class ViewModelScopeFragment : GroupSSListFragment() {
                     }
                 }
                 Item("协作取消协程") {
-                    scope.launch {
+                    lifecycleScope.launch {
                         async(Dispatchers.Default) {
                             while (isActive) {
                                 println("协作取消协程")
@@ -42,9 +43,9 @@ class ViewModelScopeFragment : GroupSSListFragment() {
                     }
                 }
                 Item("延迟取消协程") {
-                    scope.launch {
+                    lifecycleScope.launch {
                         val job = launch {
-                            print(scope)
+                            print(lifecycleScope)
                         }
 
                         delay(5000)

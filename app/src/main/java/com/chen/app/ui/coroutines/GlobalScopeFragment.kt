@@ -1,5 +1,6 @@
 package com.chen.app.ui.coroutines
 
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.GroupSSListFragment
@@ -36,7 +37,7 @@ class GlobalScopeFragment : GroupSSListFragment() {
                     }
                 }
                 Item("不可取消协程") {
-                    scope.launch {
+                    lifecycleScope.launch {
                         async(Dispatchers.Default) {
                             while (true) {
                                 println("不可取消协程")
@@ -48,7 +49,7 @@ class GlobalScopeFragment : GroupSSListFragment() {
                 }
                 Item("协作取消协程") {
 
-                    scope.launch {
+                    lifecycleScope.launch {
                         async(Dispatchers.Default) {
                             startPage(ViewModelScopeFragment::class)
                             while (isActive) {

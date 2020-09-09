@@ -35,6 +35,7 @@ ext {
     kotlinx_coroutines = [
             "core"   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version",
             "android": "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version"
+
     ]
 
     /*retrofit 网络框架*/
@@ -61,6 +62,7 @@ ext {
     lifecycle_version = "2.2.0"
     lifecycle = [
             "runtime"        : "androidx.lifecycle:lifecycle-runtime:$lifecycle_version",
+            "runtime-ktx"        : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
             "ktx"            : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
             "extensions"     : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
             "reactivestreams": "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version",
