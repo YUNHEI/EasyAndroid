@@ -1,15 +1,14 @@
 package com.chen.app.ui.list
 
 import android.graphics.Rect
+import androidx.lifecycle.viewModelScope
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.basemodule.extend.toastSuc
-import org.w3c.dom.NodeList
-import java.lang.StrictMath.max
-import java.util.*
-import kotlin.collections.HashMap
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @Launch
 class ListSampleFragment : GroupSSListFragment() {
@@ -26,29 +25,29 @@ class ListSampleFragment : GroupSSListFragment() {
         defaultHide = true
 
         //item 列数
-        columns = 4
+        columns = 1
 
     }
 
     override val titleStyle = TitleStyle(
-        40,
-        14f,
-        R.color.red,
-        backgroundResource = R.color.gray_f5,
-        padding = Rect(10, 10, 20, 10)
+            40,
+            14f,
+            R.color.red,
+            backgroundResource = R.color.gray_f5,
+            padding = Rect(10, 10, 20, 10)
     )
 
     override val wrapData by lazy {
         DATA {
             Group(
-                "简单列表",
-                titleStyle = TitleStyle(
-                    40,
-                    14f,
-                    R.color.white,
-                    backgroundResource = R.color.main_theme,
-                    padding = Rect(10, 10, 20, 10)
-                )
+                    "简单列表",
+                    titleStyle = TitleStyle(
+                            40,
+                            14f,
+                            R.color.white,
+                            backgroundResource = R.color.main_theme,
+                            padding = Rect(10, 10, 20, 10)
+                    )
             ) {
                 Item("简单单一样式列表") {
 //                    "点击 单一样式列表: $t".toastSuc()
