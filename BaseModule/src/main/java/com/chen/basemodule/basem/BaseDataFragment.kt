@@ -3,10 +3,8 @@ package com.chen.basemodule.basem
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
-import com.jeremyliao.liveeventbus.LiveEventBus
 import com.chen.basemodule.R
 import com.chen.basemodule.allroot.RootFragment
 import com.chen.basemodule.constant.LiveBusKey
@@ -14,12 +12,10 @@ import com.chen.basemodule.event_bus.BaseCloseEvent
 import com.chen.basemodule.event_bus.BaseNetworkEvent
 import com.chen.basemodule.event_bus.BaseRefreshEvent
 import com.chen.basemodule.extend.color
-import com.chen.basemodule.extend.requestData
-import com.chen.basemodule.network.base.BaseResponse
 import com.chen.basemodule.widget.ShimmerLayout
 import com.chen.basemodule.widget.dialog.LoadingDialog
 import com.chen.basemodule.widget.dialog.WarningDialog
-import io.reactivex.Observable
+import com.jeremyliao.liveeventbus.LiveEventBus
 import kotlinx.android.synthetic.main.layout_shimmer_cover.*
 import kotlin.reflect.KClass
 import kotlin.reflect.jvm.jvmName
@@ -69,17 +65,6 @@ abstract class BaseDataFragment : BaseFragment() {
 
     abstract fun startLoadData(muteLoadData: Boolean? = false)
     /**######################抽象方法区 复写父类中的抽象方法，保证idea自动补全的顺序 ######################*/
-
-    protected open fun <T> loadNetData(observer: Observable<BaseResponse<T>>,
-                                       success: ((response: BaseResponse<T>) -> Unit)? = null,
-                                       fail: ((response: BaseResponse<T>) -> Unit)? = null,
-                                       preHandle: ((response: BaseResponse<T>) -> Unit)? = null): LiveData<BaseResponse<T>>? {
-
-        return viewModel.requestData(activity!!, observer, success, fail, preHandle)
-
-    }
-
-    protected open fun <T> loadNetData(observer: Observable<BaseResponse<T>>) = viewModel.requestData(observer)
 
     protected open fun showShimmerCover(show: Boolean, showError: Boolean, showBlank: Boolean) {
 
