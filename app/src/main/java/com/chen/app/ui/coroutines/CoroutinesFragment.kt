@@ -5,7 +5,9 @@ import com.chen.app.R
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
 import kotlinx.coroutines.*
+import kotlin.math.ln
 import kotlin.math.pow
+import kotlin.math.sqrt
 import kotlin.random.Random
 
 @Launch
@@ -21,6 +23,23 @@ class CoroutinesFragment : GroupSSListFragment() {
                     startPage(GlobalScopeFragment::class)
                 }
 
+                Item("协程线程切换") {
+                    val length = Random.nextInt(7)
+                    var start = System.currentTimeMillis()
+                    var sum = 0
+                    val size = (10f.pow(length)).toInt()
+                    for (i in 0 .. size) {
+                        sum = ln(ln(sqrt(sqrt(i.toFloat()).pow(5)))).toInt()
+                    }
+                    println("main 性能测试 sum:${sum} total:${System.currentTimeMillis() - start} ${(System.currentTimeMillis() - start).toFloat() / size}")
+                    sum = 0
+                    for (i in 0 .. size) {
+                        scope.launch(Dispatchers.Unconfined) {
+                            sum = ln(ln(sqrt(sqrt(i.toFloat()).pow(5)))).toInt()
+                        }
+                    }
+                    println("launch 性能测试 size:${size} total:${System.currentTimeMillis() - start} ${(System.currentTimeMillis() - start).toFloat() / size}")
+                }
                 Item("协程性能测试") {
                     val length = Random.nextInt(5)
                     var start = System.currentTimeMillis()
