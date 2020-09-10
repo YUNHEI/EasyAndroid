@@ -73,20 +73,54 @@ class CoroutinesFragment : GroupSSListFragment() {
                         println("printDefault2 性能测试 ${System.currentTimeMillis() - start}")
                     }
                 }
+
+                Item("协程性能测试2") {
+                    val length = Random.nextInt(7)
+                    var start = System.currentTimeMillis()
+                    var sum = 1
+
+                    for (i in 1..(10f.pow(length).toInt())) {
+                        sum += (i.toFloat().pow(length)).toInt()
+                        sum = -sum
+                    }
+
+                    println("main 性能测试 length :${length} sum: ${sum}  time: ${System.currentTimeMillis() - start}")
+
+                    sum = 1
+
+                    lifecycleScope.launch(Dispatchers.Default) {
+                        start = System.currentTimeMillis()
+
+                        for (i in 1..(10f.pow(length).toInt())) {
+                            launch(Dispatchers.Default) {
+                                sum += (i.toFloat().pow(length)).toInt()
+                                sum = -sum
+                            }.join()
+                        }
+
+                        println("Default 性能测试 length :${length} sum: ${sum}  time: ${System.currentTimeMillis() - start}")
+                    }
+                }
             }
         }
     }
 
-    override fun initAndObserve() {
-        toolbar.run {
-            center("协程")
-            left(R.mipmap.ic_back) { activity?.finish() }
-        }
-
-        lifecycleScope.launch {
-
+    override suspend fun onReady() {
+        super.onReady()
+        lifecycleScope.launch(Dispatchers.Default) {
+            toolbar.run{
+                center("协程")
+            }
         }
     }
+
+//    override fun initAndObserve() {
+//        toolbar.run {
+//            center("")
+//            left(R.mipmap.ic_back) { activity?.finish() }
+//        }
+//
+//    }
 
     fun printMain(length: Int): Int {
         var sum = 0
@@ -101,7 +135,7 @@ class CoroutinesFragment : GroupSSListFragment() {
     fun printThread(length: Int): Int {
         var sum = 0
         for (i in 1..1000 * length) {
-            Thread{
+            Thread {
                 for (j in 1..10000) {
                     sum += (j * i.toFloat().pow(length) + j).toInt()
                 }

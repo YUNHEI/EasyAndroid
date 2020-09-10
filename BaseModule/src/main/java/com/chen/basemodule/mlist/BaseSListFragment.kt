@@ -41,7 +41,7 @@ abstract class BaseSListFragment<V : RootBean> : BaseMListFragment<V>() {
     /**
      * onViewCreated 之后调用
      */
-    abstract override fun initAndObserve()
+//    abstract override fun initAndObserve()
 
     abstract override fun initClickListener()
 

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.enums.LaunchType
 import com.chen.baseextend.extend.context.intent
 import kotlin.reflect.KClass
+import kotlin.reflect.jvm.jvmName
 
 /**
  *  Created by chen on 2019/6/10
@@ -20,4 +21,3 @@ fun Fragment.startPage(fragmentClass: KClass<*>? = null, vararg args: Pair<Strin
         }
     }
 }
-

@@ -1,6 +1,7 @@
 package com.chen.basemodule.extend
 
 import androidx.fragment.app.Fragment
+import kotlin.reflect.jvm.jvmName
 
 const val FRAGMENT_SWIPE_TYPE = "fragmentSwipeType"
 
@@ -19,3 +20,7 @@ fun Fragment.argLong(key: String, default: Long = 0): Long {
 fun Fragment.argBoolean(key: String, default: Boolean = false): Boolean {
     return arguments?.getBoolean(key, default) ?: default
 }
+
+
+
+fun Fragment.mark(start: Long, key: String) = println("${this::class.jvmName} key:${key} time:${System.currentTimeMillis() - start}")

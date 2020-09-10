@@ -121,7 +121,7 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
      * @param lastItem refresh 为true时  lastItem 为null
      * @return
      */
-    abstract override fun initAndObserve()
+//    abstract override fun initAndObserve()
 
     protected abstract fun customerDelegateWithParams(): MutableList<Class<out BaseItemViewDelegate<V>>>?
 

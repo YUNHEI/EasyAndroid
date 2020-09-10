@@ -59,7 +59,7 @@ abstract class BaseDataFragment : BaseFragment() {
     /**
      * onViewCreated 之后调用
      */
-    abstract override fun initAndObserve()
+//    abstract override fun initAndObserve()
 
     abstract fun startLoadData(muteLoadData: Boolean? = false)
     /**######################抽象方法区 复写父类中的抽象方法，保证idea自动补全的顺序 ######################*/
