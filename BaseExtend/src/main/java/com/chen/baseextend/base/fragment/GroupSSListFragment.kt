@@ -52,12 +52,7 @@ abstract class GroupSSListFragment :
 
     override fun getGroupTitle(groupData: GroupBean?): String? = groupData?.title
 
-    override fun bindGroupData(
-            viewHolder: BaseItemViewHolder,
-            groupData: GroupBean?,
-            position: Int,
-            realP: Int
-    ) {
+    override fun bindGroupData(viewHolder: BaseItemViewHolder, groupData: GroupBean?, position: Int, realP: Int) {
         (viewHolder.itemView as TextView).run {
             (groupData?.titleStyle ?: titleStyle).run {
                 layoutParams.height = if (height < 0) height else dp2px(height)

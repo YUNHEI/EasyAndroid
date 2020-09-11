@@ -68,6 +68,9 @@ class SamplePageFragment : GroupSSListFragment() {
                 Item("Hello World") {
                     startPage(HelloWorldFragment::class)
                 }
+                Item("打印") {
+                    startPage(PrintFragment::class)
+                }
             }
             Group("打卡网页") {
                 Item("网页") {

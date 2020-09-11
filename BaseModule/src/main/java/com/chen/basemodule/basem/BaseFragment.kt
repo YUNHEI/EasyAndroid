@@ -91,11 +91,6 @@ abstract class BaseFragment : RootFragment() {
                 })
     }
 
-//    override fun onStop() {
-//        super.onStop()
-//        ActivityTranslucentUtil.convertWindowToTranslucent(activity)
-//    }
-
     /**
      * call this method when layout is contain fragment container
      *

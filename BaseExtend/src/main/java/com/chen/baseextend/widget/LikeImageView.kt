@@ -11,24 +11,13 @@ import com.chen.baseextend.R
  * @date 2019/3/28
  * 点赞小图标
  */
-class LikeImageView : AppCompatImageView {
+class LikeImageView(context: Context, attrs: AttributeSet?) : AppCompatImageView(context, attrs) {
 
     private val mAnimation by lazy {
         AnimationUtils.loadAnimation(context, R.anim.like_click)
     }
 
     private var mCurrentLikeStatus = LikeStatus.UN_LIKE
-
-    constructor(context: Context?) : this(context, null)
-
-    constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
-
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-
-
-    init {
-
-    }
 
     public fun startAnimation() {
         clearAnimation()
