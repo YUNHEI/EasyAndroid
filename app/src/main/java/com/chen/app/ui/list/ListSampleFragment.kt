@@ -1,14 +1,12 @@
 package com.chen.app.ui.list
 
 import android.graphics.Rect
-import androidx.lifecycle.viewModelScope
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.ui.kline.KLineFragment
 import com.chen.baseextend.base.fragment.GroupSSListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.basemodule.extend.toastSuc
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @Launch
 class ListSampleFragment : GroupSSListFragment() {
@@ -72,9 +70,9 @@ class ListSampleFragment : GroupSSListFragment() {
                     "item: $title".toastSuc()
                 }
             }
-            Group("标题2") {
-                Item("item2-1") {
-
+            Group("k-line") {
+                Item("k-线图") {
+                    startPage(KLineFragment::class)
                 }
                 Item("item2-2") {
 

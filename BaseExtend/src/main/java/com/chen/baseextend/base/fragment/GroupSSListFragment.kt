@@ -17,8 +17,7 @@ import com.chen.basemodule.network.base.BaseResponse
 /**
  *  Created by 86152 on 2020-01-04
  **/
-abstract class GroupSSListFragment :
-        GroupSListFragment<GroupSSListFragment.GroupBean, GroupSSListFragment.ItemBean>() {
+abstract class GroupSSListFragment : GroupSListFragment<GroupSSListFragment.GroupBean, GroupSSListFragment.ItemBean>() {
 
     abstract val wrapData: MutableList<GroupBean>
 

@@ -34,8 +34,8 @@ import kotlinx.android.synthetic.main.base_mlist_fragment.*
 
 /**
  *
- * 多种布局列表
- * 父类的泛型定义必须放在第一位
+ * 多种类型布局列表
+ *
  * @param <V>
  * @param <K>
 </K></V> */

@@ -21,7 +21,9 @@
             android:theme="@style/InputTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
-        <activity android:name="com.chen.baseextend.base.activity.BaseStandardActivity" />
+        <activity
+            android:name="com.chen.baseextend.base.activity.BaseStandardActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity
             android:name="com.chen.baseextend.base.activity.BaseCoverActivity"
@@ -57,7 +59,7 @@
         <activity
             android:name="com.chen.baseextend.ui.WebActivity"
             android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="false"/>
+            android:hardwareAccelerated="false" />
 
 
         <activity android:name="com.chen.baseextend.widget.image_view.ImageViewerActivity" />
