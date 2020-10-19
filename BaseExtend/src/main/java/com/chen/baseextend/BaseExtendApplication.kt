@@ -17,6 +17,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.tencent.sonic.sdk.SonicConfig
 import com.tencent.sonic.sdk.SonicEngine
+import com.upchina.taf.TAFManager
 import io.reactivex.plugins.RxJavaPlugins
 
 
@@ -50,6 +51,9 @@ object BaseExtendApplication {
         this.app = app
 
         if (enableOffline) OfflineService.start(app)
+
+        //启动taf框架
+        TAFManager.start(app)
 
         wechatId?.run {
             WECHAT_APP_ID = this

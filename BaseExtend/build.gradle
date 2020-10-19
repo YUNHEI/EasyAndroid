@@ -81,6 +81,8 @@ androidExtensions {
 
 dependencies {
 
+    api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
     api project(':BaseModule')
 
     kapt project(':page-compiler')

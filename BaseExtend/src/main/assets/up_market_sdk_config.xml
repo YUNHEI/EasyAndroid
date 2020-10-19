@@ -1,0 +1,18 @@
+<market-config business="stock">
+
+    <app-key token="f2IDetKS78nx+19McAe92NQ22sFseYmD6WoNn2sEHWde46o3Uj9OB1+4xFaAedV6" />
+
+
+    <!-- L1默认地址 -->
+    <default-address
+        ip="118.31.216.237"
+        port="443"
+        servantName="HQSys.MarketDataMPServer.BasicHqObj"
+        isL2="0" />
+    <!-- L2默认地址 -->
+    <default-address
+        ip="115.159.130.37"
+        port="443"
+        servantName="HQSys.MarketDataL2Server.BasicHqObj"
+        isL2="1" />
+</market-config>

@@ -1,0 +1,7 @@
+<taf-config module="stock" channel="9501" build="GA">
+<default-address>
+    <address type="1"
+        production="https://prx.upchina.com"
+        test="http://prx.test.upchina.com" />
+</default-address>
+</taf-config>
