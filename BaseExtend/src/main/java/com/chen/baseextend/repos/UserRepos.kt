@@ -37,7 +37,7 @@ object UserRepos : BaseSimpleRepos<UserRepos.UserService>() {
     suspend fun initUserInfo(token: String? = null): BaseResponse<UserInfoAndAccountBean> {
 
         token?.run {
-            BasePreference.USER_TOKEN = token
+            BasePreference.USER_TOKEN_ = token
             BasePreference.LOGIN_STATE = true
         }
 

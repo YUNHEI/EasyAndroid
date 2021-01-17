@@ -43,7 +43,7 @@ class SonicRuntimeImpl(context: Context?) : SonicRuntime(context) {
      * @return
      */
     override fun getCurrentUserAccount(): String {
-        return BasePreference.USER_TOKEN.orEmpty()
+        return BasePreference.USER_TOKEN_.orEmpty()
     }
 
     override fun getCookie(url: String): String {

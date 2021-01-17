@@ -1,7 +1,7 @@
 package com.chen.baseextend.base.activity
 
 import androidx.lifecycle.ViewModelProvider
-import com.chen.baseextend.repos.MainViewModel
+import com.chen.baseextend.repos.viewmodel.MainViewModel
 import com.chen.basemodule.allroot.RootFragmentActivity
 
 /**

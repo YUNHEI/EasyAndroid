@@ -3,6 +3,11 @@ package com.chen.basemodule.constant
 import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.util.preference.PreferenceHolder
 
+/**
+ *  "_" 下划线开头的KEY为安全存储类型，在安全删除是不会被删除。
+ *  "_" 下划线结尾的KEY为加密安全存储类型。会加密存储。
+ *  对性能有一定影响，大数据要慎重使用
+ */
 object BasePreference : PreferenceHolder() {
 
     const val SEED_KEY = "9eb188f476d8c28e6f132743ff9bcd24"
@@ -30,12 +35,23 @@ object BasePreference : PreferenceHolder() {
     /**键盘高度*/
     var _KEYBOARD_HEIGHT: Int by bindToPreferenceField(0)
 
+    /**客服*/
+    var SERVICE_ID: Long by bindToPreferenceField(6026)
 
     /**用户令牌*/
-    var USER_TOKEN: String? by bindToPreferenceFieldNullable()
+    var USER_TOKEN_: String? by bindToPreferenceFieldNullable()
+
+    /**用户令牌，刷新*/
+    var USER_REFRESHTOKEN_: String? by bindToPreferenceFieldNullable()
 
     /**用户id*/
     var USER_ID: String by bindToPreferenceField("")
+
+    /**用户名*/
+    var USER_NICKNAME: String? by bindToPreferenceFieldNullable()
+
+    /**用户名*/
+    var USER_HEADIMAGE: String? by bindToPreferenceFieldNullable()
 
     /**用户登录状态*/
     var LOGIN_STATE: Boolean by bindToPreferenceField(false)
@@ -82,6 +98,10 @@ object BasePreference : PreferenceHolder() {
     /** 待处理按钮坐标*/
     var _WAIT_PROCESS_Y: Int by bindToPreferenceField(dp2px(66))
     var _WAIT_PROCESS_X: Int by bindToPreferenceField(dp2px(15))
+
+
+    /**产品id 如果当前没有获取到用户权限，返回固定值8,8为普通版本号码*/
+    var PRODUCT_ID: Long by bindToPreferenceField(8)
 
 
 }

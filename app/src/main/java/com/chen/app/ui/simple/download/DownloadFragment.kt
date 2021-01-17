@@ -8,13 +8,12 @@ import com.alibaba.android.arouter.facade.enums.LaunchType
 import com.alibaba.android.arouter.facade.enums.SwipeType
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
-import com.chen.baseextend.repos.DownloadModel
+import com.chen.baseextend.repos.viewmodel.DownloadModel
 import com.chen.baseextend.repos.DownloadRepos
 import com.chen.basemodule.constant.LiveBusKey
 import com.chen.basemodule.event_bus.BaseProgressEvent
 import com.chen.basemodule.extend.listenClick
 import com.chen.basemodule.extend.toast
-import com.chen.basemodule.extend.toastDebug
 import com.chen.basemodule.extend.toastSuc
 import com.chen.basemodule.util.FileUtil
 import com.jeremyliao.liveeventbus.LiveEventBus

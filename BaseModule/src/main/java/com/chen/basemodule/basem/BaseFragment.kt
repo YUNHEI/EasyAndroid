@@ -1,5 +1,8 @@
 package com.chen.basemodule.basem
 
+import android.animation.Animator
+import android.animation.AnimatorInflater
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -21,11 +24,12 @@ import com.jeremyliao.liveeventbus.LiveEventBus
 import kotlinx.coroutines.launch
 import kotlin.reflect.jvm.jvmName
 
+
 abstract class BaseFragment : RootFragment() {
 
-    private var toolbarView: ToolbarView? = null
+    protected var toolbarView: ToolbarView? = null
 
-    val toolbar: ToolbarView
+    open val toolbar: ToolbarView
         get() {
             if (toolbarView == null) {
                 toolbarView = ToolbarView(activity!!).apply { attachToolbar(view) }
@@ -35,8 +39,8 @@ abstract class BaseFragment : RootFragment() {
 
     val swipe by lazy {
         SmartSwipe.wrap(activity)
-                .addConsumer(ActivitySlidingBackConsumer(activity))
-                .setRelativeMoveFactor(0.5F) as ActivitySlidingBackConsumer
+            .addConsumer(ActivitySlidingBackConsumer(activity))
+            .setRelativeMoveFactor(0.5F) as ActivitySlidingBackConsumer
     }
 
     /**
@@ -48,11 +52,13 @@ abstract class BaseFragment : RootFragment() {
     /**
      * onViewCreated 之后调用
      */
-    open fun initAndObserve() {}
+    abstract fun initAndObserve()
 
-    open suspend fun onReady() {}
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         view?.run {
             if (parent is ViewGroup) {
@@ -75,21 +81,47 @@ abstract class BaseFragment : RootFragment() {
         return inflater.inflate(contentLayoutId, container, false)
     }
 
+    override fun onCreateAnimator(transit: Int, enter: Boolean, nextAnim: Int): Animator? {
+        return if (nextAnim > 0) {
+            AnimatorInflater.loadAnimator(activity, nextAnim).apply {
+                addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationStart(animation: Animator) {
+                        //动画开始
+                    }
+
+                    override fun onAnimationEnd(animation: Animator) {
+                        onFragmentAnimEnd()
+                    }
+                })
+            }
+        } else {
+            null
+        }
+    }
+
+    open fun onFragmentAnimEnd() { }
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAndObserve()
 
-        lifecycleScope.launch {
-            onReady()
-        }
-
         LiveEventBus.get(LiveBusKey.EVENT_CLOSE, BaseCloseEvent::class.java)
-                .observe(this@BaseFragment, Observer {
-                    if (it.target.contains(this@BaseFragment::class.jvmName)) {
-                        activity?.finish()
-                    }
-                })
+            .observe(this@BaseFragment, Observer {
+                if (it.target.contains(this@BaseFragment::class.jvmName)) {
+                    activity?.finish()
+                }
+            })
     }
+
+    override fun getUserVisibleHint(): Boolean {
+        return super.getUserVisibleHint()
+    }
+
+    fun onShow() {}
+
+    fun onHide() {}
 
     /**
      * call this method when layout is contain fragment container
@@ -98,9 +130,9 @@ abstract class BaseFragment : RootFragment() {
      */
     protected fun setFragment(@IdRes id: Int, fragment: Fragment) {
         childFragmentManager
-                .beginTransaction()
-                .replace(id, fragment)
-                .commitAllowingStateLoss()
+            .beginTransaction()
+            .replace(id, fragment)
+            .commitAllowingStateLoss()
     }
 
     open fun onKeyUp(keyCode: Int, event: KeyEvent) = false//默认不拦截返回事件

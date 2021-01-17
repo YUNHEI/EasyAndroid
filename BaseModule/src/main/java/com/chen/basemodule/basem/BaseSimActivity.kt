@@ -13,6 +13,10 @@ open class BaseSimActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       configFragment()
+    }
+
+    open fun configFragment() {
         fragment?.run {
             setFragment(android.R.id.content, this)
         }

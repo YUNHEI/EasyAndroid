@@ -8,7 +8,7 @@ import com.chen.basemodule.allroot.RootBean
 /**
  * Created by chen on 2018/11/13
  */
-abstract class BaseFooterViewDelegate<T : RootBean>(context: Context) : BaseItemViewDelegate<T>(context) {
+abstract class BaseFooterViewDelegate(context: Context) : BaseItemViewDelegate<RootBean>(context) {
 
-    override fun isThisDelegate(data: T, position: Int, realP: Int) = true
+    override fun isThisDelegate(data: RootBean, position: Int, realP: Int) = true
 }

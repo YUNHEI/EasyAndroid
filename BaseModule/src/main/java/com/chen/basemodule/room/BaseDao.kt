@@ -22,9 +22,6 @@ interface BaseDao<T : BaseRoomBean> {
     suspend fun update(T: T): Int
 
     @RawQuery
-    suspend fun abc(query: SupportSQLiteQuery): Int?
-
-    @RawQuery
     fun deleteAll(query: SupportSQLiteQuery): Int?
 
     @RawQuery

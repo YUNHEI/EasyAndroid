@@ -1,4 +1,4 @@
-package com.chen.baseextend.repos
+package com.chen.baseextend.repos.viewmodel
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

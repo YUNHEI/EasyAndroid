@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,38 +20,14 @@
 
     </com.chen.basemodule.widget.smartrefresh.layout.SmartRefreshLayout>
 
-    <FrameLayout
-        android:id="@+id/container_refresh_tip"
+    <ViewStub
+        android:id="@+id/_layout_refresh_tip"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_34"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        android:layout="@layout/layout_refresh_tip"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/bg_refresh_tip"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#fff7e9" />
+    <include layout="@layout/layout_loading_cover" />
 
-        <TextView
-            android:id="@+id/refresh_tip"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_0"
-            android:gravity="center"
-            android:textColor="@color/main_theme"
-            android:textSize="@dimen/text_14"
-            app:layout_constraintTop_toBottomOf="@id/_toolbar"
-            tools:text="更新" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/_shimmer_cover"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

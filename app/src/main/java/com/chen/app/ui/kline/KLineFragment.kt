@@ -16,9 +16,7 @@ import kotlinx.coroutines.withContext
 class KLineFragment :BaseSimpleFragment(){
 
     override val contentLayoutId = R.layout.fragment_k_line_example
-
-    override suspend fun onReady() {
-        super.onReady()
+    override fun initAndObserve() {
 
         val mAdapter = KChartAdapter()
         kchart_view.adapter = mAdapter
@@ -44,4 +42,5 @@ class KLineFragment :BaseSimpleFragment(){
             }
         }
     }
+
 }

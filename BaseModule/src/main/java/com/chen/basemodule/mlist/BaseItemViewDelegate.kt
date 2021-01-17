@@ -20,18 +20,18 @@ abstract class BaseItemViewDelegate<T : RootBean>(val context: Context) {
 
     var bundle: Bundle? = null
 
-    lateinit var mAdapter: BaseMAdapter<T>
+    lateinit var mAdapter: BaseMultiAdapter<T>
 
-    /*返回item的布局 如 R.layout.item_info*/
+    /*优先调用onCreateView获取View,返回item的布局 如 R.layout.item_info*/
     abstract val layoutId: Int
 
     val columns: Int
         get() = bundle?.getInt("columns", 1) ?: 1
 
 
-    fun createItemViewHolder(parent: ViewGroup): BaseItemViewHolder {
-
-        val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
+    open fun createItemViewHolder(parent: ViewGroup): BaseItemViewHolder {
+        val view = onCreateView(context) ?: LayoutInflater.from(parent.context)
+            .inflate(layoutId, parent, false)
         viewHolder = BaseItemViewHolder(view, mAdapter)
         onAddCustomerClickListener(customerClickViewIds)
         return viewHolder!!
@@ -41,11 +41,35 @@ abstract class BaseItemViewDelegate<T : RootBean>(val context: Context) {
 
     }
 
-    open fun onItemClick(viewHolder: BaseItemViewHolder, itemView: View, data: T?, id: Int, position: Int, realP: Int) = false
+    fun disableItemClick() = customerClickViewIds.clear()
 
-    open fun onItemLongClick(viewHolder: BaseItemViewHolder, itemView: View, data: T?, id: Int, position: Int, realP: Int) = false
+    open fun onCreateView(context: Context): View? = null
 
-    open fun updateData(viewHolder: BaseItemViewHolder, data: T?, position: Int, realP: Int, payloads: MutableList<Any>) {
+    open fun onItemClick(
+        viewHolder: BaseItemViewHolder,
+        itemView: View,
+        data: T?,
+        id: Int,
+        position: Int,
+        realP: Int
+    ) = false
+
+    open fun onItemLongClick(
+        viewHolder: BaseItemViewHolder,
+        itemView: View,
+        data: T?,
+        id: Int,
+        position: Int,
+        realP: Int
+    ) = false
+
+    open fun updateData(
+        viewHolder: BaseItemViewHolder,
+        data: T?,
+        position: Int,
+        realP: Int,
+        payloads: MutableList<Any>
+    ) {
 
     }
 

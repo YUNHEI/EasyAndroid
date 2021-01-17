@@ -1,9 +1,6 @@
 package com.chen.basemodule.mlist
 
-import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import android.view.animation.*
@@ -19,6 +16,11 @@ import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.basem.BaseDataFragment
 import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.extend.toast
+import com.chen.basemodule.mlist.animator.AniListener
+import com.chen.basemodule.mlist.animator.ReboundAniUpdateListener
+import com.chen.basemodule.mlist.itemdecoration.Divider
+import com.chen.basemodule.mlist.itemdecoration.SimpleItemDecoration
+import com.chen.basemodule.mlist.layoutmanager.AutoGridLayoutManager
 import com.chen.basemodule.network.base.BaseResponse
 import com.chen.basemodule.widget.CustomRefreshFooter
 import com.chen.basemodule.widget.smartrefresh.layout.SmartRefreshLayout
@@ -31,6 +33,8 @@ import com.chen.basemodule.widget.smartrefresh.layout.internal.ProgressDrawable
 import com.chen.basemodule.widget.smartrefresh.layout.listener.OnLoadMoreListener
 import com.chen.basemodule.widget.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.base_mlist_fragment.*
+import kotlinx.android.synthetic.main.layout_refresh_tip.*
+import kotlin.reflect.KClass
 
 /**
  *
@@ -39,11 +43,16 @@ import kotlinx.android.synthetic.main.base_mlist_fragment.*
  * @param <V>
  * @param <K>
 </K></V> */
-abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshListener, OnLoadMoreListener {
+abstract class BaseMultiListFragment<V : RootBean> : BaseDataFragment(), OnRefreshListener,
+    OnLoadMoreListener {
 
     override val contentLayoutId = R.layout.base_mlist_fragment
 
-    val mAdapter by lazy { BaseMAdapter<V>(context!!).apply { pageSize = this@BaseMListFragment.PAGE_SIZE } }
+    open val mAdapter by lazy {
+        BaseMultiAdapter<V>(context!!).apply {
+            pageSize = PAGE_SIZE
+        }
+    }
 
     protected var PAGE_SIZE = 20
 
@@ -54,6 +63,11 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
     var showCompleteFooter = true
 
     var autoLoadData = true
+
+    /**
+     * fragment 懒加载，fragment显示的时候触发loadData
+     */
+    open var lazyLoad = true
 
     /**
      * { bundle 参数设置在 @link #customerDelegateWithParams() 方法中进行}
@@ -70,48 +84,35 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
     @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
     annotation class LoadingStatus
 
+
     open var columns = 1
         set(value) {
             field = value
             delegateBundle.putInt("columns", value)
             _recycler.run {
-                removeItemDecoration(itemDecoration)
+//                removeItemDecoration(itemDecoration)
                 if (value <= 1) {
                     layoutManager = lManager
                 } else {
-                    layoutManager = GridLayoutManager(context, value).apply {
+                    layoutManager = AutoGridLayoutManager(context, value).apply {
                         spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                             override fun getSpanSize(position: Int): Int {
-                                return if (mAdapter.getItemViewType(position) in 20000 until 30000) 1 else value
+                                return if (mAdapter.isItem(position)) 1 else value
                             }
                         }
                     }
-                    addItemDecoration(itemDecoration)
+//                    addItemDecoration(itemDecoration)
                 }
             }
         }
 
-    protected open val itemDecoration: RecyclerView.ItemDecoration by lazy {
-        object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-                super.getItemOffsets(outRect, view, parent, state)
-                val position = parent.getChildAdapterPosition(view)
-                if (mAdapter.getItemViewType(position) in 20000 until 30000) {
-                    val realP = position - mAdapter.headerViewDelegates.size
-                    val row = realP.rem(columns)
-                    outRect.run {
-                        left = mPadding - row * mPadding / columns
-                        right = row.inc() * mPadding / columns
-                        bottom = mPadding
-                        if (realP < columns) {
-                            top = mPadding
-                        }
-                    }
-                }
+    open var divider: Divider? = null
+        set(value) {
+            field = value
+            _recycler.run {
+                addItemDecoration(SimpleItemDecoration(value ?: Divider()))
             }
         }
-    }
-
 
     /**######################抽象方法区 复写父类中的抽象方法，保证idea自动补全的顺序 ######################*/
     /**
@@ -123,28 +124,29 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
      */
 //    abstract override fun initAndObserve()
 
-    protected abstract fun customerDelegateWithParams(): MutableList<Class<out BaseItemViewDelegate<V>>>?
+    protected abstract fun customerDelegateWithParams(): MutableList<KClass<out BaseItemViewDelegate<V>>>?
 
     abstract fun initClickListener()
 
-    protected abstract fun loadData(refresh: Boolean, lastItem: V?): LiveData<BaseResponse<MutableList<V>>>?
+    protected abstract fun loadData(
+        refresh: Boolean,
+        lastItem: V?
+    ): LiveData<BaseResponse<MutableList<V>>>?
 
     /**######################抽象方法区 复写父类中的抽象方法，保证idea自动补全的顺序 ######################*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val classicsFooter = CustomRefreshFooter(context)
-                .setFinishDuration(100)
-                .setDrawableProgressSize(10f)
-                .setProgressDrawable(ProgressDrawable())
+            .setFinishDuration(100)
+            .setDrawableProgressSize(10f)
+            .setProgressDrawable(ProgressDrawable())
 
         _refresh?.run {
-
-            isEnableRefresh = true
             isEnableLoadMore = true
-            setOnRefreshListener(this@BaseMListFragment)
-            setOnLoadMoreListener(this@BaseMListFragment)
-            setReboundDuration(500)
+            setOnRefreshListener(this@BaseMultiListFragment)
+            setOnLoadMoreListener(this@BaseMultiListFragment)
+            setReboundDuration(550)
             setEnableAutoLoadMore(true)
             setRefreshHeader(SimpleHeader(context))
             setHeaderHeight(36F)
@@ -157,9 +159,9 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
 
         columns = 1
 
-        super.onViewCreated(view, savedInstanceState)
+        enableRefreshTip(false)
 
-        enableRefreshTip()
+        super.onViewCreated(view, savedInstanceState)
 
         _recycler.run {
             adapter = mAdapter
@@ -168,41 +170,58 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
             (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         }
 
-        if (autoLoadData) startLoadData()
+        if (lazyLoad) setLoadingStatus(INIT)
+        if (autoLoadData && !lazyLoad) startLoadData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (autoLoadData && lazyLoad) {
+            lazyLoad = false
+            startLoadData()
+        }
     }
 
     protected open fun initDelegate(bundle: Bundle) {
 
-        mAdapter.addItemViewDelegate(*customerDelegateWithParams().orEmpty().toTypedArray(), delegateBundle = delegateBundle)
+        mAdapter.addItemViewDelegate(
+            *customerDelegateWithParams().orEmpty().toTypedArray(),
+            delegateBundle = delegateBundle
+        )
     }
 
     /**
      * 需要在onViewCreated内调用,在initAdapter() 调用之前
      */
-    protected fun listenItemClick(vararg ids: Int, onClick: ((itemViewDelegate: BaseItemViewDelegate<V>, itemView: View, data: V?, id: Int, position: Int, dataPosition: Int) -> Unit)?) {
+    protected fun listenItemClick(
+        vararg ids: Int,
+        onClick: ((itemViewDelegate: BaseItemViewDelegate<V>, itemView: View, data: V?, id: Int, position: Int, dataPosition: Int) -> Unit)?
+    ) {
         mAdapter.addClickListener(*ids, onClick = onClick)
     }
 
     /**
      * 需要在onViewCreated内调用,在initAdapter() 调用之前
      */
-    protected fun listenItemLongClick(vararg ids: Int, onLongClick: ((itemViewDelegate: BaseItemViewDelegate<V>, itemView: View, data: V?, id: Int, position: Int, dataPosition: Int) -> Unit)?) {
-        mAdapter.setLongClickListener(*ids, onLongClick = onLongClick)
+    protected fun listenItemLongClick(
+        onLongClick: ((itemViewDelegate: BaseItemViewDelegate<V>, viewHolder: BaseItemViewHolder, data: V?, id: Int, position: Int, dataPosition: Int) -> Unit)?
+    ) {
+        mAdapter.setLongClickListener(onLongClick)
     }
 
-    protected fun enableRefreshTip() {
+    protected fun enableRefreshTip(showAnimate: Boolean = false) {
 
-//        refresh.addReboundAnimatorListener(ReboundAniUpdateListener())
-        _refresh?.addReboundAnimatorListener { }
-
-//        refresh.addAnimatorListener(AniListener())
-        _refresh?.addAnimatorListener(object : AnimatorListenerAdapter() {
-
-        })
+        if (showAnimate) {
+            _refresh?.addReboundAnimatorListener(ReboundAniUpdateListener(view))
+            _refresh?.addAnimatorListener(AniListener(view))
+        } else {
+            _refresh?.addReboundAnimatorListener { }
+            _refresh?.addAnimatorListener(object : AnimatorListenerAdapter() {})
+        }
     }
 
     override fun startLoadData(muteLoadData: Boolean?) {
-        showShimmerCover(!(this.muteLoadData || (muteLoadData ?: false)), false, false)
+        showLoadingCover(if (this.muteLoadData || muteLoadData == true) HIDE else LOADING)
         onRefresh(null)
     }
 
@@ -232,10 +251,17 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
 
         }
 
-        mAdapter.notifyItemRangeChanged(firstVisibleIndex, lastVisibleIndex - firstVisibleIndex, payload)
+        mAdapter.notifyItemRangeChanged(
+            firstVisibleIndex,
+            lastVisibleIndex - firstVisibleIndex,
+            payload
+        )
     }
 
-    protected fun handleLiveData(liveData: LiveData<BaseResponse<MutableList<V>>>, refresh: Boolean) {
+    protected fun handleLiveData(
+        liveData: LiveData<BaseResponse<MutableList<V>>>,
+        refresh: Boolean
+    ) {
         liveData.observe(viewLifecycleOwner, Observer { handleResponse(it!!, refresh) })
     }
 
@@ -276,7 +302,10 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
                 if (pData.isNullOrEmpty()) {
                     REFRESH_HEADER_FINISH = "暂无更新"
                 } else {
-                    if (null == mAdapter.getDataByPosition(0) || pData[0] != mAdapter.getDataByPosition(0)) {
+                    if (null == mAdapter.getDataByPosition(0) || pData[0] != mAdapter.getDataByPosition(
+                            0
+                        )
+                    ) {
                         REFRESH_HEADER_FINISH = "已更新"
                     } else {
                         REFRESH_HEADER_FINISH = "已经是最新"
@@ -290,136 +319,54 @@ abstract class BaseMListFragment<V : RootBean> : BaseDataFragment(), OnRefreshLi
                 } else {
                     setLoadingStatus(NULL)
                 }
-                refresh_tip?.text = "暂无更新"
+                _refresh_tip?.text = "暂无更新"
             } else {
                 if (pData.size < PAGE_SIZE) {
                     setLoadingStatus(COMPLETE)
                 } else {
                     setLoadingStatus(LOADING_MORE)
                 }
-                refresh_tip?.text = String.format("为您推送%s条更新", pData.size)
+                _refresh_tip?.text = String.format("为您推送%s条更新", pData.size)
             }
             mAdapter.replaceItems(pData)
         }
     }
 
     protected fun setLoadingStatus(@LoadingStatus status: Int) {
-        when (status) {
-            INIT -> {
-                showShimmerCover(!muteLoadData, false, false)
-                _refresh?.finishRefresh(1)
-                _refresh?.finishLoadMore()
-                mAdapter.showFooter = false
-                _refresh?.isEnableLoadMore = false
+        showLoadingCover(
+            when {
+                status == INIT && !muteLoadData -> LOADING
+                status == NULL && showEmpty -> BLANK
+                status == ERROR -> ERROR
+                else -> HIDE
             }
-            NULL -> {
-                showShimmerCover(false, false, showEmpty)
-                _refresh?.finishRefresh(1)
-                _refresh?.finishLoadMore()
-                mAdapter.showFooter = false
-                _refresh?.isEnableLoadMore = false
+        )
+
+        mAdapter.showFooter = status == COMPLETE
+
+        _refresh?.run {
+            if (status == ERROR_TIP) {
+                finishRefresh(false)
+            } else {
+                finishRefresh(1)
             }
-            COMPLETE -> {
-                showShimmerCover(false, false, false)
-                _refresh?.finishRefresh(1)
-                _refresh?.finishLoadMore()
-                mAdapter.showFooter = true
-                _refresh?.isEnableLoadMore = false
-            }
-            ERROR -> {
-                showShimmerCover(true, true, false)
-                _refresh?.finishRefresh(1)
-                _refresh?.finishLoadMore(false)
-                mAdapter.showFooter = false
-                _refresh?.isEnableLoadMore = false
-            }
-            ERROR_TIP -> {
-                showShimmerCover(false, false, false)
-                _refresh?.finishRefresh(false)
-                _refresh?.finishLoadMore(false)
-                mAdapter.showFooter = false
-                _refresh?.isEnableLoadMore = false
-            }
-            LOADING_MORE_ERROR -> {
-                showShimmerCover(false, false, false)
-                _refresh?.finishRefresh(1)
-                _refresh?.finishLoadMore(false)
-                mAdapter.showFooter = false
-                _refresh?.isEnableLoadMore = true
-            }
-            LOADING_MORE -> {
-                showShimmerCover(false, false, false)
-                _refresh?.finishRefresh(1)
-                _refresh?.finishLoadMore(100)
-                mAdapter.showFooter = false
-                _refresh?.isEnableLoadMore = true
+
+            isEnableLoadMore = status in setOf(LOADING_MORE_ERROR, LOADING_MORE)
+
+            if (status in setOf(ERROR, ERROR_TIP)) {
+                finishLoadMore(false)
+            } else if (status == LOADING_MORE) {
+                finishLoadMore(100)
+            } else {
+                finishLoadMore()
             }
         }
+
     }
 
     protected fun disableLoadPageData() {
         PAGE_SIZE = Int.MAX_VALUE
         _refresh?.isEnableLoadMore = false
-    }
-
-    internal inner class ReboundAniUpdateListener : ValueAnimator.AnimatorUpdateListener {
-
-        override fun onAnimationUpdate(animation: ValueAnimator) {
-            container_refresh_tip!!.translationY = (-container_refresh_tip!!.height + animation.animatedValue as Int).toFloat()
-        }
-
-    }
-
-    internal inner class AniListener : AnimatorListenerAdapter() {
-
-        override fun onAnimationEnd(animation: Animator) {
-            super.onAnimationEnd(animation)
-            val ta = TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-                    Animation.RELATIVE_TO_SELF, 0.0f,
-                    Animation.RELATIVE_TO_SELF, 0.0f,
-                    Animation.RELATIVE_TO_SELF, -1.0f)
-            ta.duration = 200
-            container_refresh_tip!!.animation = ta
-            container_refresh_tip!!.visibility = View.GONE
-            refresh_tip!!.visibility = View.GONE
-            bg_refresh_tip!!.visibility = View.GONE
-        }
-
-        override fun onAnimationCancel(animation: Animator) {
-            super.onAnimationCancel(animation)
-            super.onAnimationEnd(animation)
-        }
-
-        override fun onAnimationStart(animation: Animator) {
-            super.onAnimationStart(animation)
-
-            container_refresh_tip!!.visibility = View.VISIBLE
-
-            val sa = ScaleAnimation(0.94f, 1.0f, 1.0f, 1.0f,
-                    Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.0f)
-
-            sa.duration = 450
-            sa.interpolator = AccelerateDecelerateInterpolator()
-            bg_refresh_tip!!.animation = sa
-            bg_refresh_tip!!.visibility = View.VISIBLE
-
-
-            val set = AnimationSet(true)
-
-            val sa1 = ScaleAnimation(0.8f, 1.0f, 0.95f, 1.0f,
-                    Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-
-            val aa = AlphaAnimation(0.8f, 1.0f)
-            set.interpolator = AccelerateDecelerateInterpolator()
-
-            set.addAnimation(sa1)
-            set.addAnimation(aa)
-            set.duration = 400
-            refresh_tip!!.animation = set
-            refresh_tip!!.visibility = View.VISIBLE
-            container_refresh_tip!!.translationY = 0f
-        }
-
     }
 
     companion object {

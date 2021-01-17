@@ -1,6 +1,7 @@
 package com.chen.basemodule.basem.argument
 
 import com.chen.basemodule.basem.BaseFragment
+import com.chen.basemodule.extend.argString
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -21,9 +22,9 @@ class ArgString(val default: String? = null, val key: String? = null) : ReadOnly
     override fun getValue(thisRef: BaseFragment, property: KProperty<*>): String {
 
         if (_value === UNINITIALIZED_VALUE) {
-            _value = thisRef.arguments?.getString(key ?: property.name) ?: run {
+            _value = thisRef.argString(key ?: property.name) ?: run {
                 if (default == null){
-                    throw RuntimeException("属性名:${property.name} 参数为空,或者属性名被混淆")
+                    throw RuntimeException("属性名:${property.name} 参数为空,类型非String，或者属性名被混淆")
                 }else {
                     return default
                 }

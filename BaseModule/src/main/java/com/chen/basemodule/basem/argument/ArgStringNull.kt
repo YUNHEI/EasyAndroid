@@ -1,6 +1,7 @@
 package com.chen.basemodule.basem.argument
 
 import com.chen.basemodule.basem.BaseFragment
+import com.chen.basemodule.extend.argString
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -21,7 +22,7 @@ class ArgStringNull(val key: String? = null) : ReadOnlyProperty<BaseFragment, St
     override fun getValue(thisRef: BaseFragment, property: KProperty<*>): String? {
 
         if (_value === UNINITIALIZED_VALUE) {
-            _value = thisRef.arguments?.getString(key ?: property.name)
+            _value = thisRef.argString(key ?: property.name)
         }
         return _value
     }

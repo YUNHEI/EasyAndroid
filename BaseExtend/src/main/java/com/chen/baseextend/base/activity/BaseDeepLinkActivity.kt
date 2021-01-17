@@ -2,7 +2,7 @@ package com.chen.baseextend.base.activity
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.chen.baseextend.repos.MainViewModel
+import com.chen.baseextend.repos.viewmodel.MainViewModel
 import com.chen.baseextend.route.StaffRoute.MEETING_ROOM
 import com.chen.basemodule.basem.BaseActivity
 import com.chen.basemodule.basem.BaseFragment

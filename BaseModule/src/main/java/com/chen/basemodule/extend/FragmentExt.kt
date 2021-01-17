@@ -5,8 +5,8 @@ import kotlin.reflect.jvm.jvmName
 
 const val FRAGMENT_SWIPE_TYPE = "fragmentSwipeType"
 
-fun Fragment.argString(key: String): String {
-    return arguments?.getString(key).orEmpty()
+fun Fragment.argString(key: String): String? {
+    return arguments?.getString(key)
 }
 
 fun Fragment.argInt(key: String, default: Int = 0): Int {

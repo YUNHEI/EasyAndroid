@@ -16,7 +16,7 @@ abstract class BaseCacheDao<T : BaseRoomBean>(private val clazz: KClass<T>) : Ba
 
     open var order: String? = null
 
-    suspend fun listCache(category: String = ""): MutableList<T> = suspendCoroutine{
+    open suspend fun listCache(category: String = ""): MutableList<T> = suspendCoroutine{
         val cate = "%$category${SUFFIX_CACHE}"
         val orderBy: String = if (order.isNullOrEmpty()) "" else "ORDER BY $order ASC"
         it.resume(list(SimpleSQLiteQuery("SELECT * FROM $simpleName WHERE category LIKE '$cate' $orderBy")))

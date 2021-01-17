@@ -12,12 +12,14 @@ import com.chen.basemodule.extend.color
 import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.extend.drawable
 import com.chen.basemodule.mlist.BaseItemViewHolder
+import com.chen.basemodule.mlist.bean.GroupWrapBean
+import com.chen.basemodule.mlist.bean.ItemWrapBean
 import com.chen.basemodule.network.base.BaseResponse
 
 /**
  *  Created by 86152 on 2020-01-04
  **/
-abstract class GroupSSListFragment : GroupSListFragment<GroupSSListFragment.GroupBean, GroupSSListFragment.ItemBean>() {
+abstract class SingleGroupSimpleListFragment : SingleGroupWithSectionListFragment<SingleGroupSimpleListFragment.GroupBean, SingleGroupSimpleListFragment.ItemBean>() {
 
     abstract val wrapData: MutableList<GroupBean>
 
@@ -43,17 +45,15 @@ abstract class GroupSSListFragment : GroupSListFragment<GroupSSListFragment.Grou
         }
     }
 
-    override fun getItemData(groupData: GroupBean?): MutableList<ItemBean> {
-        return groupData?.items ?: mutableListOf()
-    }
+    override fun getItemData(groupData: GroupBean) = groupData.items
 
     override val titleStyle: TitleStyle = TitleStyle()
 
     override fun getGroupTitle(groupData: GroupBean?): String? = groupData?.title
 
-    override fun bindGroupData(viewHolder: BaseItemViewHolder, groupData: GroupBean?, position: Int, realP: Int) {
+    override fun bindGroupData(viewHolder: BaseItemViewHolder, groupWrapData: GroupWrapBean<GroupBean, ItemBean>?, position: Int, realP: Int) {
         (viewHolder.itemView as TextView).run {
-            (groupData?.titleStyle ?: titleStyle).run {
+            (groupWrapData?.groupData?.titleStyle ?: titleStyle).run {
                 layoutParams.height = if (height < 0) height else dp2px(height)
                 setTextSize(textSize)
                 setTextColor(context.color(textColor))
@@ -63,7 +63,7 @@ abstract class GroupSSListFragment : GroupSListFragment<GroupSSListFragment.Grou
                         dp2px(padding.right),
                         dp2px(padding.bottom)
                 )
-                text = getGroupTitle(groupData)
+                text = getGroupTitle(groupWrapData?.groupData)
                 background = context.drawable(backgroundResource)
             }
         }

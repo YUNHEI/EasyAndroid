@@ -4,7 +4,6 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import com.chen.baseextend.R
 import com.chen.basemodule.basem.BaseSimActivity
 
 
@@ -14,19 +13,13 @@ import com.chen.basemodule.basem.BaseSimActivity
  **/
 open class BaseInputActivity : BaseSimActivity() {
 
-    private lateinit var mChildOfContent: View
+    private val mChildOfContent by lazy { fragment!!.view!! }
     private var usableHeightPrevious = 0
-    private var frameLayoutParams: FrameLayout.LayoutParams? = null
-
-    override val contentLayoutId = R.layout.base_input_activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val content = findViewById<View>(android.R.id.content) as FrameLayout
-        mChildOfContent = content.getChildAt(0).apply {
-            viewTreeObserver.addOnGlobalLayoutListener { possiblyResizeChildOfContent() }
-            frameLayoutParams = layoutParams as FrameLayout.LayoutParams
-        }
+
+        findViewById<View>(android.R.id.content).viewTreeObserver.addOnGlobalLayoutListener { possiblyResizeChildOfContent() }
     }
 
     private fun possiblyResizeChildOfContent() {
@@ -35,9 +28,9 @@ open class BaseInputActivity : BaseSimActivity() {
             val usableHeightSansKeyboard = mChildOfContent.rootView.height
             val heightDifference = usableHeightSansKeyboard - usableHeightNow
             if (heightDifference > usableHeightSansKeyboard / 4) { // keyboard probably just became visible
-                frameLayoutParams!!.height = usableHeightSansKeyboard - heightDifference
+                mChildOfContent.layoutParams.height = usableHeightSansKeyboard - heightDifference
             } else { // keyboard probably just became hidden
-                frameLayoutParams!!.height = FrameLayout.LayoutParams.MATCH_PARENT
+                mChildOfContent.layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
             }
             mChildOfContent.requestLayout()
             usableHeightPrevious = usableHeightNow

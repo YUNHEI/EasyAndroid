@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/_image"
+        android:layout_width="@dimen/dimen_40"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:layout_marginBottom="@dimen/dimen_15"
+        android:src="@drawable/ic_placeholder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/_title"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:textColor="@color/gray_22"
+        android:textSize="@dimen/text_18"
+        android:maxLines="2"
+        app:layout_constraintEnd_toStartOf="@id/_time"
+        app:layout_constraintBottom_toTopOf="@id/_brief"
+        app:layout_constraintStart_toEndOf="@id/_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:gravity="left"
+        tools:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题" />
+
+    <TextView
+        android:id="@+id/_brief"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:textColor="@color/gray_66"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/_image"
+        app:layout_constraintTop_toBottomOf="@id/_title"
+        tools:text="简介" />
+
+
+    <TextView
+        android:id="@+id/_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:textColor="@color/gray_66"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="19:00" />
+
+    <View
+        android:id="@+id/_separator"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="@dimen/dimen_02"
+        android:background="@color/gray_e3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

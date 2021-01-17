@@ -10,7 +10,7 @@ import com.chen.basemodule.constant.BasePreference
  */
 open class BaseRequest : RootRequest() {
 
-    val appBuild: String = BuildConfig.VERSION_NAME
+    val appBuild: String = "1.0.0"
 
     val deviceType: Int = 1//"设备类型，0-未知， 1-Android，2-IOS, 3-其他"
 

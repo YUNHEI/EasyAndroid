@@ -1,9 +1,10 @@
-package com.chen.baseextend.repos
+package com.chen.baseextend.repos.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import com.chen.baseextend.BaseExtendApplication
 import com.chen.baseextend.extend.commonFailInterrupt
+import com.chen.baseextend.repos.*
 import com.chen.basemodule.basem.BaseViewModel
 import com.chen.basemodule.network.base.BaseResponse
 import kotlinx.coroutines.CoroutineScope

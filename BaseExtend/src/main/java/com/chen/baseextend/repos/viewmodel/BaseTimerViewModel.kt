@@ -1,4 +1,4 @@
-package com.chen.baseextend.repos
+package com.chen.baseextend.repos.viewmodel
 
 import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData

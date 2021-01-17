@@ -1,10 +1,10 @@
 ext {
-    android = [compileSdkVersion : 28,
-               targetSdkVersion  : 28,
-               minSdkVersion     : 21,
-               applicationId     : "com.chen.easy_android",
-               versionCode       : 2050,
-               versionName       : "1.0.0.620"]
+    android = [compileSdkVersion: 28,
+               targetSdkVersion : 28,
+               minSdkVersion    : 21,
+               applicationId    : "com.chen.easy_android",
+               versionCode      : 2050,
+               versionName      : "1.0.0.620"]
 
     version = [
             android_database_sqlcipher_version = "3.5.9",
@@ -25,7 +25,7 @@ ext {
             "constraintlayout" : "androidx.constraintlayout:constraintlayout:2.0.1",
             "navigation"       : "androidx.navigation:navigation-fragment:$navigation_version",
             "navigation-fg-ktx": "androidx.navigation:navigation-fragment-ktx:$navigation_version",
-            "navigation-ui"   : "androidx.navigation:navigation-ui:$navigation_version",
+            "navigation-ui"    : "androidx.navigation:navigation-ui:$navigation_version",
             "navigation-ktx"   : "androidx.navigation:navigation-ui-ktx:$navigation_version",
             "viewpager2"       : "androidx.viewpager2:viewpager2:1.0.0@aar"
     ]
@@ -62,7 +62,7 @@ ext {
     lifecycle_version = "2.2.0"
     lifecycle = [
             "runtime"        : "androidx.lifecycle:lifecycle-runtime:$lifecycle_version",
-            "runtime-ktx"        : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+            "runtime-ktx"    : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
             "ktx"            : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
             "extensions"     : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
             "reactivestreams": "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version",
@@ -114,6 +114,13 @@ ext {
             "room-rxjava2" : "androidx.room:room-rxjava2:$room_version",
             "coroutines"   : "androidx.room:room-coroutines:$room_version",
             "room-compiler": "androidx.room:room-compiler:$room_version"
+    ]
+
+    /* libtorrent wrapper */
+    libtorrent4j_version = "1.2.3.0"
+    libtorrent4j = [
+            "libtorrent4j"              : "org.libtorrent4j:libtorrent4j:$libtorrent4j_version",
+            "libtorrent4j-android-arm64": "org.libtorrent4j:libtorrent4j-android-arm64:$libtorrent4j_version"
     ]
 
     dependencies = [

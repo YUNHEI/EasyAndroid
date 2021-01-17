@@ -18,6 +18,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IMeasurab
 
 @SuppressLint("AppCompatCustomView")
 public class TabCircleView extends TextView implements IMeasurablePagerTitleView {
+    protected boolean selectBold = true;
     protected int mSelectedColor;
     protected int mNormalColor;
 
@@ -44,7 +45,7 @@ public class TabCircleView extends TextView implements IMeasurablePagerTitleView
     @Override
     public void onSelected(int index, int totalCount) {
         this.setTextColor(this.mSelectedColor);
-        setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        if (selectBold) setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
     }
 
     @Override
@@ -89,6 +90,10 @@ public class TabCircleView extends TextView implements IMeasurablePagerTitleView
         FontMetrics metrics = this.getPaint().getFontMetrics();
         float contentHeight = metrics.bottom - metrics.top;
         return (int) ((float) (this.getHeight() / 2) + contentHeight / 2.0F);
+    }
+
+    public void setSelectBold(boolean selectBold) {
+        this.selectBold = selectBold;
     }
 
     public int getSelectedColor() {

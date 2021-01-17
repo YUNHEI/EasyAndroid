@@ -3,11 +3,13 @@ package com.chen.app.ui.list
 import androidx.lifecycle.LiveData
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
-import com.chen.baseextend.base.fragment.GroupSListFragment
+import com.chen.baseextend.base.fragment.SingleGroupWithSectionListFragment
 import com.chen.baseextend.bean.project.ItemTypeBean
 import com.chen.baseextend.bean.project.ItemTypeRequest
 import com.chen.basemodule.extend.toastSuc
 import com.chen.basemodule.mlist.BaseItemViewHolder
+import com.chen.basemodule.mlist.bean.GroupWrapBean
+import com.chen.basemodule.mlist.bean.ItemWrapBean
 import com.chen.basemodule.network.base.BaseResponse
 import kotlinx.android.synthetic.main.item_message.*
 
@@ -15,7 +17,7 @@ import kotlinx.android.synthetic.main.item_message.*
  *  Created by 86152 on 2020-01-04
  **/
 @Launch
-class TestGroupListFragment : GroupSListFragment<ItemTypeBean, ItemTypeBean>() {
+class TestGroupListFragment : SingleGroupWithSectionListFragment<ItemTypeBean, ItemTypeBean>() {
 
     override fun initAndObserve() {
         toolbar.run {
@@ -50,7 +52,7 @@ class TestGroupListFragment : GroupSListFragment<ItemTypeBean, ItemTypeBean>() {
         return viewModel.run { requestData({ projectService.listMultiItems(ItemTypeRequest(7)) }) }
     }
 
-    override fun getItemData(groupData: ItemTypeBean?): MutableList<ItemTypeBean> {
+    override fun getItemData(groupData: ItemTypeBean): MutableList<ItemTypeBean> {
         return groupData?.children ?: mutableListOf()
     }
 
@@ -60,7 +62,12 @@ class TestGroupListFragment : GroupSListFragment<ItemTypeBean, ItemTypeBean>() {
 
     override val itemLayoutId: Int get() = R.layout.item_message
 
-    override fun bindItemData(viewHolder: BaseItemViewHolder, data: ItemTypeBean?, position: Int, realP: Int) {
+    override fun bindItemData(
+        viewHolder: BaseItemViewHolder,
+        data: ItemTypeBean?,
+        position: Int,
+        realP: Int
+    ) {
 
         viewHolder.itemView.run {
             data?.run {
@@ -68,4 +75,5 @@ class TestGroupListFragment : GroupSListFragment<ItemTypeBean, ItemTypeBean>() {
             }
         }
     }
+
 }

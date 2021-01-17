@@ -1,22 +1,28 @@
 package com.chen.basemodule.basem
 
+import android.graphics.PorterDuff
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.IntDef
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
 import com.chen.basemodule.R
 import com.chen.basemodule.allroot.RootFragment
 import com.chen.basemodule.constant.LiveBusKey
 import com.chen.basemodule.event_bus.BaseCloseEvent
 import com.chen.basemodule.event_bus.BaseNetworkEvent
 import com.chen.basemodule.event_bus.BaseRefreshEvent
-import com.chen.basemodule.extend.color
-import com.chen.basemodule.widget.ShimmerLayout
+import com.chen.basemodule.extend.visible
 import com.chen.basemodule.widget.dialog.LoadingDialog
 import com.chen.basemodule.widget.dialog.WarningDialog
 import com.jeremyliao.liveeventbus.LiveEventBus
-import kotlinx.android.synthetic.main.layout_shimmer_cover.*
+import kotlinx.android.synthetic.main.base_mlist_fragment.*
+import kotlinx.android.synthetic.main.layout_fragment_loading.view.*
+import kotlinx.android.synthetic.main.layout_loading_blank.view.*
+import kotlinx.android.synthetic.main.layout_loading_cover.*
+import kotlinx.android.synthetic.main.layout_loading_error.view.*
 import kotlin.reflect.KClass
 import kotlin.reflect.jvm.jvmName
 
@@ -25,21 +31,61 @@ import kotlin.reflect.jvm.jvmName
  */
 abstract class BaseDataFragment : BaseFragment() {
 
+    companion object {
+
+        const val LOADING = 0
+
+        const val HIDE = 1
+
+        const val BLANK = 2
+
+        const val ERROR = 3
+    }
+
+    @IntDef(LOADING, HIDE, BLANK, ERROR)
+    @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
+    annotation class LoadingType
+
     private val loadingDialogLazy = lazy { LoadingDialog(activity!!) }
 
     open val loadingDialog by loadingDialogLazy
 
     open val warningDialog by lazy { WarningDialog(activity!!) }
 
-    val mShimmer by lazy { layoutInflater.inflate(R.layout.layout_loading_shimmer, _shimmer_cover).run { findViewById<ShimmerLayout>(R.id._shimmer) } }
+    val mLoadingView by lazy {
+        layoutInflater.inflate(
+            R.layout.layout_fragment_loading,
+            _loading_cover
+        ).run { findViewById<ConstraintLayout>(R.id._loading_view) }
+    }
 
-    open val mNetBlank by lazy { layoutInflater.inflate(R.layout.layout_loading_blank, _shimmer_cover).run { findViewById<ConstraintLayout>(R.id._empty_container) } }
+    open val mNetBlank by lazy {
+        layoutInflater.inflate(
+            R.layout.layout_loading_blank,
+            _loading_cover
+        ).run { findViewById<ConstraintLayout>(R.id._empty_container) }
+    }
 
-    open val mNetError by lazy { layoutInflater.inflate(R.layout.layout_loading_error, _shimmer_cover).run { findViewById<ConstraintLayout>(R.id._error_container) } }
+    open val mNetError by lazy {
+        layoutInflater.inflate(
+            R.layout.layout_loading_error,
+            _loading_cover
+        ).run { findViewById<ConstraintLayout>(R.id._error_container) }
+    }
 
-    val refreshOb by lazy { LiveEventBus.get(LiveBusKey.EVENT_REFRESH, BaseRefreshEvent::class.java)!! }
+    val refreshOb by lazy {
+        LiveEventBus.get(
+            LiveBusKey.EVENT_REFRESH,
+            BaseRefreshEvent::class.java
+        )!!
+    }
 
-    val networkOb by lazy { LiveEventBus.get(LiveBusKey.EVENT_NETWORK, BaseNetworkEvent::class.java)!! }
+    val networkOb by lazy {
+        LiveEventBus.get(
+            LiveBusKey.EVENT_NETWORK,
+            BaseNetworkEvent::class.java
+        )!!
+    }
 
     var blankTip = "暂无内容"
 
@@ -62,57 +108,37 @@ abstract class BaseDataFragment : BaseFragment() {
 //    abstract override fun initAndObserve()
 
     abstract fun startLoadData(muteLoadData: Boolean? = false)
+
     /**######################抽象方法区 复写父类中的抽象方法，保证idea自动补全的顺序 ######################*/
 
-    protected open fun showShimmerCover(show: Boolean, showError: Boolean, showBlank: Boolean) {
 
-        _shimmer_cover?.run {
+    protected open fun showLoadingCover(@LoadingType type: Int) {
 
-            setBackgroundColor(color(R.color.bg_common_gray))
+        _loading_cover?.run {
+            _nest_loading_cover.isVisible = type != HIDE
+            if (type == LOADING) {
+                mLoadingView.isVisible = true
 
-            visibility = if (showError || show || showBlank) View.VISIBLE else View.GONE
-
-            mShimmer.run {
-                if (showError || showBlank) {
-                    visibility = View.GONE
-                    stopShimmerAnimation()
-                } else {
-                    visibility = View.VISIBLE
-                    startShimmerAnimation()
+                mLoadingView._progress.indeterminateDrawable
+                    .setColorFilter(
+                        ContextCompat.getColor(context, R.color.gray_99),
+                        PorterDuff.Mode.MULTIPLY
+                    )
+                mLoadingView._progress?.show()
+            } else {
+                mLoadingView.isVisible = false
+                mLoadingView._progress?.hide()
+            }
+            mNetError?.isVisible = type == ERROR
+            if (mNetError != null && type == ERROR) {
+                mNetError._retry?.setOnClickListener {
+                    startLoadData()
                 }
             }
-
-            mNetError.run {
-
-                if (showError) {
-
-                    findViewById<TextView>(R.id._retry).setOnClickListener {
-                        startLoadData()
-                    }
-
-                    visibility = View.VISIBLE
-
-                } else {
-                    visibility = View.GONE
-                }
-
-            }
-
-            mNetBlank.run {
-
-                if (showBlank) {
-
-                    findViewById<TextView>(R.id._msg)?.run {
-                        text = blankTip
-                    }
-
-                    findViewById<View>(R.id._empty_container)?.setOnClickListener {  startLoadData() }
-
-                    visibility = View.VISIBLE
-
-                } else {
-                    visibility = View.GONE
-                }
+            mNetBlank?.isVisible = type == BLANK
+            if (mNetBlank != null && type == BLANK) {
+                mNetBlank._blank_msg?.run { text = blankTip }
+                mNetBlank._empty_container?.setOnClickListener { startLoadData() }
             }
         }
     }
@@ -122,7 +148,8 @@ abstract class BaseDataFragment : BaseFragment() {
     }
 
     fun postRefresh(vararg target: String, obj: Any? = null) {
-        LiveEventBus.get(LiveBusKey.EVENT_REFRESH).post(BaseRefreshEvent(this::class, *target, obj = obj))
+        LiveEventBus.get(LiveBusKey.EVENT_REFRESH)
+            .post(BaseRefreshEvent(this::class, *target, obj = obj))
     }
 
     fun postClose(vararg targetClass: KClass<out RootFragment>) {
@@ -133,7 +160,10 @@ abstract class BaseDataFragment : BaseFragment() {
         LiveEventBus.get(LiveBusKey.EVENT_CLOSE).post(BaseCloseEvent(this::class.jvmName, *target))
     }
 
-    open fun observeRefresh(key: String = this::class.jvmName, refresh: (event: BaseRefreshEvent) -> Unit) {
+    open fun observeRefresh(
+        key: String = this::class.jvmName,
+        refresh: (event: BaseRefreshEvent) -> Unit
+    ) {
         refreshOb.observe(this, Observer {
             if (it.target.contains(key) || it.target.contains("*")) {
                 refresh.invoke(it)

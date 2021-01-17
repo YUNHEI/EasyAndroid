@@ -2,8 +2,7 @@ package com.chen.app.ui.coroutines
 
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Launch
-import com.chen.app.R
-import com.chen.baseextend.base.fragment.GroupSSListFragment
+import com.chen.baseextend.base.fragment.SingleGroupSimpleListFragment
 import com.chen.baseextend.extend.startPage
 import kotlinx.coroutines.*
 import kotlin.math.ln
@@ -12,7 +11,12 @@ import kotlin.math.sqrt
 import kotlin.random.Random
 
 @Launch
-class CoroutinesFragment : GroupSSListFragment() {
+class CoroutinesFragment : SingleGroupSimpleListFragment() {
+
+
+    override fun initAndObserve() {
+
+    }
 
     override val wrapData by lazy {
         DATA {
@@ -104,23 +108,6 @@ class CoroutinesFragment : GroupSSListFragment() {
             }
         }
     }
-
-    override suspend fun onReady() {
-        super.onReady()
-        lifecycleScope.launch(Dispatchers.Default) {
-            toolbar.run{
-                center("协程")
-            }
-        }
-    }
-
-//    override fun initAndObserve() {
-//        toolbar.run {
-//            center("")
-//            left(R.mipmap.ic_back) { activity?.finish() }
-//        }
-//
-//    }
 
     fun printMain(length: Int): Int {
         var sum = 0

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/_nest_loading_cover"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_0"
+    android:background="@color/bg_common_gray"
+    android:overScrollMode="never"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:visibility="visible">
+
+    <FrameLayout
+        android:id="@+id/_loading_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:minHeight="@dimen/dimen_400" />
+
+</androidx.core.widget.NestedScrollView>

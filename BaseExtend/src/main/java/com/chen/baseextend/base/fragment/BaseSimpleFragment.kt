@@ -3,7 +3,7 @@ package com.chen.baseextend.base.fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.chen.baseextend.repos.MainViewModel
+import com.chen.baseextend.repos.viewmodel.MainViewModel
 import com.chen.basemodule.basem.BaseDataFragment
 import com.chen.basemodule.network.base.BaseResponse
 
@@ -14,11 +14,13 @@ abstract class BaseSimpleFragment : BaseDataFragment() {
 
     private var isLoaded = false //初始化过的页面，不在出现网络错误
 
-    override val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = activity!! } }
+    override val viewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = activity!! }
+    }
 
     override fun startLoadData(muteLoadData: Boolean?) {
 
-        showShimmerCover(!(this.muteLoadData || (muteLoadData ?: false)), false, false)
+        showLoadingCover(if (this.muteLoadData || muteLoadData == true) HIDE else LOADING)
 
         (loadData() as LiveData<BaseResponse<*>>?)?.run {
             observe(this@BaseSimpleFragment, Observer { handleResponse(it!!) })
@@ -33,13 +35,13 @@ abstract class BaseSimpleFragment : BaseDataFragment() {
     open fun handleResponse(s: BaseResponse<*>) {
         when {
             s.suc() || isLoaded -> {
-                showShimmerCover(false, false, false)
+                showLoadingCover(HIDE)
                 isLoaded = true
             }
             s.status in 300..399 -> {
-                showShimmerCover(false, false, false)
+                showLoadingCover(HIDE)
             }
-            s.status >= 400 -> showShimmerCover(false, true, false)
+            s.status >= 400 -> showLoadingCover(ERROR)
         }
     }
 }

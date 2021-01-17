@@ -3,13 +3,13 @@ package com.chen.app.ui.coroutines
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
-import com.chen.baseextend.base.fragment.GroupSSListFragment
+import com.chen.baseextend.base.fragment.SingleGroupSimpleListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.basemodule.extend.toastCus
 import kotlinx.coroutines.*
 
 @Launch
-class GlobalScopeFragment : GroupSSListFragment() {
+class GlobalScopeFragment : SingleGroupSimpleListFragment() {
 
     override val wrapData by lazy {
         DATA {

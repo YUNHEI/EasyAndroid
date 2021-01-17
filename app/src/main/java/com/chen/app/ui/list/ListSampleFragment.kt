@@ -4,12 +4,14 @@ import android.graphics.Rect
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.app.ui.kline.KLineFragment
-import com.chen.baseextend.base.fragment.GroupSSListFragment
+import com.chen.baseextend.base.fragment.SingleGroupSimpleListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.basemodule.extend.toastSuc
+import com.chen.basemodule.mlist.bean.GroupWrapBean
+import com.chen.basemodule.mlist.bean.ItemWrapBean
 
 @Launch
-class ListSampleFragment : GroupSSListFragment() {
+class ListSampleFragment : SingleGroupSimpleListFragment() {
 
     override fun initAndObserve() {
 
@@ -28,24 +30,24 @@ class ListSampleFragment : GroupSSListFragment() {
     }
 
     override val titleStyle = TitleStyle(
-            40,
-            14f,
-            R.color.red,
-            backgroundResource = R.color.gray_f5,
-            padding = Rect(10, 10, 20, 10)
+        40,
+        14f,
+        R.color.red,
+        backgroundResource = R.color.gray_f5,
+        padding = Rect(10, 10, 20, 10)
     )
 
     override val wrapData by lazy {
         DATA {
             Group(
-                    "简单列表",
-                    titleStyle = TitleStyle(
-                            40,
-                            14f,
-                            R.color.white,
-                            backgroundResource = R.color.main_theme,
-                            padding = Rect(10, 10, 20, 10)
-                    )
+                "简单列表",
+                titleStyle = TitleStyle(
+                    40,
+                    14f,
+                    R.color.white,
+                    backgroundResource = R.color.main_theme,
+                    padding = Rect(10, 10, 20, 10)
+                )
             ) {
                 Item("简单单一样式列表") {
 //                    "点击 单一样式列表: $t".toastSuc()

@@ -4,15 +4,16 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.network.base.BaseResponse
+import kotlin.reflect.KClass
 
 /**
  *
  * 简单的单一布局列表
  *  Created by chen on 2019/6/6
  **/
-abstract class BaseSListFragment<V : RootBean> : BaseMListFragment<V>() {
+abstract class BaseSingleListFragment<V : RootBean> : BaseMultiListFragment<V>() {
 
-    override fun customerDelegateWithParams(): MutableList<Class<out BaseItemViewDelegate<V>>>? = null
+    override fun customerDelegateWithParams(): MutableList<KClass<out BaseItemViewDelegate<V>>>? = null
 
     override fun initDelegate(bundle: Bundle) {
         super.initDelegate(bundle)
@@ -41,7 +42,7 @@ abstract class BaseSListFragment<V : RootBean> : BaseMListFragment<V>() {
     /**
      * onViewCreated 之后调用
      */
-//    abstract override fun initAndObserve()
+    abstract override fun initAndObserve()
 
     abstract override fun initClickListener()
 

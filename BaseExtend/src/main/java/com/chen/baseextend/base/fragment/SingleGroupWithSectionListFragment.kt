@@ -5,18 +5,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.chen.baseextend.R
-import com.chen.baseextend.repos.MainViewModel
+import com.chen.baseextend.repos.viewmodel.MainViewModel
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.extend.color
 import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.extend.drawable
-import com.chen.basemodule.mlist.BaseGListFragment
+import com.chen.basemodule.mlist.BaseSingleGroupListFragment
 import com.chen.basemodule.mlist.BaseItemViewHolder
+import com.chen.basemodule.mlist.bean.GroupWrapBean
 
 /**
  *  Created by 86152 on 2020-01-04
  **/
-abstract class GroupSListFragment<P : RootBean, C : RootBean> : BaseGListFragment<P, C>() {
+abstract class SingleGroupWithSectionListFragment<P : RootBean, C : RootBean> : BaseSingleGroupListFragment<P, C>() {
 
     abstract val titleStyle: TitleStyle
 
@@ -24,14 +25,14 @@ abstract class GroupSListFragment<P : RootBean, C : RootBean> : BaseGListFragmen
 
     override val groupLayoutId: Int get() = R.layout.item_group_title
 
-    override fun bindGroupData(viewHolder: BaseItemViewHolder, groupData: P?, position: Int, realP: Int) {
+    override fun bindGroupData(viewHolder: BaseItemViewHolder, groupWrapData: GroupWrapBean<P, C>?, position: Int, realP: Int) {
         (viewHolder.itemView as TextView).run {
             titleStyle.run {
                 layoutParams.height = if (height < 0) height else dp2px(height)
                 setTextSize(textSize)
                 setTextColor(context.color(textColor))
                 setPadding(dp2px(padding.left), dp2px(padding.top), dp2px(padding.right), dp2px(padding.bottom))
-                text = getGroupTitle(groupData)
+                text = getGroupTitle(groupWrapData?.groupData)
                 background = context.drawable(backgroundResource)
             }
         }

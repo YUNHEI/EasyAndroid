@@ -4,14 +4,14 @@ import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.chen.basemodule.allroot.RootBean
-import com.chen.basemodule.mlist.BaseMAdapter
+import com.chen.basemodule.mlist.BaseMultiAdapter
 
 /**
  * Created by 钉某人
  * github: https://github.com/DingMouRen
  * email: naildingmouren@gmail.com
  */
-class ItemTouchHelperCallback<T: RootBean>(val adapter: BaseMAdapter<T>, var mListener: OnSlideListener<T>? = null) : ItemTouchHelper.Callback() {
+class ItemTouchHelperCallback<T: RootBean>(val adapter: BaseMultiAdapter<T>, var mListener: OnSlideListener<T>? = null) : ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
         val dragFlags = 0

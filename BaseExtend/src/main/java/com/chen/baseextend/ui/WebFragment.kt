@@ -202,7 +202,7 @@ open class WebFragment : BaseSimpleFragment() {
 
         @JavascriptInterface
         fun getToken(): String {
-            return BasePreference.USER_TOKEN.orEmpty()
+            return BasePreference.USER_TOKEN_.orEmpty()
         }
 
         @JavascriptInterface

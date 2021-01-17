@@ -20,16 +20,18 @@ import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend3Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend4Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend5Fragment
 import com.chen.app.ui.simple.toolbar.pager.ToolbarExtend6Fragment
-import com.chen.baseextend.base.fragment.GroupSSListFragment
+import com.chen.baseextend.base.fragment.SingleGroupSimpleListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.baseextend.route.Module1Route.MODULE1_FRAGMENT
 import com.chen.baseextend.ui.WebActivity
 import com.chen.basemodule.extend.toastDebug
 import com.chen.basemodule.extend.toastSuc
+import com.chen.basemodule.mlist.bean.GroupWrapBean
+import com.chen.basemodule.mlist.bean.ItemWrapBean
 import java.util.*
 
 @Launch
-class SamplePageFragment : GroupSSListFragment() {
+class SamplePageFragment : SingleGroupSimpleListFragment() {
 
     lateinit var _title: TextView
 
@@ -55,12 +57,27 @@ class SamplePageFragment : GroupSSListFragment() {
         }
     }
 
-    override val titleStyle = TitleStyle(40, 14f, R.color.red, backgroundResource = R.color.gray_f5, padding = Rect(10, 10, 20, 10))
+    override val titleStyle = TitleStyle(
+        40,
+        14f,
+        R.color.red,
+        backgroundResource = R.color.gray_f5,
+        padding = Rect(10, 10, 20, 10)
+    )
 
     override val wrapData by lazy {
 
         DATA {
-            Group("简单页面", TitleStyle(40, 14f, R.color.white, backgroundResource = R.color.blue_lightest, padding = Rect(10, 10, 20, 10))) {
+            Group(
+                "简单页面",
+                TitleStyle(
+                    40,
+                    14f,
+                    R.color.white,
+                    backgroundResource = R.color.blue_lightest,
+                    padding = Rect(10, 10, 20, 10)
+                )
+            ) {
                 Item("新建一个简单页面") {
 //                    "点击 单一样式列表: $t".toastSuc()
                     startPage(SimpleFirstFragment::class)

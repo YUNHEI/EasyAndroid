@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/_container_refresh_tip"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_34"
+    android:visibility="gone"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:visibility="visible">
+
+    <View
+        android:id="@+id/_bg_refresh_tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff7e9" />
+
+    <TextView
+        android:id="@+id/_refresh_tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="已更新"
+        android:textColor="@color/main_theme"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintTop_toBottomOf="@id/_toolbar" />
+
+</FrameLayout>
