@@ -1,4 +1,4 @@
-package com.hx.stock.ui.delegate
+package com.chen.app.ui.delegate
 
 import android.content.Context
 import android.view.View
