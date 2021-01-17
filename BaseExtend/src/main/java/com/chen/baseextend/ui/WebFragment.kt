@@ -14,13 +14,16 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.net.toUri
+import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.baseextend.BaseExtendApplication
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.ui.sonic.SonicJavaScriptInterface
 import com.chen.baseextend.ui.sonic.SonicRuntimeImpl
 import com.chen.baseextend.ui.sonic.SonicSessionClientImpl
+import com.chen.basemodule.basem.argument.ArgBoolean
 import com.chen.basemodule.basem.argument.ArgString
+import com.chen.basemodule.basem.argument.ArgStringNull
 import com.chen.basemodule.constant.BasePreference
 import com.chen.basemodule.extend.toastWarn
 import com.chen.basemodule.extend.visible
@@ -30,22 +33,26 @@ import com.tencent.sonic.sdk.SonicEngine
 import com.tencent.sonic.sdk.SonicSessionConfig
 import kotlinx.android.synthetic.main.fragment_web.*
 
-
+@Launch
 open class WebFragment : BaseSimpleFragment() {
 
     override val contentLayoutId = R.layout.fragment_web
 
     open val url by ArgString()
 
-    lateinit var mTitle: TextView
+    open val title by ArgStringNull()
 
-    lateinit var mClose: ImageView
+    private val hideTitle by ArgBoolean()
+
+    private var mTitle: TextView? = null
+
+    private var mClose: ImageView? = null
 
     private var mWebChromeClient: WebChromeClient = object : WebChromeClient() {
 
         override fun onReceivedTitle(view: WebView?, title: String?) {
             super.onReceivedTitle(view, title)
-            mTitle.text = title
+            if (title.isNullOrEmpty()) mTitle?.text = title
         }
     }
 
@@ -56,16 +63,23 @@ open class WebFragment : BaseSimpleFragment() {
             if (sonicSession != null) {
                 mSessionClient.pageFinish(url)
             }
-            mClose.visible(view?.canGoBack() == true)
+            mClose?.visible(view?.canGoBack() == true)
             activity?.runOnUiThread {
-                mAgentWeb.webCreator.webView.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                mAgentWeb.webCreator.webView.layoutParams = FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
             }
 //            mClose.postDelayed({mAgentWeb.webCreator.webView.loadUrl("javascript:android.resize(document.body.getBoundingClientRect().height)")}, 1200)
 
         }
 
         @TargetApi(21)
-        override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest): WebResourceResponse? {
+        @Suppress("DEPRECATION")
+        override fun shouldInterceptRequest(
+            view: WebView?,
+            request: WebResourceRequest
+        ): WebResourceResponse? {
             return shouldInterceptRequest(view, request.url.toString())
         }
 
@@ -79,27 +93,33 @@ open class WebFragment : BaseSimpleFragment() {
     val mAgentWeb: AgentWeb by lazy {
 
         AgentWeb.with(this) //
-                .setAgentWebParent(_agent_web, 1, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)) //传入AgentWeb的父控件。
-                .useDefaultIndicator(-1, 3) //设置进度条颜色与高度，-1为默认值，高度为2，单位为dp。
-                .setAgentWebWebSettings(object : AbsAgentWebSettings() {
-                    override fun bindAgentWebSupport(agentWeb: AgentWeb?) {
+            .setAgentWebParent(
+                _agent_web,
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+            ) //传入AgentWeb的父控件。
+            .useDefaultIndicator(-1, 3) //设置进度条颜色与高度，-1为默认值，高度为2，单位为dp。
+            .setAgentWebWebSettings(object : AbsAgentWebSettings() {
+                override fun bindAgentWebSupport(agentWeb: AgentWeb?) {
+                    mAgentWeb.webCreator.webView.settings.userAgentString += " TaoGuWang/4.2.1"
+                }
 
-                    }
-
-                }) //设置 IAgentWebSettings。
-                .setWebViewClient(mWebViewClient) //WebViewClient ， 与 WebView 使用一致 ，但是请勿获取WebView调用setWebViewClient(xx)方法了,会覆盖AgentWeb DefaultWebClient,同时相应的中间件也会失效。
-                .setWebChromeClient(mWebChromeClient) //WebChromeClient
-                .setPermissionInterceptor { _, _, _ -> false } //权限拦截 2.0.0 加入。
-                .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK) //严格模式 Android 4.2.2 以下会放弃注入对象 ，使用AgentWebView没影响。
-                .setMainFrameErrorView(
-                        R.layout.agentweb_error_page,
-                        -1
-                ) //参数1是错误显示的布局，参数2点击刷新控件ID -1表示点击整个布局都刷新， AgentWeb 3.0.0 加入。
-                .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK) //打开其他页面时，弹窗质询用户前往其他应用 AgentWeb 3.0.0 加入。
-                .interceptUnkownUrl() //拦截找不到相关页面的Url AgentWeb 3.0.0 加入。
-                .createAgentWeb() //创建AgentWeb。
-                .ready() //设置 WebSettings。
-                .go(null) //WebView载入该url地址的页面并显示。
+            }) //设置 IAgentWebSettings。
+            .setWebViewClient(mWebViewClient) //WebViewClient ， 与 WebView 使用一致 ，但是请勿获取WebView调用setWebViewClient(xx)方法了,会覆盖AgentWeb DefaultWebClient,同时相应的中间件也会失效。
+            .setWebChromeClient(mWebChromeClient) //WebChromeClient
+            .setPermissionInterceptor { _, _, _ -> false } //权限拦截 2.0.0 加入。
+            .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK) //严格模式 Android 4.2.2 以下会放弃注入对象 ，使用AgentWebView没影响。
+            .setMainFrameErrorView(
+                R.layout.agentweb_error_page,
+                -1
+            ) //参数1是错误显示的布局，参数2点击刷新控件ID -1表示点击整个布局都刷新， AgentWeb 3.0.0 加入。
+            .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK) //打开其他页面时，弹窗质询用户前往其他应用 AgentWeb 3.0.0 加入。
+            .interceptUnkownUrl() //拦截找不到相关页面的Url AgentWeb 3.0.0 加入。
+            .createAgentWeb() //创建AgentWeb。
+            .ready() //设置 WebSettings。
+            .go(null) //WebView载入该url地址的页面并显示。
     }
 
     private val mSessionClient by lazy { SonicSessionClientImpl(mAgentWeb) }
@@ -116,27 +136,29 @@ open class WebFragment : BaseSimpleFragment() {
 
     override fun initAndObserve() {
 
-        toolbar.run {
-            mTitle = center("")
-            left(R.mipmap.ic_back) {
-                if (!mAgentWeb.back()) {
-                    activity?.finish()
+        if (!hideTitle) {
+            toolbar.run {
+                mTitle = center(title.orEmpty())
+                left(R.mipmap.ic_back) {
+                    if (!mAgentWeb.back()) {
+                        activity?.finish()
+                    }
                 }
-            }
-            mClose = left(R.mipmap.ic_close) {
-                activity?.finish()
-            }.apply {
-                visible(false)
+                mClose = left(R.mipmap.ic_close) {
+                    activity?.finish()
+                }.apply {
+                    visible(false)
+                }
             }
         }
 
-        mAgentWeb.jsInterfaceHolder.addJavaObject("android", AndroidInterface(this))
+        mAgentWeb.jsInterfaceHolder.addJavaObject("tgwClient", AndroidInterface(this))
 
         // init sonic engine if necessary, or maybe u can do this when application created
         if (!SonicEngine.isGetInstanceAllowed()) {
             SonicEngine.createInstance(
-                    SonicRuntimeImpl(BaseExtendApplication.app?.applicationContext),
-                    SonicConfig.Builder().build()
+                SonicRuntimeImpl(BaseExtendApplication.app?.applicationContext),
+                SonicConfig.Builder().build()
             )
         }
 
@@ -144,13 +166,21 @@ open class WebFragment : BaseSimpleFragment() {
 
             //4. 注入 JavaScriptInterface
             mAgentWeb.jsInterfaceHolder.addJavaObject(
-                    "sonic",
-                    SonicJavaScriptInterface(mSessionClient, Intent())
+                "sonic",
+                SonicJavaScriptInterface(mSessionClient, Intent())
             )
 
             mSessionClient.clientReady()
         } ?: run {
-            mAgentWeb.urlLoader.loadUrl(url)
+            mAgentWeb.urlLoader.loadUrl(
+                url, mutableMapOf(
+                    "UserToken" to "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjYzMDUiLCJ1c2VyX25hbWUiOiIxNzAwMjY3Nzk3NSIsInNjb3BlIjpbImFsbCJdLCJhdGkiOiI0NGRkNTY0Zi00ODE3LTQ3M2YtYTgwNC0xZGZiNzNmZTNlN2IiLCJleHAiOjE2MTA4NDM0OTUsImp0aSI6ImI3MGJkNWEwLWFlOTItNDU0OC04YThlLTE0NDQ3Mjc3NGVkZCIsImNsaWVudF9pZCI6ImNhOTllYWRiYmI4MzE1MzQ4dDU0ZCJ9.OfsIK9GScvCMUgSJy5U7UF3bXP-4o3Ch5ntPWTK0tsM",
+                    "userID" to BasePreference.USER_ID.toString(),
+                    "version" to "4", //淘股王token
+                    "appversion" to "40201" //淘股王token
+
+                )
+            )
         }
     }
 

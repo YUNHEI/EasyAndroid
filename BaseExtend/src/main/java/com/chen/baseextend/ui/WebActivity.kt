@@ -14,11 +14,14 @@ class WebActivity : BaseSimActivity() {
 
     companion object {
 
-        fun toWebView(context: Context, url: String) {
+        fun toWebView(context: Context, url: String, fixedTitle: String? = null) {
             val intent = Intent(context, WebActivity::class.java)
             intent.putExtra("url", url)
             fragmentQueue.offer(WebFragment().apply {
-                arguments = Bundle().apply { putString("url", url) }
+                arguments = Bundle().apply {
+                    putString("url", url)
+                    putString("title", fixedTitle)
+                }
             })
             context.startActivity(intent)
         }
@@ -26,7 +29,10 @@ class WebActivity : BaseSimActivity() {
         fun preload(url: String?) {
             if (!url.isNullOrEmpty()) {
                 // preload session
-                SonicEngine.getInstance().preCreateSession(url, SonicSessionConfig.Builder().setSupportLocalServer(true).build())
+                SonicEngine.getInstance().preCreateSession(
+                    url,
+                    SonicSessionConfig.Builder().setSupportLocalServer(true).build()
+                )
             }
         }
     }
