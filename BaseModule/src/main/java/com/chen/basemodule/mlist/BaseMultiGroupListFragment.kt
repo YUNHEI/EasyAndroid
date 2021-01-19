@@ -141,7 +141,7 @@ abstract class BaseMultiGroupListFragment<P : RootBean, C : RootBean> :
     /**
      * onViewCreated 之后调用
      */
-//    abstract override fun initAndObserve()
+    abstract override fun initAndObserve()
 
     abstract override fun initClickListener()
 

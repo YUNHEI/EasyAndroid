@@ -37,10 +37,14 @@ open class MainViewModel : BaseViewModel() {
 
     val weatherService by lazy { WeatherRepos.service }
 
+    val newsService by lazy { NewsRepos.service }
+
 
     //repos
 
     val userRepos by lazy { UserRepos }
+
+    val newsRepos by lazy { NewsRepos }
 
     override fun <T> requestData(block: suspend CoroutineScope.() -> BaseResponse<T>,
                                  success: ((response: BaseResponse<T>) -> Unit)?,

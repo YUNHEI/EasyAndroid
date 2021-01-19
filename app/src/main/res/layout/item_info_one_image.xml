@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_item_white_ef_line">
+
+    <TextView
+        android:id="@+id/_title"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1.18"
+        android:maxLines="3"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_17"
+        app:layout_constraintEnd_toStartOf="@id/_cover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="刚刚，微信订阅号逆天改版！到底会带" />
+
+    <TextView
+        android:id="@+id/_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6"
+        android:layout_marginBottom="@dimen/dimen_14"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/_title"
+        app:layout_constraintTop_toBottomOf="@id/_title"
+        app:layout_constraintVertical_bias="1" />
+
+    <TextView
+        android:id="@+id/_stick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/dimen_6"
+        android:text="置顶"
+        android:textColor="@color/main_theme"
+        android:textSize="@dimen/text_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/_cover"
+        app:layout_constraintStart_toStartOf="@id/_title"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/_recommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_15"
+        android:paddingEnd="@dimen/dimen_10"
+        android:text="精选"
+        android:textColor="@color/gray_88"
+        android:textSize="@dimen/text_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/_stick"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/_information"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_15"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingEnd="@dimen/dimen_6"
+        android:textColor="@color/gray_99"
+        android:textSize="@dimen/text_12"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/_delete"
+        app:layout_constraintStart_toEndOf="@id/_recommend"
+        app:layout_goneMarginRight="@dimen/dimen_15"
+        tools:text="新招广场·小新新招广场·小新新招广场·小新新招小新新招"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_6"
+        android:padding="@dimen/dimen_10"
+        android:src="@mipmap/ic_info_delete"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/_cover"
+        tools:visibility="visible" />
+
+
+    <com.chen.basemodule.view.round_image.RoundImageView
+        android:id="@+id/_cover"
+        android:layout_width="@dimen/dimen_112"
+        android:layout_height="@dimen/dimen_74"
+        android:layout_marginEnd="@dimen/dimen_15"
+        android:layout_marginBottom="@dimen/dimen_15"
+        android:src="@drawable/ic_placeholder"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/_title"
+        app:layout_constraintVertical_bias="0.05"
+        app:riv_borderColor="@color/gray_ef"
+        app:riv_borderWidth="@dimen/dimen_1px"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

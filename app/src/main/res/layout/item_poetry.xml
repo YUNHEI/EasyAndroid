@@ -4,47 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/bg_item_white_ef_line"
     android:paddingLeft="@dimen/dimen_15"
     android:paddingTop="@dimen/dimen_5"
     android:paddingRight="@dimen/dimen_15"
     android:paddingBottom="@dimen/dimen_5">
 
-
-    <com.chen.basemodule.view.round_image.RoundImageView
-        android:id="@+id/_avatar"
-        android:layout_width="@dimen/dimen_45"
-        android:layout_height="@dimen/dimen_45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:riv_radius="5dp" />
-
     <TextView
-        android:id="@+id/_nickname"
+        android:id="@+id/_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_15"
         android:layout_weight="1"
         android:textColor="@color/gray_22"
         android:textSize="@dimen/text_16"
-        app:layout_constraintBottom_toTopOf="@id/_msg"
-        app:layout_constraintStart_toEndOf="@id/_avatar"
+        app:layout_constraintBottom_toTopOf="@id/_des"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="主题" />
 
     <TextView
-        android:id="@+id/_msg"
+        android:id="@+id/_des"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/gray_99"
-        android:textSize="@dimen/text_12"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/_nickname"
-        app:layout_constraintTop_toBottomOf="@id/_nickname"
+        app:layout_constraintStart_toStartOf="@id/_title"
+        app:layout_constraintTop_toBottomOf="@id/_title"
         tools:text="暂无简介" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

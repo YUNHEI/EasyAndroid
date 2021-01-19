@@ -58,8 +58,7 @@
         <!--如果你的应用需要用到视频 ， 那么请你在使用 AgentWeb 的 Activity 对应的清单文件里加入如下配置-->
         <activity
             android:name="com.chen.baseextend.ui.WebActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="false" />
+            android:configChanges="orientation|screenSize"/>
 
 
         <activity android:name="com.chen.baseextend.widget.image_view.ImageViewerActivity" />

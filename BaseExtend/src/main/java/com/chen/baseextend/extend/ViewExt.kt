@@ -1,8 +1,10 @@
 package com.chen.baseextend.extend
 
+import android.graphics.Paint
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.chen.basemodule.constant.BasePreference
 import com.chen.basemodule.extend.dp2px
@@ -64,4 +66,9 @@ fun View.stickSide() {
             false
         }
     }
+}
+
+fun TextView.bold(rate: Float = 0.8f) {
+    paint.style = Paint.Style.FILL_AND_STROKE
+    paint.strokeWidth = rate
 }

@@ -13,15 +13,15 @@ open class BaseResponse<K>(
     val fromCache: Boolean = false
 ) : RootResponse() {
 
-    fun suc(): Boolean {
+    open fun suc(): Boolean {
         return status in 200..289
     }
 
-    fun localSuc(): Boolean {
+    open fun localSuc(): Boolean {
         return status in 290..299
     }
 
-    fun fail(): Boolean {
+    open fun fail(): Boolean {
         return status in 300..399
     }
 

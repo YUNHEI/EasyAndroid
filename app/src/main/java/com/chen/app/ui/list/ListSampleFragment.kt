@@ -4,6 +4,7 @@ import android.graphics.Rect
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.app.ui.kline.KLineFragment
+import com.chen.app.ui.list.multigroup.MultiSourceMultiGroupDemoFragment
 import com.chen.baseextend.base.fragment.SingleGroupSimpleListFragment
 import com.chen.baseextend.extend.startPage
 import com.chen.basemodule.extend.toastSuc
@@ -83,9 +84,9 @@ class ListSampleFragment : SingleGroupSimpleListFragment() {
 
                 }
             }
-            Group("标题3") {
-                Item("item3-1") {
-
+            Group("混合列表") {
+                Item("多数据源多种样式") {
+                    startPage(MultiSourceMultiGroupDemoFragment::class)
                 }
                 Item("item3-2") {
 

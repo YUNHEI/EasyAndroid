@@ -13,8 +13,8 @@
 
     <com.chen.basemodule.view.round_image.RoundImageView
         android:id="@+id/_avatar"
-        android:layout_width="@dimen/dimen_45"
-        android:layout_height="@dimen/dimen_45"
+        android:layout_width="@dimen/dimen_40"
+        android:layout_height="@dimen/dimen_40"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_radius="5dp" />
@@ -26,21 +26,19 @@
         android:layout_marginStart="@dimen/dimen_15"
         android:layout_weight="1"
         android:textColor="@color/gray_22"
-        android:textSize="@dimen/text_16"
-        app:layout_constraintBottom_toTopOf="@id/_msg"
+        android:textSize="@dimen/text_12"
         app:layout_constraintStart_toEndOf="@id/_avatar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
         tools:text="主题" />
 
     <TextView
         android:id="@+id/_msg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6"
         android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/gray_99"
-        android:textSize="@dimen/text_12"
+        android:textColor="@color/gray_44"
+        android:textSize="@dimen/text_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/_nickname"

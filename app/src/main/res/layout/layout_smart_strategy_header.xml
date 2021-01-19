@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dimen_6">
+
+    <View
+        android:id="@+id/_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_10"
+        android:background="@color/bg_common_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/_icon"
+        android:layout_width="@dimen/dimen_2"
+        android:layout_height="@dimen/dp_10"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:src="@mipmap/ic_smart_strategy_header_red"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/_title" />
+
+    <TextView
+        android:id="@+id/_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_5"
+        android:text="Section标题"
+        android:textColor="@color/gray_33"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/dimen_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/_icon"
+        app:layout_constraintTop_toBottomOf="@id/_divider" />
+
+    <TextView
+        android:id="@+id/_title_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:gravity="center_vertical"
+        android:lines="1"
+        android:text="Section简介"
+        android:textColor="@color/gray_99"
+        android:textSize="@dimen/text_12"
+        app:layout_constraintBottom_toBottomOf="@id/_title"
+        app:layout_constraintStart_toEndOf="@id/_title"
+        app:layout_constraintTop_toTopOf="@id/_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

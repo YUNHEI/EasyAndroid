@@ -87,8 +87,10 @@ abstract class BaseDataFragment : BaseFragment() {
         )!!
     }
 
+    //网络数据为空的时候提示语
     var blankTip = "暂无内容"
 
+    //是否静默加载
     var muteLoadData = false
 
     /**######################抽象方法区 复写父类中的抽象方法，保证idea自动补全的顺序 ######################*/

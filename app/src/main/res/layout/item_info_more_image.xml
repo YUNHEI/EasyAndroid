@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_item_white_ef_line">
+
+    <TextView
+        android:id="@+id/_title"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1.18"
+        android:maxLines="3"
+        android:textColor="@color/gray_33"
+        android:textSize="@dimen/text_17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="刚刚，微信订阅号逆天改版！到底会带来哪些影响？快刚刚，微信订阅号逆天改版！到底会带来哪些影响？快刚刚，微信订阅号逆天改版！到底会带来哪些影响？快刚刚，微信订阅号逆天改版！到底会带来哪些影响？快"/>
+
+    <LinearLayout
+        android:id="@+id/_image_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14.5dp"
+        android:layout_marginRight="14.5dp"
+        android:layout_marginTop="@dimen/dimen_9"
+        android:paddingBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/_title">
+
+        <com.chen.basemodule.view.round_image.RoundImageView
+            android:id="@+id/_image_one"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="1.5dp"
+            android:layout_weight="1"
+            app:riv_borderColor="@color/gray_ef"
+            app:riv_borderWidth="@dimen/dimen_1px"/>
+
+        <com.chen.basemodule.view.round_image.RoundImageView
+            android:id="@+id/_image_two"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="1.5dp"
+            android:layout_marginRight="1.5dp"
+            android:layout_weight="1"
+            app:riv_borderColor="@color/gray_ef"
+            app:riv_borderWidth="@dimen/dimen_1px"/>
+
+        <com.chen.basemodule.view.round_image.RoundImageView
+            android:id="@+id/_image_three"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="1.5dp"
+            android:layout_weight="1"
+            app:riv_borderColor="@color/gray_ef"
+            app:riv_borderWidth="@dimen/dimen_1px"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_12"
+        android:layout_marginStart="@dimen/dimen_15"
+        android:layout_marginEnd="@dimen/dimen_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/_delete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/_image_container"
+        app:layout_goneMarginRight="@dimen/dimen_15">
+
+        <TextView
+            android:id="@+id/_stick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/dimen_6"
+            android:text="置顶"
+            android:textColor="@color/main_theme"
+            android:textSize="@dimen/text_12"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/dimen_10"
+            android:text="精选"
+            android:textColor="@color/blue_light"
+            android:textSize="@dimen/text_12"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingEnd="@dimen/dimen_6"
+            android:textColor="@color/gray_99"
+            android:textSize="@dimen/text_12"
+            android:visibility="visible"
+            tools:text="新招广场·小新新招广场·小新新招广场·小新新招小新新招小新新招小新新招小新新招小新新招"
+            tools:visibility="visible"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_3"
+        android:layout_marginEnd="@dimen/dimen_5"
+        android:padding="@dimen/dimen_10"
+        android:src="@mipmap/ic_info_delete"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
