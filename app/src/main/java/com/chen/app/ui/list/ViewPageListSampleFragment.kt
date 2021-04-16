@@ -33,7 +33,7 @@ class ViewPageListSampleFragment : SingleListFragment<WeatherBean>() {
 
         mRefresh.isEnableRefresh = false
 
-        WindowsUtil.setDarkTheme(activity!!, true)
+        WindowsUtil.setDarkTheme(requireActivity(), true)
 
 
         lManager.setOnViewPagerListener(object : OnViewPagerListener {

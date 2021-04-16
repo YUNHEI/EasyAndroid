@@ -15,7 +15,7 @@ abstract class BaseSimpleFragment : BaseDataFragment() {
     private var isLoaded = false //初始化过的页面，不在出现网络错误
 
     override val viewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = activity!! }
+        ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = requireActivity() }
     }
 
     override fun startLoadData(muteLoadData: Boolean?) {

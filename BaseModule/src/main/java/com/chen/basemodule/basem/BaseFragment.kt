@@ -115,10 +115,6 @@ abstract class BaseFragment : RootFragment() {
             })
     }
 
-    override fun getUserVisibleHint(): Boolean {
-        return super.getUserVisibleHint()
-    }
-
     fun onShow() {}
 
     fun onHide() {}

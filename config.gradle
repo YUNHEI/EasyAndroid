@@ -15,7 +15,7 @@ ext {
 
     support_version = "1.1.0"
 
-    navigation_version = "2.1.0"
+    navigation_version = "2.3.5"
 
     android_x = [
             "appcompat"        : "androidx.appcompat:appcompat:1.2.0",
@@ -30,7 +30,7 @@ ext {
             "viewpager2"       : "androidx.viewpager2:viewpager2:1.0.0@aar"
     ]
 
-    kotlinx_coroutines_version = "1.3.4"
+    kotlinx_coroutines_version = "1.4.3"
 
     kotlinx_coroutines = [
             "core"   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version",
@@ -108,12 +108,13 @@ ext {
 
     /*room*/
 
-    room_version = "2.1.0-alpha04"
+    room_version = "2.2.6"
+
     room = [
             "room"         : "androidx.room:room-runtime:$room_version",
-            "room-rxjava2" : "androidx.room:room-rxjava2:$room_version",
+            "room-compiler": "androidx.room:room-compiler:$room_version",
             "coroutines"   : "androidx.room:room-coroutines:$room_version",
-            "room-compiler": "androidx.room:room-compiler:$room_version"
+            "room-ktx"   : "androidx.room:room-ktx:$room_version"
     ]
 
     /* libtorrent wrapper */
@@ -156,9 +157,9 @@ ext {
 
             "scale_image"                  : "com.davemorrissey.labs:subsampling-scale-image-view:3.10.0",
 
-            "kotlin-stdlib"                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.21",
+            "kotlin-stdlib"                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32",
 
-            "kotlin-reflect"               : "org.jetbrains.kotlin:kotlin-reflect:1.3.50",
+            "kotlin-reflect"               : "org.jetbrains.kotlin:kotlin-reflect:1.4.32",
 
             "anko"                         : "org.jetbrains.anko:anko:0.10.8",
 

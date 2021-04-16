@@ -21,12 +21,6 @@ android {
 
         flavorDimensions "versionCode"
 
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [eventBusIndex: 'org.greenrobot.eventbusperf.MyEventBusIndex']
-            }
-        }
     }
 
     productFlavors {
@@ -66,6 +60,11 @@ android {
     compileOptions {
         targetCompatibility = '1.8'
         sourceCompatibility = '1.8'
+    }
+
+    lintOptions {
+//        checkReleaseBuilds true
+        abortOnError false
     }
 
     kotlinOptions {

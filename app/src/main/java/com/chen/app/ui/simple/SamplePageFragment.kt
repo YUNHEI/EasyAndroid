@@ -8,7 +8,6 @@ import android.util.Log
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
-import com.chen.app.navigationtest.MainActivity
 import com.chen.app.ui.simple.download.DownloadFragment
 import com.chen.app.ui.simple.event.EventFragment
 import com.chen.app.ui.simple.net.WeatherDetailFragment
@@ -180,7 +179,7 @@ class SamplePageFragment : SingleGroupSimpleListFragment() {
             }
             Group("其他功能") {
                 Item("Navigation") {
-                    startActivity(Intent(activity, MainActivity::class.java))
+//                    startActivity(Intent(activity, MainActivity::class.java))
                 }
                 Item("性能测试") {
 

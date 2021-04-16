@@ -23,7 +23,8 @@ import kotlinx.android.synthetic.main.fragment_attachmen_download.*
 class DownloadFragment : BaseSimpleFragment() {
 
     override val viewModel by lazy {
-        ViewModelProvider(activity!!).get(DownloadModel::class.java).apply { owner = activity!! }
+        ViewModelProvider(requireActivity()).get(DownloadModel::class.java)
+            .apply { owner = requireActivity() }
     }
 
     override val contentLayoutId = R.layout.fragment_attachmen_download
@@ -33,7 +34,12 @@ class DownloadFragment : BaseSimpleFragment() {
 
     val fileName by lazy { url.substringAfterLast("/") }
 
-    private val progressOb by lazy { LiveEventBus.get(LiveBusKey.EVENT_PROGRESS, BaseProgressEvent::class.java)!! }
+    private val progressOb by lazy {
+        LiveEventBus.get(
+            LiveBusKey.EVENT_PROGRESS,
+            BaseProgressEvent::class.java
+        )!!
+    }
 
     override fun initAndObserve() {
 
@@ -46,7 +52,8 @@ class DownloadFragment : BaseSimpleFragment() {
             if (it.target.firstOrNull() == fileName) {
                 it.obj.run {
                     _progress.progressPercent = currentSize.times(100f).div(totalSize)
-                    _size.text = "${FileUtil.getFileSize(currentSize)}/${FileUtil.getFileSize(totalSize)}"
+                    _size.text =
+                        "${FileUtil.getFileSize(currentSize)}/${FileUtil.getFileSize(totalSize)}"
                 }
             }
         })
@@ -66,17 +73,17 @@ class DownloadFragment : BaseSimpleFragment() {
 
                     viewModel.run {
                         requestData(
-                                { downloadRepos.downloadFile(url) },
-                                {
-                                    it.data?.run {
+                            { downloadRepos.downloadFile(url) },
+                            {
+                                it.data?.run {
 
-                                    }
-                                    it.toast()
-                                },
-                                preHandle = {
-                                    _download.visibility = View.VISIBLE
-                                    _progress.visibility = View.GONE
                                 }
+                                it.toast()
+                            },
+                            preHandle = {
+                                _download.visibility = View.VISIBLE
+                                _progress.visibility = View.GONE
+                            }
                         )
                     }
                 }

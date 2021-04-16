@@ -99,10 +99,10 @@ fun ImageView.load(url: String? = null, @DrawableRes place: Int = R.drawable.ic_
         }
     } else if (autoAdjust && bitmapHeight > 0 && bitmapWidth > 0) {
 
-        var zoomIn = 1f
+        var zoomIn :Float
         var zoomInWidth = 1f
         var zoomInHeight = 1f
-        var zoomOut = 1f
+        var zoomOut :Float
         var zoomOutWidth = 1f
         var zoomOutHeight = 1f
 
@@ -174,7 +174,7 @@ fun ImageView.load(url: String? = null, @DrawableRes place: Int = R.drawable.ic_
                 val viewWidth = width.toFloat()
                 val viewHeight = height.toFloat()
 
-                var desWidth = 0f
+                var desWidth :Float
                 var desHeight = 0f
 
                 if (viewWidth > 0 && viewHeight > 0) {
@@ -209,7 +209,7 @@ fun ImageView.load(url: String? = null, @DrawableRes place: Int = R.drawable.ic_
                             }
                         }
                     } else {
-                        var zoomIn = 1f
+                        var zoomIn :Float
                         var zoomInWidth = 1f
                         var zoomInHeight = 1f
                         var zoomOut = 1f

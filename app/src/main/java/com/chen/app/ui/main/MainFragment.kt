@@ -59,7 +59,7 @@ class MainFragment : BaseSimpleFragment() {
 //                    if (currentTab == 1 && currentTab == index) postRefresh(ProjectFragment::class)
                     _tab_host.currentTab = index
 
-                    WindowsUtil.setDarkTheme(activity!!, index == 2)
+                    WindowsUtil.setDarkTheme(requireActivity(), index == 2)
                 }
             }
         }

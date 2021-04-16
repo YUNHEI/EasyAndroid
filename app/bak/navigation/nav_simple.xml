@@ -3,27 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/nav_simple_first_frag">
+
     <fragment
         android:id="@+id/nav_simple_first_frag"
         android:name="com.chen.app.navigationtest.simple.FirstFragment"
         android:label="first frag"
         tools:layout="@layout/fragment_simple_first">
-        <!--<action
-            android:id="@+id/action_nav_first_frag_to_nav_second_frag"
-            app:destination="@id/nav_simple_second_frag"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out"/>-->
+
         <action
             android:id="@+id/action_nav_first_frag_to_nav_second_frag"
             app:destination="@id/nav_simple_second_frag"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out"/>
+            app:popExitAnim="@anim/fade_out" />
 
-        <argument android:name="data" app:argType="string" />
+        <argument
+            android:name="data"
+            app:argType="string" />
 
     </fragment>
 
@@ -32,19 +29,28 @@
         android:name="com.chen.app.navigationtest.simple.SecondFragment"
         android:label="second frag"
         tools:layout="@layout/fragment_simple_second">
+
         <action
             android:id="@+id/action_nav_second_frag_to_nav_third_frag"
             app:destination="@id/nav_simple_third_frag" />
-        <argument android:name="booleanData" app:argType="boolean" />
-        <!--<argument android:name="byteData" app:type="byte" />-->
-        <!--<argument android:name="charData" app:type="char" />-->
-        <!--<argument android:name="shortData" app:type="short" />-->
-        <argument android:name="intData" app:argType="integer" />
-        <!--<argument android:name="longData" app:type="long" />-->
-        <argument android:name="floatData" app:argType="float" />
-        <!--<argument android:name="doubleData" app:type="double" />-->
-        <argument android:name="stringData" app:argType="string" />
+
+        <argument
+            android:name="booleanData"
+            app:argType="boolean" />
+
+        <argument
+            android:name="intData"
+            app:argType="integer" />
+
+        <argument
+            android:name="floatData"
+            app:argType="float" />
+
+        <argument
+            android:name="stringData"
+            app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/nav_simple_third_frag"
         android:name="com.chen.app.navigationtest.simple.ThirdFragment"
@@ -54,10 +60,11 @@
             android:id="@+id/action_nav_third_frag_to_nav_fourth_frag"
             app:destination="@id/nav_simple_fourth_frag" />
     </fragment>
+
     <fragment
         android:id="@+id/nav_simple_fourth_frag"
         android:name="com.chen.app.navigationtest.simple.FourthFragment"
         android:label="fourth frag"
-        tools:layout="@layout/fragment_simple_fourth">
-    </fragment>
+        tools:layout="@layout/fragment_simple_fourth" />
+
 </navigation>

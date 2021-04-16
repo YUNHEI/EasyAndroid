@@ -12,6 +12,6 @@ import com.chen.basemodule.mlist.BaseMultiGroupListFragment
  **/
 abstract class MultiGroupListFragment<P : RootBean, C : RootBean> : BaseMultiGroupListFragment<P, C>() {
 
-    override val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = activity!! } }
+    override val viewModel by lazy { ViewModelProvider(requireActivity()).get(MainViewModel::class.java).apply { owner = requireActivity() } }
 
 }

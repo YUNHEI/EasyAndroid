@@ -13,6 +13,6 @@ import com.chen.basemodule.mlist.BaseMultiListFragment
 abstract class MultiListFragment<V: RootBean> : BaseMultiListFragment<V>() {
 
     /*E viewModel 必须是第一个泛型变量*/
-    override val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = activity!! } }
+    override val viewModel by lazy { ViewModelProvider(requireActivity()).get(MainViewModel::class.java) }
 
 }

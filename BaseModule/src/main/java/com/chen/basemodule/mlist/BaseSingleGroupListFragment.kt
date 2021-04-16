@@ -21,7 +21,7 @@ abstract class BaseSingleGroupListFragment<P : RootBean, C : RootBean> :
         super.initDelegate(bundle)
 
 
-        mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<DataWrapBean>(context!!) {
+        mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<DataWrapBean>(requireContext()) {
 
             override val layoutId = itemLayoutId
 
