@@ -41,9 +41,9 @@ object BaseExtendApplication {
 
     fun init(app: Application, applicationId: String, wechatId: String? = null, enableOffline: Boolean = false) {
 
-        RxJavaPlugins.setErrorHandler {
-            it.printStackTrace()
-        }
+//        RxJavaPlugins.setErrorHandler {
+//            it.printStackTrace()
+//        }
 
         this.applicationId = applicationId
 

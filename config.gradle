@@ -15,7 +15,7 @@ ext {
 
     support_version = "1.1.0"
 
-    navigation_version = "2.1.0"
+    navigation_version = "2.3.5"
 
     android_x = [
             "appcompat"        : "androidx.appcompat:appcompat:1.2.0",
@@ -108,12 +108,13 @@ ext {
 
     /*room*/
 
-    room_version = "2.1.0-alpha04"
+    room_version = "2.2.6"
+
     room = [
             "room"         : "androidx.room:room-runtime:$room_version",
-            "room-rxjava2" : "androidx.room:room-rxjava2:$room_version",
+            "room-compiler": "androidx.room:room-compiler:$room_version",
             "coroutines"   : "androidx.room:room-coroutines:$room_version",
-            "room-compiler": "androidx.room:room-compiler:$room_version"
+            "room-ktx"   : "androidx.room:room-ktx:$room_version"
     ]
 
     /* libtorrent wrapper */

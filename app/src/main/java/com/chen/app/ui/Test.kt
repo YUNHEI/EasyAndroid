@@ -1,3 +1,5 @@
+@file:Suppress("WarningOnMainUnusedParameterMigration")
+
 package com.chen.app.ui
 
 import java.util.*

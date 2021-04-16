@@ -8,26 +8,25 @@
         android:id="@+id/nav_main"
         android:name="com.chen.app.navigationtest.MainFragment"
         tools:layout="@layout/fragment_main">
+
         <action
             android:id="@+id/action_nav_main_to_nav_simple"
             app:destination="@id/nav_simple" />
+
         <action
             android:id="@+id/action_nav_main_to_nav_bottom_navigation_view"
             app:destination="@id/nav_bottom_navigation_view" />
+
     </fragment>
 
     <activity
         android:id="@+id/nav_simple"
         android:name="com.chen.app.navigationtest.simple.SimpleActivity"
-        tools:layout="@layout/activity_simple">
-
-    </activity>
+        tools:layout="@layout/activity_simple" />
 
     <activity
         android:id="@+id/nav_bottom_navigation_view"
         android:name="com.chen.app.navigationtest.navigation.BottomNavigationActivity"
-        tools:layout="@layout/activity_bottom_navigation">
-
-    </activity>
+        tools:layout="@layout/activity_bottom_navigation" />
 
 </navigation>

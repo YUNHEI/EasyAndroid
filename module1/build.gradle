@@ -39,11 +39,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [eventBusIndex: 'org.greenrobot.eventbusperf.MyEventBusIndex']
-            }
-        }
     }
     productFlavors {
         dev {

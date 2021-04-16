@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/photoPagerFragment"
-        android:name="com.chen.mzhuan.ui_.sys.photo_picker.ImagePagerFragment"
+        android:name="com.chen.baseextend.widget.photopicker.ui.ImagePagerFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

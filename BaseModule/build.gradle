@@ -20,11 +20,6 @@ android {
 
         flavorDimensions "versionCode"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [eventBusIndex: 'org.greenrobot.eventbusperf.MyEventBusIndex']
-            }
-        }
     }
 
     //注意，这里的配置是为了去除gradle对library module默认只编译release buildType的限制
@@ -45,6 +40,11 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    lintOptions {
+//        checkReleaseBuilds true
+        abortOnError false
     }
 
 }
@@ -95,9 +95,8 @@ dependencies {
 //    api rootProject.ext.work["work-ktx"]
 
     api rootProject.ext.room["room"]
-    api rootProject.ext.room["room-rxjava2"]
-    api rootProject.ext.room["coroutines"]
     kapt rootProject.ext.room["room-compiler"]
+    api rootProject.ext.room["room-ktx"]
 
     api project(':page-api')
     api project(':page-annotation')

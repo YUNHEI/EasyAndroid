@@ -21,7 +21,7 @@ abstract class SingleGroupWithSectionListFragment<P : RootBean, C : RootBean> : 
 
     abstract val titleStyle: TitleStyle
 
-    override val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = activity!! } }
+    override val viewModel by lazy { ViewModelProvider(requireActivity()).get(MainViewModel::class.java) }
 
     override val groupLayoutId: Int get() = R.layout.item_group_title
 

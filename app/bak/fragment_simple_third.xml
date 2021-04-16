@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".navigationtest.simple.FourthFragment">
+    tools:context=".navigationtest.simple.ThirdFragment">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_back_first_fragment"
+        android:id="@+id/btn_to_fourth_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="返回第一个Fragment"
+        android:text="去第四个Fragment"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
