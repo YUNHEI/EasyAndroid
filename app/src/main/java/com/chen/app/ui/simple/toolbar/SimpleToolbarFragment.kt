@@ -6,7 +6,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.databinding.Fragment1Binding
+import com.chen.app.databinding.Fragment2Binding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.listenClick
 import com.chen.basemodule.extend.toastSuc
 import kotlinx.android.synthetic.main.fragment_2.*
@@ -15,8 +18,8 @@ import java.util.*
 @Launch
 class SimpleToolbarFragment : BaseSimpleFragment() {
 
-    override val contentLayoutId = R.layout.fragment_2
-
+    //    override val contentLayoutId = R.layout.fragment_2
+    override val binding by doBinding(Fragment2Binding::inflate)
     private lateinit var _title: TextView
 
     private lateinit var _back: ImageView
@@ -64,7 +67,13 @@ class SimpleToolbarFragment : BaseSimpleFragment() {
         listenClick(_random_bg, _immerse, _random_title) {
             when (it) {
                 _random_bg -> {
-                    toolbar.setBackgroundColor(Random().run { Color.rgb(nextInt(256), nextInt(256), nextInt(256)) })
+                    toolbar.setBackgroundColor(Random().run {
+                        Color.rgb(
+                            nextInt(256),
+                            nextInt(256),
+                            nextInt(256)
+                        )
+                    })
                 }
                 _immerse -> {
                     toolbar.isImmerse = !toolbar.isImmerse

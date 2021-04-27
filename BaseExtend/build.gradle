@@ -71,6 +71,9 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
 
+    viewBinding {
+        enabled = true
+    }
 }
 
 

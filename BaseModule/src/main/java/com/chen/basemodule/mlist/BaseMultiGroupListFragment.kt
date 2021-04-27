@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewbinding.ViewBinding
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.mlist.bean.DataWrapBean
 import com.chen.basemodule.mlist.bean.GroupWrapBean
@@ -25,7 +26,7 @@ abstract class BaseMultiGroupListFragment<P : RootBean, C : RootBean> :
     BaseMultiListFragment<DataWrapBean>() {
 
     override val mAdapter by lazy {
-        BaseMultiGroupAdapter<P, C>(context!!).apply {
+        BaseMultiGroupAdapter<P, C>(requireContext()).apply {
             pageSize = PAGE_SIZE
         }
     }
@@ -118,9 +119,9 @@ abstract class BaseMultiGroupListFragment<P : RootBean, C : RootBean> :
     override fun initDelegate(bundle: Bundle) {
         super.initDelegate(bundle)
 
-        mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<DataWrapBean>(context!!) {
+        mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<DataWrapBean>(requireContext()) {
 
-            override val layoutId = groupLayoutId
+            override val binding = groupBinding
 
             override fun bindData(
                 viewHolder: BaseItemViewHolder,
@@ -187,7 +188,7 @@ abstract class BaseMultiGroupListFragment<P : RootBean, C : RootBean> :
         }
     }
 
-    abstract val groupLayoutId: Int
+    abstract val groupBinding: ViewBinding
 
     abstract fun bindGroupData(
         viewHolder: BaseItemViewHolder,

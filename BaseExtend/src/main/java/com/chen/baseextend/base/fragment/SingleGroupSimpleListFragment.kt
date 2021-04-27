@@ -1,16 +1,18 @@
 package com.chen.baseextend.base.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.viewbinding.ViewBinding
 import com.chen.baseextend.R
+import com.chen.baseextend.databinding.ItemSimpleItemViewBinding
 import com.chen.baseextend.view.SimpleItemView
 import com.chen.basemodule.basem.BaseBean
-import com.chen.basemodule.extend.color
-import com.chen.basemodule.extend.dp2px
-import com.chen.basemodule.extend.drawable
+import com.chen.basemodule.extend.*
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.bean.GroupWrapBean
 import com.chen.basemodule.mlist.bean.ItemWrapBean
@@ -69,7 +71,9 @@ abstract class SingleGroupSimpleListFragment : SingleGroupWithSectionListFragmen
         }
     }
 
-    override val itemLayoutId: Int get() = R.layout.item_simple_item_view
+    override fun <VB : ViewBinding> itemInflate(): (li: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> VB {
+        return ItemSimpleItemViewBinding::inflate
+    }
 
     override fun bindItemData(viewHolder: BaseItemViewHolder, data: ItemBean?, position: Int, realP: Int) {
         (viewHolder.itemView as SimpleItemView).let {

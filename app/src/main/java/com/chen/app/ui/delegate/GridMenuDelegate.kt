@@ -2,7 +2,10 @@ package com.chen.app.ui.delegate
 
 import android.content.Context
 import com.chen.app.R
+import com.chen.app.databinding.ItemHomeMenuBinding
 import com.chen.baseextend.bean.menu.HomeMenuBean
+import com.chen.basemodule.extend.createBinding
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.load
 import com.chen.basemodule.mlist.BaseItemViewDelegate
 import com.chen.basemodule.mlist.BaseItemViewHolder
@@ -10,7 +13,9 @@ import kotlinx.android.synthetic.main.item_home_menu.view.*
 
 class GridMenuDelegate(context: Context) : BaseItemViewDelegate<HomeMenuBean>(context) {
 
-    override val layoutId = R.layout.item_home_menu
+//    override val layoutId = R.layout.item_home_menu
+
+    override val binding get() = createBinding(ItemHomeMenuBinding::inflate)
 
     override fun bindData(
         viewHolder: BaseItemViewHolder,

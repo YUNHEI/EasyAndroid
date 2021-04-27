@@ -5,8 +5,10 @@ import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.baseextend.databinding.FragmentCropImageBinding
 import com.chen.basemodule.basem.argument.ArgFloat
 import com.chen.basemodule.basem.argument.ArgString
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.listenClick
 import com.chen.basemodule.extend.loadBitmap
 import com.chen.basemodule.util.ImageUtil_
@@ -19,7 +21,9 @@ class ImageCropFragment : BaseSimpleFragment() {
 
     val radio by ArgFloat(1f)
 
-    override val contentLayoutId = R.layout.fragment_crop_image
+//    override val contentLayoutId = R.layout.fragment_crop_image
+
+    override val binding by doBinding(FragmentCropImageBinding::inflate)
 
     override fun initAndObserve() {
 
@@ -30,7 +34,7 @@ class ImageCropFragment : BaseSimpleFragment() {
         listenClick(_cancel, _confirm) {
             when (it) {
                 _cancel -> {
-                    activity!!.finish()
+                    requireActivity().finish()
                 }
                 _confirm -> {
                     cropImage()

@@ -12,7 +12,7 @@
     android:padding="@dimen/dimen_18">
 
     <ProgressBar
-        android:id="@+id/_progress"
+        android:id="@+id/progress"
         android:layout_width="@dimen/dimen_25"
         android:layout_height="@dimen/dimen_25"
         android:indeterminateDrawable="@drawable/anim_progressbar"
@@ -34,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/_progress"
+        app:layout_constraintTop_toBottomOf="@id/progress"
         tools:text="慰废物辣口味慰废物范记录卡家乐福分辣口味慰废物范记录卡家乐福分辣口味味" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

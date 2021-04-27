@@ -70,6 +70,9 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 androidExtensions {

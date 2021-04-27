@@ -5,22 +5,23 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.chen.app.R
+import com.chen.app.databinding.FragmentMainBinding
 import com.chen.app.ui.coroutines.CoroutinesFragment
 import com.chen.app.ui.list.ListSampleFragment
 import com.chen.app.ui.simple.SamplePageFragment
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.extend.stickSide
 import com.chen.basemodule.extend.color
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.listenClick
 import com.chen.basemodule.extend.toastSuc
 import com.chen.basemodule.util.ThemeColorUtil
 import com.chen.basemodule.util.WindowsUtil
-import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : BaseSimpleFragment() {
 
-    override val contentLayoutId = R.layout.fragment_main
+    override val binding by doBinding(FragmentMainBinding::inflate)
 
     private val tabs by lazy {
         mutableListOf(
@@ -34,7 +35,7 @@ class MainFragment : BaseSimpleFragment() {
 
     override fun initAndObserve() {
 
-        _tab_host.run {
+        binding.TabHost.run {
             setup(context, childFragmentManager, R.id.level_1_container)
             tabWidget.dividerDrawable = null
             clearAllTabs()
@@ -56,8 +57,8 @@ class MainFragment : BaseSimpleFragment() {
             tabWidget.children.forEachIndexed { index, view ->
                 view.setOnClickListener {
                     if (currentTab == 0 && currentTab == index) postRefresh(ListSampleFragment::class)
-//                    if (currentTab == 1 && currentTab == index) postRefresh(ProjectFragment::class)
-                    _tab_host.currentTab = index
+
+                    currentTab = index
 
                     WindowsUtil.setDarkTheme(requireActivity(), index == 2)
                 }
@@ -70,11 +71,11 @@ class MainFragment : BaseSimpleFragment() {
 //
 //        observeRefresh("project_change") { refreshWaitProcessCount() }
 
-        _wait_process.stickSide()
+        binding.WaitProcess.stickSide()
 
-        listenClick(_wait_process) {
+        listenClick(binding.WaitProcess) {
             when (it) {
-                _wait_process -> {
+                binding.WaitProcess -> {
                     "点击悬浮窗".toastSuc()
                 }
                 else -> {

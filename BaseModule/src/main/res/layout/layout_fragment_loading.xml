@@ -8,7 +8,7 @@
     android:layout_gravity="center">
 
     <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/_progress"
+        android:id="@+id/progress"
         android:layout_width="@dimen/dimen_20"
         android:layout_height="@dimen/dimen_20"
         style="?android:attr/progressBarStyleSmall"
@@ -28,7 +28,7 @@
         android:textSize="@dimen/text_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/_progress"
+        app:layout_constraintStart_toEndOf="@id/progress"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

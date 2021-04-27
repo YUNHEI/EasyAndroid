@@ -17,8 +17,6 @@ class BaseDeepLinkActivity : BaseActivity() {
 
     override val fragment: BaseFragment? = null
 
-    override val contentLayoutId = - 1
-
     val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = this@BaseDeepLinkActivity } }
 
     companion object {

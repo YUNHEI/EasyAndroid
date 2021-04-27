@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.alibaba.android.arouter.facade.enums.LaunchType
 import com.chen.app.R
+import com.chen.app.databinding.ItemTitleBinding
+import com.chen.app.databinding.ItemVideoBinding
 import com.chen.baseextend.base.fragment.SingleListFragment
 import com.chen.baseextend.bean.WeatherBean
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.layoutmanager.OnViewPagerListener
 import com.chen.basemodule.mlist.layoutmanager.ViewPagerLayoutManager
@@ -51,7 +54,7 @@ class ViewPageListSampleFragment : SingleListFragment<WeatherBean>() {
         })
     }
 
-    override val lManager: ViewPagerLayoutManager by lazy { ViewPagerLayoutManager(context!!, RecyclerView.VERTICAL) }
+    override val lManager: ViewPagerLayoutManager by lazy { ViewPagerLayoutManager(requireContext(), RecyclerView.VERTICAL) }
 
     //item 点击事件
     override fun initClickListener() {
@@ -70,12 +73,14 @@ class ViewPageListSampleFragment : SingleListFragment<WeatherBean>() {
     }
 
     //item 样式
-    override val itemLayoutId = R.layout.item_video
+//    override val itemLayoutId = R.layout.item_video
+
+    override val itemBinding by doBinding(ItemVideoBinding::inflate)
 
     //item 数据绑定
     override fun bindItemData(viewHolder: BaseItemViewHolder, data: WeatherBean, position: Int, realP: Int) {
         viewHolder.itemView.run {
-            _video.setVideoURI(Uri.parse("android.resource://${context!!.packageName}/${videos[position % 2]}"))
+            _video.setVideoURI(Uri.parse("android.resource://${requireContext().packageName}/${videos[position % 2]}"))
         }
     }
 

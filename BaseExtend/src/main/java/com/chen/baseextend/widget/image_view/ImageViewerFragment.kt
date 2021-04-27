@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.baseextend.databinding.FragmentImageViewerBinding
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.util.WindowsUtil
 import kotlinx.android.synthetic.main.fragment_image_viewer.*
 import java.util.*
@@ -16,15 +17,16 @@ import java.util.*
  */
 class ImageViewerFragment : BaseSimpleFragment() {
 
-    override val contentLayoutId = R.layout.fragment_image_viewer
+    //    override val contentLayoutId = R.layout.fragment_image_viewer
+    override val binding by doBinding(FragmentImageViewerBinding::inflate)
 
     private var uris: MutableList<String>? = null
 
     override fun initAndObserve() {
 
-        WindowsUtil.setDarkTheme(activity!!, true)
+        WindowsUtil.setDarkTheme(requireActivity(), true)
 
-        val intent = activity!!.intent
+        val intent = requireActivity().intent
 
         uris = intent.getStringArrayListExtra("urls")
 
@@ -45,7 +47,11 @@ class ImageViewerFragment : BaseSimpleFragment() {
         pager.adapter = mAdapter
 
         pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
 
             }
 

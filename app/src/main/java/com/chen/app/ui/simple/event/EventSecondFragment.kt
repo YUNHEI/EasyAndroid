@@ -2,17 +2,19 @@ package com.chen.app.ui.simple.event
 
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.databinding.Fragment1Binding
+import com.chen.app.databinding.FragmentEventCloseBinding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.extend.startPage
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.listenClick
-import kotlinx.android.synthetic.main.fragment_event_close.*
 
 @Launch
 class EventSecondFragment : BaseSimpleFragment() {
 
     //设置布局文件
-    override val contentLayoutId = R.layout.fragment_event_close
-
+//    override val contentLayoutId = R.layout.fragment_event_close
+    override val binding by doBinding(FragmentEventCloseBinding::inflate)
     override fun initAndObserve() {
 
         //设置toolbar
@@ -23,15 +25,15 @@ class EventSecondFragment : BaseSimpleFragment() {
             left(R.mipmap.ic_back) { activity?.finish() }
         }
 
-        _title.text = ""
+        binding.Title.text = ""
 
         //添加点击事件
-        listenClick(_next, _close) {
+        listenClick(binding.Next, binding.Close) {
             when (it) {
-                _close -> {
+                binding.Close -> {
                     postClose(EventFragment::class)
                 }
-                _next -> {
+                binding.Next -> {
                     startPage(EventThirdFragment::class)
                 }
                 else -> {

@@ -154,10 +154,15 @@ android {
 
     lintOptions {
 //        checkReleaseBuilds true
-        abortOnError false
+//        abortOnError false
     }
+
     dexOptions {
         javaMaxHeapSize "4g"
+    }
+
+    viewBinding {
+        enabled = true
     }
 }
 

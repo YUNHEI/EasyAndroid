@@ -1,8 +1,6 @@
 package com.chen.basemodule.basem
 
 import android.graphics.PorterDuff
-import android.view.View
-import android.widget.TextView
 import androidx.annotation.IntDef
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -14,11 +12,9 @@ import com.chen.basemodule.constant.LiveBusKey
 import com.chen.basemodule.event_bus.BaseCloseEvent
 import com.chen.basemodule.event_bus.BaseNetworkEvent
 import com.chen.basemodule.event_bus.BaseRefreshEvent
-import com.chen.basemodule.extend.visible
 import com.chen.basemodule.widget.dialog.LoadingDialog
 import com.chen.basemodule.widget.dialog.WarningDialog
 import com.jeremyliao.liveeventbus.LiveEventBus
-import kotlinx.android.synthetic.main.base_mlist_fragment.*
 import kotlinx.android.synthetic.main.layout_fragment_loading.view.*
 import kotlinx.android.synthetic.main.layout_loading_blank.view.*
 import kotlinx.android.synthetic.main.layout_loading_cover.*
@@ -46,11 +42,11 @@ abstract class BaseDataFragment : BaseFragment() {
     @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
     annotation class LoadingType
 
-    private val loadingDialogLazy = lazy { LoadingDialog(activity!!) }
+    private val loadingDialogLazy = lazy { LoadingDialog(requireActivity()) }
 
     open val loadingDialog by loadingDialogLazy
 
-    open val warningDialog by lazy { WarningDialog(activity!!) }
+    open val warningDialog by lazy { WarningDialog(requireActivity()) }
 
     val mLoadingView by lazy {
         layoutInflater.inflate(
@@ -102,7 +98,7 @@ abstract class BaseDataFragment : BaseFragment() {
      * 设置布局
      * @return content layout
      */
-    abstract override val contentLayoutId: Int
+//    abstract override val contentLayoutId: Int
 
     /**
      * onViewCreated 之后调用
@@ -121,15 +117,15 @@ abstract class BaseDataFragment : BaseFragment() {
             if (type == LOADING) {
                 mLoadingView.isVisible = true
 
-                mLoadingView._progress.indeterminateDrawable
+                mLoadingView.progress.indeterminateDrawable
                     .setColorFilter(
                         ContextCompat.getColor(context, R.color.gray_99),
                         PorterDuff.Mode.MULTIPLY
                     )
-                mLoadingView._progress?.show()
+                mLoadingView.progress?.show()
             } else {
                 mLoadingView.isVisible = false
-                mLoadingView._progress?.hide()
+                mLoadingView.progress?.hide()
             }
             mNetError?.isVisible = type == ERROR
             if (mNetError != null && type == ERROR) {

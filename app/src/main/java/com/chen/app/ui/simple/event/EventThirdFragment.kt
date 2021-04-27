@@ -2,7 +2,10 @@ package com.chen.app.ui.simple.event
 
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.databinding.Fragment1Binding
+import com.chen.app.databinding.FragmentEventClose2Binding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.listenClick
 import kotlinx.android.synthetic.main.fragment_event_close.*
 
@@ -10,8 +13,8 @@ import kotlinx.android.synthetic.main.fragment_event_close.*
 class EventThirdFragment : BaseSimpleFragment() {
 
     //设置布局文件
-    override val contentLayoutId = R.layout.fragment_event_close_2
-
+//    override val contentLayoutId = R.layout.fragment_event_close_2
+    override val binding by doBinding(FragmentEventClose2Binding::inflate)
     override fun initAndObserve() {
 
         //设置toolbar

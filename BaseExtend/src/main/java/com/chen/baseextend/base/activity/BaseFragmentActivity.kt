@@ -1,6 +1,9 @@
 package com.chen.baseextend.base.activity
 
+import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import com.chen.baseextend.repos.viewmodel.MainViewModel
 import com.chen.basemodule.allroot.RootFragmentActivity
 
@@ -10,6 +13,16 @@ import com.chen.basemodule.allroot.RootFragmentActivity
  **/
 abstract class BaseFragmentActivity : RootFragmentActivity() {
 
-    val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = this@BaseFragmentActivity } }
+    abstract val binding: ViewBinding
 
+    val viewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java)
+            .apply { owner = this@BaseFragmentActivity }
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        setContentView(binding.root)
+    }
 }

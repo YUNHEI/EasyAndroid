@@ -7,12 +7,11 @@
     android:paddingTop="@dimen/dimen_5">
 
 
-    <com.chen.basemodule.view.round_image.RoundImageViewu
+    <com.chen.basemodule.view.round_image.RoundImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        tools:src="@mipmap/bg_choose_company_one" />
+        android:scaleType="centerCrop" />
 
 
 </LinearLayout>

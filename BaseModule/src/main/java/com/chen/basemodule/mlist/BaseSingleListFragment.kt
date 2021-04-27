@@ -2,6 +2,7 @@ package com.chen.basemodule.mlist
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
+import androidx.viewbinding.ViewBinding
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.network.base.BaseResponse
 import kotlin.reflect.KClass
@@ -17,9 +18,9 @@ abstract class BaseSingleListFragment<V : RootBean> : BaseMultiListFragment<V>()
 
     override fun initDelegate(bundle: Bundle) {
         super.initDelegate(bundle)
-        mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<V>(context!!) {
+        mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<V>(requireContext()) {
 
-            override val layoutId = itemLayoutId
+            override val binding = itemBinding
 
             override fun bindData(viewHolder: BaseItemViewHolder, data: V?, position: Int, realP: Int) {
                 bindItemData(viewHolder, data!!, position, realP)
@@ -55,7 +56,7 @@ abstract class BaseSingleListFragment<V : RootBean> : BaseMultiListFragment<V>()
      */
     abstract override fun loadData(refresh: Boolean, lastItem: V?): LiveData<BaseResponse<MutableList<V>>>?
 
-    abstract val itemLayoutId: Int
+    abstract val itemBinding: ViewBinding
 
     abstract fun bindItemData(viewHolder: BaseItemViewHolder, data: V, position: Int, realP: Int)
     /**######################抽象方法区 复写父类中的抽象方法，保证idea自动补全的顺序 ######################*/

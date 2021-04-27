@@ -4,6 +4,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.databinding.LayoutSmartStrategyHeaderBinding
 import com.chen.app.ui.delegate.BannerHeaderDelegate
 import com.chen.app.ui.delegate.MenuHeaderDelegate
 import com.chen.app.ui.list.multigroup.delegate.*
@@ -14,6 +15,7 @@ import com.chen.baseextend.bean.menu.HomeMenuBean
 import com.chen.baseextend.bean.news.NewsBean
 import com.chen.baseextend.ui.WebActivity
 import com.chen.basemodule.basem.BaseBean
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.mlist.BaseItemViewDelegate
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.bean.DataWrapBean
@@ -32,13 +34,13 @@ import kotlin.reflect.KClass
 class MultiSourceMultiGroupDemoFragment : MultiGroupMultiSourceListFragment() {
 
     //轮播图
-    private val bannerDelegate by lazy { BannerHeaderDelegate(context!!, "400:266") }
+    private val bannerDelegate by lazy { BannerHeaderDelegate(requireContext(), "400:266") }
 
     //菜单列表
-    private val menuDelegate by lazy { MenuHeaderDelegate(context!!) }
+    private val menuDelegate by lazy { MenuHeaderDelegate(requireContext()) }
 
     //跑马灯
-    private val textBannerDelegate by lazy { CompetitionMarqueeHeaderDelegate(context!!) }
+    private val textBannerDelegate by lazy { CompetitionMarqueeHeaderDelegate(requireContext()) }
 
 //    private val footerDelegate by lazy { CompetitionFooterDelegate(context!!) }
 
@@ -87,7 +89,7 @@ class MultiSourceMultiGroupDemoFragment : MultiGroupMultiSourceListFragment() {
                     (data as? ItemWrapBean<*>)?.itemData?.run {
                         when (this) {
                             //调仓动态跳转组合详情
-                            is NewsBean -> WebActivity.toWebView(context!!, url)
+                            is NewsBean -> WebActivity.toWebView(requireContext(), url)
                             else -> {
 
                             }
@@ -147,7 +149,8 @@ class MultiSourceMultiGroupDemoFragment : MultiGroupMultiSourceListFragment() {
         }
     }
 
-    override val groupLayoutId = R.layout.layout_smart_strategy_header
+//    override val groupLayoutId = R.layout.layout_smart_strategy_header
+    override val groupBinding by doBinding(LayoutSmartStrategyHeaderBinding::inflate)
 
     override fun bindGroupData(
         viewHolder: BaseItemViewHolder,

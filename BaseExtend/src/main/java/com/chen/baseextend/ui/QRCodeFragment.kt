@@ -6,11 +6,14 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.baseextend.databinding.FragmentQrCodeBinding
 import com.chen.baseextend.widget.photopicker.PhotoPicker
 import com.chen.baseextend.widget.qrcode.UserCaptureManager
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.toast
 import com.chen.basemodule.network.base.BaseResponse
 import com.chen.basemodule.util.WindowsUtil
@@ -34,17 +37,18 @@ class QRCodeFragment : BaseSimpleFragment() {
         }
     }
 
-    override val contentLayoutId = R.layout.fragment_qr_code
+//    override val contentLayoutId = R.layout.fragment_qr_code
+    override val binding by doBinding(FragmentQrCodeBinding::inflate)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        capture.initializeFromIntent(activity!!.intent, savedInstanceState)
+        capture.initializeFromIntent(requireActivity().intent, savedInstanceState)
         capture.decode()
     }
 
     override fun initAndObserve() {
 
-        WindowsUtil.setDarkTheme(activity!!, true)
+        WindowsUtil.setDarkTheme(requireActivity(), true)
 
         toolbar.run {
             background = R.color.dark

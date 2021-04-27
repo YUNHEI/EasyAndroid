@@ -9,8 +9,6 @@ open class BaseSimActivity : BaseActivity() {
 
     override val fragment: BaseFragment? by lazy { fragmentQueue.poll() }
 
-    override val contentLayoutId = -1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        configFragment()

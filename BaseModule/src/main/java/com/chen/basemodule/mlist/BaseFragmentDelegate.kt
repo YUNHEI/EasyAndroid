@@ -5,12 +5,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.chen.basemodule.R
+import com.chen.basemodule.databinding.ItemCommonFragmentBinding
+import com.chen.basemodule.extend.createBinding
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.mlist.bean.ItemWrapBean
 
 abstract class BaseFragmentDelegate(context: Context, val key: String?) :
     BaseMultiSourceDelegate<BaseItemFragmentBean>(context) {
 
-    override val layoutId = R.layout.item_common_fragment
+//    override val layoutId = R.layout.item_common_fragment
+
+    override val binding get() = createBinding(ItemCommonFragmentBinding::inflate)
 
     override fun createItemViewHolder(parent: ViewGroup): BaseItemViewHolder {
         val holder = super.createItemViewHolder(parent)

@@ -2,9 +2,12 @@ package com.chen.app.ui.coroutines
 
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Launch
+import com.chen.app.R
 import com.chen.baseextend.base.fragment.SingleGroupSimpleListFragment
 import com.chen.baseextend.extend.startPage
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlin.math.ln
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -16,6 +19,10 @@ class CoroutinesFragment : SingleGroupSimpleListFragment() {
 
     override fun initAndObserve() {
 
+        toolbar.run {
+            center("协程")
+            left(R.mipmap.ic_back) { activity?.finish() }
+        }
     }
 
     override val wrapData by lazy {
@@ -33,12 +40,12 @@ class CoroutinesFragment : SingleGroupSimpleListFragment() {
                     var start = System.currentTimeMillis()
                     var sum = 0
                     val size = (10f.pow(length)).toInt()
-                    for (i in 0 .. size) {
+                    for (i in 0..size) {
                         sum = ln(ln(sqrt(sqrt(i.toFloat()).pow(5)))).toInt()
                     }
                     println("main 性能测试 sum:${sum} total:${System.currentTimeMillis() - start} ${(System.currentTimeMillis() - start).toFloat() / size}")
                     sum = 0
-                    for (i in 0 .. size) {
+                    for (i in 0..size) {
                         lifecycleScope.launch(Dispatchers.Unconfined) {
                             sum = ln(ln(sqrt(sqrt(i.toFloat()).pow(5)))).toInt()
                         }

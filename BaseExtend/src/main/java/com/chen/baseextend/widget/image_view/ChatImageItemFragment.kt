@@ -12,7 +12,9 @@ import cn.jpush.im.android.api.content.ImageContent
 import cn.jpush.im.android.api.model.Message
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.baseextend.databinding.FragmentImageItemBinding
 import com.chen.basemodule.extend.argString
+import com.chen.basemodule.extend.doBinding
 import com.davemorrissey.labs.subscaleview.ImageSource
 import kotlinx.android.synthetic.main.fragment_image_item.*
 import java.io.File
@@ -30,19 +32,21 @@ class ChatImageItemFragment : BaseSimpleFragment() {
         }
     }
 
-    override val contentLayoutId = R.layout.fragment_image_item
-
+    //    override val contentLayoutId = R.layout.fragment_image_item
+    override val binding by doBinding(FragmentImageItemBinding::inflate)
     private val message: Message by lazy { Message.fromJson(argString("message")) }
 
     override fun initAndObserve() {
 
         _image.setOnClickListener {
-            if (activity != null && !activity!!.isFinishing) {
+            if (activity != null && !requireActivity().isFinishing) {
 
-                activity?.window?.setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
-                        WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+                activity?.window?.setFlags(
+                    WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN
+                )
 
-                ActivityCompat.finishAfterTransition(activity!!)
+                ActivityCompat.finishAfterTransition(requireActivity())
             }
         }
 
@@ -51,7 +55,11 @@ class ChatImageItemFragment : BaseSimpleFragment() {
         (message.content as ImageContent).run {
             if (!localPath.isNullOrEmpty()) {
                 _progressbar.visibility = View.GONE
-                _image.setImage(ImageSource.uri(localPath).apply { dimensions(width, height) }, ImageSource.uri(localThumbnailPath), null)
+                _image.setImage(
+                    ImageSource.uri(localPath).apply { dimensions(width, height) },
+                    ImageSource.uri(localThumbnailPath),
+                    null
+                )
             } else {
                 _image.setImage(ImageSource.uri(localThumbnailPath), null, null)
                 downloadOriginImage(message, object : DownloadCompletionCallback() {
@@ -79,8 +87,10 @@ class ChatImageItemFragment : BaseSimpleFragment() {
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
-            activity?.window?.setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+            activity?.window?.setFlags(
+                WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN
+            )
         }
         return super.onKeyUp(keyCode, event)
     }

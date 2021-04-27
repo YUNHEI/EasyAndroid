@@ -14,10 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.chen.baseextend.R
+import com.chen.baseextend.databinding.FragmentPageBinding
 import com.chen.baseextend.view.TabCircleView
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.basem.BaseFragment
 import com.chen.basemodule.extend.color
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.widget.smartrefresh.layout.util.DensityUtil
 import kotlinx.android.synthetic.main.fragment_page.*
@@ -62,7 +64,8 @@ abstract class BasePageFragment<T : RootBean> : BaseSimpleFragment() {
         const val INDICATE_TYPE_CENTER_ADJUST = 6
     }
 
-    override val contentLayoutId = R.layout.fragment_page
+    //    override val contentLayoutId = R.layout.fragment_page
+    override val binding by doBinding(FragmentPageBinding::inflate)
 
     private val pagerAdapter: BasePageAdapter<T> by lazy { BasePageAdapter(this) }
 

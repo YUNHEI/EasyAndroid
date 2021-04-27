@@ -2,6 +2,7 @@ package com.chen.app.ui.simple.toolbar.pager
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
+import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
 import com.chen.baseextend.base.fragment.BasePageFragment
@@ -60,4 +61,5 @@ class ToolbarExtend3Fragment : BasePageFragment<StringBean>() {
     private suspend fun listItems(): BaseResponse<MutableList<StringBean>> = suspendCoroutine {
         it.resume(BaseResponse(mutableListOf("1", "2", "3", "4").map { StringBean(it) }.toMutableList(), 200))
     }
+
 }

@@ -13,7 +13,7 @@ import com.chen.basemodule.basem.BaseSimActivity
  **/
 open class BaseInputActivity : BaseSimActivity() {
 
-    private val mChildOfContent by lazy { fragment!!.view!! }
+    private val mChildOfContent by lazy { fragment!!.requireView() }
     private var usableHeightPrevious = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

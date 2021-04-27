@@ -3,8 +3,10 @@ package com.chen.app.ui.list
 import androidx.lifecycle.LiveData
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.databinding.ItemTitleBinding
 import com.chen.baseextend.base.fragment.SingleListFragment
 import com.chen.baseextend.bean.WeatherBean
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.network.base.BaseRequest
 import com.chen.basemodule.network.base.BaseResponse
@@ -40,7 +42,9 @@ class SingleListSampleFragment : SingleListFragment<WeatherBean>() {
     }
 
     //item 样式
-    override val itemLayoutId = R.layout.item_title
+//    override val itemLayoutId = R.layout.item_title
+
+    override val itemBinding by doBinding(ItemTitleBinding::inflate)
 
     //item 数据绑定
     override fun bindItemData(viewHolder: BaseItemViewHolder, data: WeatherBean, position: Int, realP: Int) {

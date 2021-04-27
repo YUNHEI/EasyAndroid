@@ -13,10 +13,12 @@ import androidx.annotation.IntDef
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.chen.baseextend.R
+import com.chen.baseextend.databinding.FragmentPage2Binding
 import com.chen.baseextend.view.TabCircleView
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.basem.BaseFragment
 import com.chen.basemodule.extend.color
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.dp2px
 import kotlinx.android.synthetic.main.fragment_page_2.*
 import net.lucode.hackware.magicindicator.MagicIndicator
@@ -57,7 +59,9 @@ abstract class BasePage2Fragment<T : RootBean> : BaseSimpleFragment() {
         const val INDICATE_TYPE_CENTER_ADJUST = 6
     }
 
-    override val contentLayoutId = R.layout.fragment_page_2
+//    override val contentLayoutId = R.layout.fragment_page_2
+
+    override val binding by doBinding(FragmentPage2Binding::inflate)
 
     private val pagerAdapter: BasePageAdapter2<T> by lazy { BasePageAdapter2(this) }
 

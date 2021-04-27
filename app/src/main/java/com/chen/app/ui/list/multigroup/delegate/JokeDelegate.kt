@@ -2,8 +2,11 @@ package com.chen.app.ui.list.multigroup.delegate
 
 import android.content.Context
 import com.chen.app.R
+import com.chen.app.databinding.ItemJokeBinding
 import com.chen.baseextend.bean.JokeBean
 import com.chen.baseextend.extend.bold
+import com.chen.basemodule.extend.createBinding
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.load
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.BaseMultiSourceDelegate
@@ -14,7 +17,9 @@ import kotlinx.android.synthetic.main.item_joke.view.*
  */
 class JokeDelegate(context: Context) : BaseMultiSourceDelegate<JokeBean>(context) {
 
-    override val layoutId = R.layout.item_joke
+//    override val layoutId = R.layout.item_joke
+
+    override val binding  get() = createBinding(ItemJokeBinding::inflate)
 
     override fun bindData(
         viewHolder: BaseItemViewHolder,

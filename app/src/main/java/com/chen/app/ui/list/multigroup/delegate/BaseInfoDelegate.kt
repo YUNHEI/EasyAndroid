@@ -1,22 +1,26 @@
 package com.chen.app.ui.list.multigroup.delegate
 
 import android.content.Context
+import android.widget.TextView
 import com.chen.baseextend.bean.news.NewsBean
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.BaseMultiSourceDelegate
-import kotlinx.android.synthetic.main.item_info_one_image.view.*
 
 /**
  *  Created by chen on 2019/10/18
  **/
 abstract class BaseInfoDelegate(context: Context) : BaseMultiSourceDelegate<NewsBean>(context) {
 
-    override fun bindData(viewHolder: BaseItemViewHolder, data: NewsBean?, position: Int, realP: Int) {
+    fun handleCommon(
+        viewHolder: BaseItemViewHolder,
+        data: NewsBean?,
+        position: Int,
+        realP: Int,
+        titleTextView: TextView
+    ) {
 
-        viewHolder.itemView.run {
-            data?.run {
-
-                _title.text = title
+        data?.run {
+            titleTextView.text = title
 
 //                records?.run {
 //                    if (this.contains(informationId) || isRead) {
@@ -28,7 +32,7 @@ abstract class BaseInfoDelegate(context: Context) : BaseMultiSourceDelegate<News
 
 //                _delete.visibility = if (userId != data.crtUserId && showDelete) View.VISIBLE else View.GONE
 
-                /*控制信息显示*/
+            /*控制信息显示*/
 //                StringBuilder().run {
 //                    if (groupType != "2") {
 //                        append("$nickname  ")
@@ -40,7 +44,6 @@ abstract class BaseInfoDelegate(context: Context) : BaseMultiSourceDelegate<News
 //                    _information.text = toString()
 //                }
 
-            }
         }
     }
 }

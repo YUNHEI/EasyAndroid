@@ -12,5 +12,5 @@ import com.chen.basemodule.mlist.BaseSingleListFragment
  **/
 abstract class SingleListFragment<V : RootBean> : BaseSingleListFragment<V>() {
 
-    override val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = activity!! } }
+    override val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java).apply { owner = requireActivity() } }
 }

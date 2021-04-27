@@ -7,9 +7,12 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.chen.app.R
+import com.chen.app.databinding.LayoutStrategyBannerHeaderBinding
 import com.chen.baseextend.bean.AdvertBean
 import com.chen.baseextend.widget.banner.loader.ImageLoaderInterface
 import com.chen.basemodule.allroot.RootBean
+import com.chen.basemodule.extend.createBinding
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.load
 import com.chen.basemodule.mlist.BaseHeaderViewDelegate
 import com.chen.basemodule.mlist.BaseItemViewHolder
@@ -18,7 +21,9 @@ import kotlinx.android.synthetic.main.layout_strategy_banner_header.view.*
 class BannerHeaderDelegate(context: Context, private val ratio: String? = null) :
     BaseHeaderViewDelegate(context) {
 
-    override val layoutId = R.layout.layout_strategy_banner_header
+//    override val layoutId = R.layout.layout_strategy_banner_header
+
+    override val binding get() = createBinding(LayoutStrategyBannerHeaderBinding::inflate)
 
     var bannerData = mutableListOf<AdvertBean>()
         set(value) {

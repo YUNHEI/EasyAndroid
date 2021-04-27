@@ -16,8 +16,6 @@ abstract class BaseActivity : RootActivity() {
 
     protected abstract val fragment: BaseFragment?
 
-    protected abstract val contentLayoutId: Int
-
     @SuppressLint("PrivateApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +37,6 @@ abstract class BaseActivity : RootActivity() {
 
             }
             window.statusBarColor = color(R.color.trans00)
-        }
-
-        if (contentLayoutId != -1) {
-            setContentView(contentLayoutId)
         }
     }
 

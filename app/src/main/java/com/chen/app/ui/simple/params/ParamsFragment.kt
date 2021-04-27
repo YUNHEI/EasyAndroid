@@ -2,11 +2,14 @@ package com.chen.app.ui.simple.params
 
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.databinding.Fragment1Binding
+import com.chen.app.databinding.FragmentWeatherBinding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.basemodule.basem.argument.ArgFloat
 import com.chen.basemodule.basem.argument.ArgInt
 import com.chen.basemodule.basem.argument.ArgString
 import com.chen.basemodule.basem.argument.ArgStringNull
+import com.chen.basemodule.extend.doBinding
 import kotlinx.android.synthetic.main.fragment_weather.*
 
 @Launch
@@ -21,8 +24,8 @@ class ParamsFragment :BaseSimpleFragment(){
     private val wea by ArgFloat()
 
 
-    override val contentLayoutId = R.layout.fragment_weather
-
+//    override val contentLayoutId = R.layout.fragment_weather
+override val binding by doBinding(FragmentWeatherBinding::inflate)
 
     override fun initAndObserve() {
 

@@ -2,15 +2,18 @@ package com.chen.app.ui.simple.net
 
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.databinding.Fragment1Binding
+import com.chen.app.databinding.FragmentWeatherBinding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.network.base.BaseRequest
 import kotlinx.android.synthetic.main.fragment_weather.*
 
 @Launch
 class WeatherDetailFragment : BaseSimpleFragment(){
 
-    override val contentLayoutId = R.layout.fragment_weather
-
+//    override val contentLayoutId = R.layout.fragment_weather
+override val binding by doBinding(FragmentWeatherBinding::inflate)
     override fun initAndObserve() {
 
         toolbar.run{

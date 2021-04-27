@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.alibaba.android.arouter.facade.enums.SwipeType
 import com.chen.app.R
+import com.chen.app.databinding.ItemTitleBinding
 import com.chen.baseextend.base.fragment.SingleListFragment
 import com.chen.baseextend.bean.WeatherBean
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.drawable
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.layoutmanager.EchelonLayoutManager
@@ -51,7 +53,9 @@ class EchelonListSampleFragment : SingleListFragment<WeatherBean>() {
     }
 
     //item 样式
-    override val itemLayoutId = R.layout.item_title
+//    override val itemLayoutId = R.layout.item_title
+
+    override val itemBinding by doBinding(ItemTitleBinding::inflate)
 
     //item 数据绑定
     override fun bindItemData(viewHolder: BaseItemViewHolder, data: WeatherBean, position: Int, realP: Int) {

@@ -18,6 +18,7 @@ import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.baseextend.BaseExtendApplication
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
+import com.chen.baseextend.databinding.FragmentWebBinding
 import com.chen.baseextend.ui.sonic.SonicJavaScriptInterface
 import com.chen.baseextend.ui.sonic.SonicRuntimeImpl
 import com.chen.baseextend.ui.sonic.SonicSessionClientImpl
@@ -25,6 +26,7 @@ import com.chen.basemodule.basem.argument.ArgBoolean
 import com.chen.basemodule.basem.argument.ArgString
 import com.chen.basemodule.basem.argument.ArgStringNull
 import com.chen.basemodule.constant.BasePreference
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.toastWarn
 import com.chen.basemodule.extend.visible
 import com.just.agentweb.*
@@ -36,7 +38,7 @@ import kotlinx.android.synthetic.main.fragment_web.*
 @Launch
 open class WebFragment : BaseSimpleFragment() {
 
-    override val contentLayoutId = R.layout.fragment_web
+//    override val contentLayoutId = R.layout.fragment_web
 
     open val url by ArgString()
 
@@ -47,6 +49,8 @@ open class WebFragment : BaseSimpleFragment() {
     private var mTitle: TextView? = null
 
     private var mClose: ImageView? = null
+
+    override val binding by doBinding(FragmentWebBinding::inflate)
 
     private var mWebChromeClient: WebChromeClient = object : WebChromeClient() {
 

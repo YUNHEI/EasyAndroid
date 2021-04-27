@@ -1,6 +1,7 @@
 package com.chen.basemodule.mlist
 
 import android.content.Context
+import androidx.viewbinding.ViewBinding
 import com.chen.basemodule.basem.BaseBean
 import com.chen.basemodule.mlist.bean.DataWrapBean
 import com.chen.basemodule.mlist.bean.GroupWrapBean
@@ -12,7 +13,9 @@ abstract class BaseMultiSourceDelegate<OT : BaseBean>(context: Context) :
     BaseItemViewDelegate<DataWrapBean>(context) {
 
     /*返回item的布局 如 R.layout.item_info*/
-    abstract override val layoutId: Int
+//    abstract override val layoutId: Int
+
+    abstract override val binding: ViewBinding
 
     @Suppress("UNCHECKED_CAST")
     override fun isThisDelegate(

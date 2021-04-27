@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.chen.basemodule.R
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.basem.BaseDataFragment
+import com.chen.basemodule.databinding.BaseMlistFragmentBinding
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.extend.toast
 import com.chen.basemodule.mlist.animator.AniListener
@@ -46,10 +48,12 @@ import kotlin.reflect.KClass
 abstract class BaseMultiListFragment<V : RootBean> : BaseDataFragment(), OnRefreshListener,
     OnLoadMoreListener {
 
-    override val contentLayoutId = R.layout.base_mlist_fragment
+//    override val contentLayoutId = R.layout.base_mlist_fragment
+
+    override val binding by doBinding(BaseMlistFragmentBinding::inflate)
 
     open val mAdapter by lazy {
-        BaseMultiAdapter<V>(context!!).apply {
+        BaseMultiAdapter<V>(requireContext()).apply {
             pageSize = PAGE_SIZE
         }
     }

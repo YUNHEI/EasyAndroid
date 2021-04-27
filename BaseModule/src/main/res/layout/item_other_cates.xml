@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/dimen_5">
+    android:paddingBottom="@dimen/dimen_5"
+    tools:viewBindingIgnore="true">
 
     <FrameLayout
         android:layout_width="match_parent"

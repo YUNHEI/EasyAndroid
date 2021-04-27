@@ -7,17 +7,18 @@ import com.alibaba.android.arouter.facade.annotation.Launch
 import com.alibaba.android.arouter.facade.enums.LaunchType
 import com.alibaba.android.arouter.facade.enums.SwipeType
 import com.chen.app.R
+import com.chen.app.databinding.FragmentAttachmenDownloadBinding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.repos.viewmodel.DownloadModel
 import com.chen.baseextend.repos.DownloadRepos
 import com.chen.basemodule.constant.LiveBusKey
 import com.chen.basemodule.event_bus.BaseProgressEvent
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.listenClick
 import com.chen.basemodule.extend.toast
 import com.chen.basemodule.extend.toastSuc
 import com.chen.basemodule.util.FileUtil
 import com.jeremyliao.liveeventbus.LiveEventBus
-import kotlinx.android.synthetic.main.fragment_attachmen_download.*
 
 @Launch(launchType = LaunchType.COVER, swipeType = SwipeType.DISABLE)
 class DownloadFragment : BaseSimpleFragment() {
@@ -27,7 +28,7 @@ class DownloadFragment : BaseSimpleFragment() {
             .apply { owner = requireActivity() }
     }
 
-    override val contentLayoutId = R.layout.fragment_attachmen_download
+    override val binding by doBinding(FragmentAttachmenDownloadBinding::inflate)
 
     private val url by lazy { "https://r1---sn-bvn0o-tpil.gvt1.com/edgedl/android/studio/install/4.0.1.0/android-studio-ide-193.6626763-mac.dmg?cms_redirect=yes&mh=OW&mip=202.104.136.68&mm=28&mn=sn-bvn0o-tpil&ms=nvh&mt=1597730168&mv=m&mvi=1&pl=20&shardbypass=yes" }
 //    val url by lazy { "http://fintechcdn.mbcloud.com/sns/2020/08/55e6bc7b2b704dd487316234f40636fc.apk" }
@@ -51,16 +52,16 @@ class DownloadFragment : BaseSimpleFragment() {
         progressOb.observe(this, Observer {
             if (it.target.firstOrNull() == fileName) {
                 it.obj.run {
-                    _progress.progressPercent = currentSize.times(100f).div(totalSize)
-                    _size.text =
+                    binding.Progress.progressPercent = currentSize.times(100f).div(totalSize)
+                    binding.Size.text =
                         "${FileUtil.getFileSize(currentSize)}/${FileUtil.getFileSize(totalSize)}"
                 }
             }
         })
 
-        listenClick(_download) {
+        listenClick(binding.Download) {
             when (it) {
-                _download -> {
+                binding.Download -> {
 
                     val path = DownloadRepos.getFileByUrl(url)
                     if (!path.isNullOrEmpty()) {
@@ -68,8 +69,8 @@ class DownloadFragment : BaseSimpleFragment() {
                         return@listenClick
                     }
 
-                    _download.visibility = View.GONE
-                    _progress.visibility = View.VISIBLE
+                    binding.Download.visibility = View.GONE
+                    binding.Progress.visibility = View.VISIBLE
 
                     viewModel.run {
                         requestData(
@@ -81,8 +82,8 @@ class DownloadFragment : BaseSimpleFragment() {
                                 it.toast()
                             },
                             preHandle = {
-                                _download.visibility = View.VISIBLE
-                                _progress.visibility = View.GONE
+                                binding.Download.visibility = View.VISIBLE
+                                binding.Progress.visibility = View.GONE
                             }
                         )
                     }

@@ -12,6 +12,7 @@ import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.facade.enums.SwipeType
 import com.billy.android.swipe.SmartSwipe
 import com.billy.android.swipe.consumer.ActivitySlidingBackConsumer
@@ -27,12 +28,17 @@ import kotlin.reflect.jvm.jvmName
 
 abstract class BaseFragment : RootFragment() {
 
+    abstract val binding: ViewBinding
+
+    // 临时存放Container
+    var tempContainer: ViewGroup? = null
+
     protected var toolbarView: ToolbarView? = null
 
     open val toolbar: ToolbarView
         get() {
             if (toolbarView == null) {
-                toolbarView = ToolbarView(activity!!).apply { attachToolbar(view) }
+                toolbarView = ToolbarView(requireActivity()).apply { attachToolbar(view) }
             }
             return toolbarView!!
         }
@@ -47,7 +53,7 @@ abstract class BaseFragment : RootFragment() {
      * 设置布局
      * @return content layout
      */
-    abstract val contentLayoutId: Int
+//    abstract val contentLayoutId: Int
 
     /**
      * onViewCreated 之后调用
@@ -77,8 +83,11 @@ abstract class BaseFragment : RootFragment() {
                 }
             }
         }
+        //临时存放 Container，保证viewbinding正常初始化
+        tempContainer = container
 
-        return inflater.inflate(contentLayoutId, container, false)
+        return binding.root
+//        return inflater.inflate(contentLayoutId, container, false)
     }
 
     override fun onCreateAnimator(transit: Int, enter: Boolean, nextAnim: Int): Animator? {
@@ -99,8 +108,7 @@ abstract class BaseFragment : RootFragment() {
         }
     }
 
-    open fun onFragmentAnimEnd() { }
-
+    open fun onFragmentAnimEnd() {}
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

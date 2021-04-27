@@ -3,7 +3,10 @@ package com.chen.app.ui.list.multigroup.delegate
 import android.content.Context
 import android.view.View
 import com.chen.app.R
+import com.chen.app.databinding.ItemInfoVideoBinding
 import com.chen.baseextend.bean.news.NewsBean
+import com.chen.basemodule.extend.createBinding
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.load
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import kotlinx.android.synthetic.main.item_info_video.view.*
@@ -13,7 +16,7 @@ import kotlinx.android.synthetic.main.item_info_video.view.*
  **/
 class VideoDelegate(context: Context) : BaseInfoDelegate(context) {
 
-    override val layoutId = R.layout.item_info_video
+    override val binding get() = createBinding(ItemInfoVideoBinding::inflate)
 
     override fun bindData(
         viewHolder: BaseItemViewHolder,
@@ -21,7 +24,6 @@ class VideoDelegate(context: Context) : BaseInfoDelegate(context) {
         position: Int,
         realP: Int
     ) {
-        super.bindData(viewHolder, data, position, realP)
         viewHolder.itemView.run {
             data?.run {
                 _video_cover.run {
@@ -33,11 +35,12 @@ class VideoDelegate(context: Context) : BaseInfoDelegate(context) {
                         load(large_image_list!![0].url)
                     }
                 }
+                handleCommon(viewHolder, data, position, realP, _title)
             }
         }
     }
 
     override fun isThisDelegate(data: NewsBean, position: Int, realP: Int): Boolean {
-        return data.run { has_video == true } ?: false
+        return data.run { has_video == true }
     }
 }

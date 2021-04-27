@@ -4,8 +4,11 @@ import android.graphics.Rect
 import androidx.core.widget.NestedScrollView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.databinding.Fragment1Binding
+import com.chen.app.databinding.Fragment4Binding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.basemodule.extend.color
+import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.toastSuc
 import kotlinx.android.synthetic.main.fragment_1._des
 import kotlinx.android.synthetic.main.fragment_2._topic
@@ -16,8 +19,8 @@ import kotlin.math.min
 @Launch
 class ToolbarFloatFragment : BaseSimpleFragment() {
 
-    override val contentLayoutId = R.layout.fragment_4
-
+    //    override val contentLayoutId = R.layout.fragment_4
+    override val binding by doBinding(Fragment4Binding::inflate)
     override fun initAndObserve() {
 
         toolbar.run {
