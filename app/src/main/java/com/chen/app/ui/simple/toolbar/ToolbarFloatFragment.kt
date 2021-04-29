@@ -4,23 +4,19 @@ import android.graphics.Rect
 import androidx.core.widget.NestedScrollView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
-import com.chen.app.databinding.Fragment1Binding
 import com.chen.app.databinding.Fragment4Binding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.basemodule.extend.color
 import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.toastSuc
-import kotlinx.android.synthetic.main.fragment_1._des
-import kotlinx.android.synthetic.main.fragment_2._topic
-import kotlinx.android.synthetic.main.fragment_4.*
 import kotlin.math.max
 import kotlin.math.min
 
 @Launch
 class ToolbarFloatFragment : BaseSimpleFragment() {
 
-    //    override val contentLayoutId = R.layout.fragment_4
     override val binding by doBinding(Fragment4Binding::inflate)
+
     override fun initAndObserve() {
 
         toolbar.run {
@@ -45,13 +41,16 @@ class ToolbarFloatFragment : BaseSimpleFragment() {
 
         }
 
-        _topic.text = "Toolbar 悬浮"
+        binding.run {
 
-        _des.text = "以 FrameLayout 为父容器 实现toolbar 悬浮"
+            Topic.text = "Toolbar 悬浮"
 
-        _scroller.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
-            val a = min(255, max(0, ((scrollY + 0f) / toolbar.height * 255).toInt())) shl 24
-            toolbar.setBackgroundColor(a + (color(R.color.blue_lightest) and 0x00ffffff))
+            Des.text = "以 FrameLayout 为父容器 实现toolbar 悬浮"
+
+            Scroller.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
+                val a = min(255, max(0, ((scrollY + 0f) / toolbar.height * 255).toInt())) shl 24
+                toolbar.setBackgroundColor(a + (color(R.color.blue_lightest) and 0x00ffffff))
+            }
         }
 
     }

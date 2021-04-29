@@ -11,16 +11,11 @@ import com.chen.baseextend.extend.startPage
 import com.chen.baseextend.route.AppRoute.APP_SIMPLE_FIRST_FRAGMENT
 import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.listenClick
-import kotlinx.android.synthetic.main.fragment_1.*
 
 @Launch(path = APP_SIMPLE_FIRST_FRAGMENT, swipeType = SwipeType.FROM_TOP, launchType = LaunchType.COVER)
 class SimpleFirstFragment : BaseSimpleFragment() {
 
-
-
     //设置布局文件
-//    override val contentLayoutId = R.layout.fragment_1
-
     override val binding by doBinding(Fragment1Binding::inflate)
 
     override fun initAndObserve() {
@@ -33,17 +28,20 @@ class SimpleFirstFragment : BaseSimpleFragment() {
             left(R.mipmap.ic_back) { activity?.finish() }
         }
 
-        _title.text = "Hello World"
+        binding.run {
+            Title.text = "Hello World"
 
-        //添加点击事件
-        listenClick(_next) {
-            when (it) {
-                _next -> {
-                    startPage(SimpleToolbarFragment::class)
-                }
-                else -> {
+            //添加点击事件
+            listenClick(Next) {
+                when (it) {
+                    Next -> {
+                        startPage(SimpleToolbarFragment::class)
+                    }
+                    else -> {
+                    }
                 }
             }
+
         }
     }
 }

@@ -21,8 +21,6 @@ import com.chen.basemodule.basem.BaseFragment
 import com.chen.basemodule.extend.color
 import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.dp2px
-import com.chen.basemodule.widget.smartrefresh.layout.util.DensityUtil
-import kotlinx.android.synthetic.main.fragment_page.*
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
@@ -90,7 +88,7 @@ abstract class BasePageFragment<T : RootBean> : BaseSimpleFragment() {
 
     open lateinit var mIndicator: MagicIndicator
 
-    open val mViewPage by lazy { _view_pager }
+    open val mViewPage by lazy { binding.ViewPager }
 
     @IntDef(
         INDICATE_TYPE_NONE,

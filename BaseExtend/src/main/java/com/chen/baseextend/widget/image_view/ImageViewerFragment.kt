@@ -9,7 +9,6 @@ import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.databinding.FragmentImageViewerBinding
 import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.util.WindowsUtil
-import kotlinx.android.synthetic.main.fragment_image_viewer.*
 import java.util.*
 
 /**
@@ -17,7 +16,6 @@ import java.util.*
  */
 class ImageViewerFragment : BaseSimpleFragment() {
 
-    //    override val contentLayoutId = R.layout.fragment_image_viewer
     override val binding by doBinding(FragmentImageViewerBinding::inflate)
 
     private var uris: MutableList<String>? = null
@@ -44,31 +42,34 @@ class ImageViewerFragment : BaseSimpleFragment() {
 
         val mAdapter = ImagePagerAdapter(childFragmentManager)
 
-        pager.adapter = mAdapter
+        binding.run {
 
-        pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
+            Pager.adapter = mAdapter
 
-            }
+            Pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
 
-            override fun onPageSelected(position: Int) {
-                index.text = (position + 1).toString() + "/" + uris!!.size
-            }
+                }
 
-            override fun onPageScrollStateChanged(state: Int) {
+                override fun onPageSelected(position: Int) {
+                    Index.text = (position + 1).toString() + "/" + uris!!.size
+                }
 
-            }
-        })
+                override fun onPageScrollStateChanged(state: Int) {
 
-        pager.currentItem = position
+                }
+            })
 
-        index.text = (++position).toString() + "/" + uris!!.size
+            Pager.currentItem = position
 
-        save.setOnClickListener { mAdapter.fragment.save() }
+            Index.text = (++position).toString() + "/" + uris!!.size
+
+            Save.setOnClickListener { mAdapter.fragment.save() }
+        }
     }
 
     internal inner class ImagePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

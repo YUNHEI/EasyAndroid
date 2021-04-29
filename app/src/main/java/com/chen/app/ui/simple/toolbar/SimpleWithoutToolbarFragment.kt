@@ -1,19 +1,15 @@
 package com.chen.app.ui.simple.toolbar
 
 import com.alibaba.android.arouter.facade.annotation.Launch
-import com.chen.app.R
-import com.chen.app.databinding.Fragment1Binding
 import com.chen.app.databinding.Fragment3Binding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.basemodule.extend.doBinding
-import kotlinx.android.synthetic.main.fragment_1.*
-import kotlinx.android.synthetic.main.fragment_2.*
 
 @Launch
 class SimpleWithoutToolbarFragment : BaseSimpleFragment() {
 
-//    override val contentLayoutId = R.layout.fragment_3
     override val binding by doBinding(Fragment3Binding::inflate)
+
     override fun initAndObserve() {
 
         //不调用toolbar.run{} 将不出现toolbar
@@ -35,9 +31,11 @@ class SimpleWithoutToolbarFragment : BaseSimpleFragment() {
 //
 //        }
 
-        _topic.text = "不出现 Toolbar"
+        binding.run {
+            Topic.text = "不出现 Toolbar"
 
-        _des.text = "不调用toolbar.run{} 将不出现toolbar"
+            Des.text = "不调用toolbar.run{} 将不出现toolbar"
+        }
 
     }
 }

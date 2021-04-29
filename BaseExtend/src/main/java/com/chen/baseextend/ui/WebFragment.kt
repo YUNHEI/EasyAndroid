@@ -33,7 +33,6 @@ import com.just.agentweb.*
 import com.tencent.sonic.sdk.SonicConfig
 import com.tencent.sonic.sdk.SonicEngine
 import com.tencent.sonic.sdk.SonicSessionConfig
-import kotlinx.android.synthetic.main.fragment_web.*
 
 @Launch
 open class WebFragment : BaseSimpleFragment() {
@@ -98,7 +97,7 @@ open class WebFragment : BaseSimpleFragment() {
 
         AgentWeb.with(this) //
             .setAgentWebParent(
-                _agent_web,
+                binding.AgentWeb,
                 LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT

@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+        android:id="@+id/_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:transitionName="activityOption"/>
 
     <TextView
-        android:id="@+id/index"
+        android:id="@+id/_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -27,7 +27,7 @@
         tools:text="1/1"/>
 
     <TextView
-        android:id="@+id/save"
+        android:id="@+id/_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"

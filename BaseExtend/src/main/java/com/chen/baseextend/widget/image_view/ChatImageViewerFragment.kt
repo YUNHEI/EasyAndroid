@@ -14,7 +14,6 @@ import com.chen.baseextend.databinding.FragmentImageViewerBinding
 import com.chen.basemodule.extend.argString
 import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.util.WindowsUtil
-import kotlinx.android.synthetic.main.fragment_image_viewer.*
 
 /**
  *
@@ -22,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_image_viewer.*
 @Launch(launchType = LaunchType.FULLSCREEN, swipeType = SwipeType.DISABLE)
 class ChatImageViewerFragment : BaseSimpleFragment() {
 
-    //    override val contentLayoutId = R.layout.fragment_image_viewer
     override val binding by doBinding(FragmentImageViewerBinding::inflate)
 
     val messages: MutableList<Message> by lazy {
@@ -46,31 +44,34 @@ class ChatImageViewerFragment : BaseSimpleFragment() {
 
         val mAdapter = ImagePagerAdapter(childFragmentManager)
 
-        pager.adapter = mAdapter
+        binding.run {
 
-        pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
+            Pager.adapter = mAdapter
 
-            }
+            Pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
 
-            override fun onPageSelected(position: Int) {
-                index.text = "${(position + 1)}/${messages.size}"
-            }
+                }
 
-            override fun onPageScrollStateChanged(state: Int) {
+                override fun onPageSelected(position: Int) {
+                    Index.text = "${(position + 1)}/${messages.size}"
+                }
 
-            }
-        })
+                override fun onPageScrollStateChanged(state: Int) {
 
-        pager.currentItem = position
+                }
+            })
 
-        index.text = "${(position + 1)}/${messages.size}"
+            Pager.currentItem = position
 
-        save.setOnClickListener { mAdapter.fragment.save() }
+            Index.text = "${(position + 1)}/${messages.size}"
+
+            Save.setOnClickListener { mAdapter.fragment.save() }
+        }
     }
 
     internal inner class ImagePagerAdapter(fm: FragmentManager) :

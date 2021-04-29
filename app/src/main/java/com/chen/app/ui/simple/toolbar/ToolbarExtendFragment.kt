@@ -4,20 +4,18 @@ import android.view.inputmethod.EditorInfo
 import android.widget.FrameLayout
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
-import com.chen.app.databinding.Fragment1Binding
 import com.chen.app.databinding.Fragment5Binding
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
 import com.chen.baseextend.view.CleanableEditText
 import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.extend.toastSuc
-import kotlinx.android.synthetic.main.fragment_5.*
 
 @Launch
 class ToolbarExtendFragment : BaseSimpleFragment() {
 
-//    override val contentLayoutId = R.layout.fragment_5
     override val binding by doBinding(Fragment5Binding::inflate)
+
     private var key = ""
 
     private lateinit var mSearchEdit: CleanableEditText
@@ -44,6 +42,6 @@ class ToolbarExtendFragment : BaseSimpleFragment() {
             right("搜索") { "点击了搜索 ${mSearchEdit.text.toString().trim { it <= ' ' }}".toastSuc() }
         }
 
-        _topic.text = "Toolbar 高级扩展"
+        binding.Topic.text = "Toolbar 高级扩展"
     }
 }

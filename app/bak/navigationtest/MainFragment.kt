@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.fragment_main1.*
  * @author CE Chen
  */
 class MainFragment : BaseSimpleFragment() {
+
     override val contentLayoutId = R.layout.fragment_main1
 
     override fun initAndObserve() {

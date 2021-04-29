@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.baseextend.R
 import com.chen.baseextend.base.fragment.BaseSimpleFragment
@@ -20,7 +19,6 @@ import com.chen.basemodule.util.WindowsUtil
 import com.google.zxing.DecodeHintType
 import com.google.zxing.RGBLuminanceSource
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
-import kotlinx.android.synthetic.main.fragment_qr_code.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -32,12 +30,11 @@ import kotlin.coroutines.suspendCoroutine
 class QRCodeFragment : BaseSimpleFragment() {
 
     private val capture: UserCaptureManager by lazy {
-        UserCaptureManager(activity, _dbv_custom) {
+        UserCaptureManager(activity, binding.DbvCustom) {
 
         }
     }
 
-//    override val contentLayoutId = R.layout.fragment_qr_code
     override val binding by doBinding(FragmentQrCodeBinding::inflate)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -98,7 +95,7 @@ class QRCodeFragment : BaseSimpleFragment() {
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
-        return _dbv_custom.onKeyDown(keyCode, event) || super.onKeyUp(keyCode, event)
+        return binding.DbvCustom.onKeyDown(keyCode, event) || super.onKeyUp(keyCode, event)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
