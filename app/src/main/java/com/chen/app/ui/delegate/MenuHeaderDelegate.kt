@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.chen.app.R
 import com.chen.baseextend.bean.menu.HomeMenuBean
-import com.chen.baseextend.extend.context.startPage
 import com.chen.baseextend.ui.WebActivity
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.mlist.BaseHeaderViewDelegate
