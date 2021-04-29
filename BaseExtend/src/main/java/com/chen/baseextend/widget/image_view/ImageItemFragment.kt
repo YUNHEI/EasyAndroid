@@ -93,7 +93,7 @@ class ImageItemFragment : BaseSimpleFragment() {
                                     mImageUrl!!.split("/".toRegex()).dropLastWhile { it.isEmpty() }
                                         .toTypedArray()
                                 val url = ImageUtil_.saveBitmapToFile(
-                                    context!!,
+                                    requireContext(),
                                     bitmap,
                                     key[key.size - 1],
                                     false

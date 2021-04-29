@@ -14,6 +14,7 @@ import com.chen.basemodule.allroot.RootBean
  */
 abstract class BaseItemViewDelegate<T : RootBean>(val context: Context) {
 
+    // 非复用ViewHolder有效，复用会导致错位
     var viewHolder: BaseItemViewHolder? = null
 
     val customerClickViewIds = mutableListOf(-1)//添加整个item点击事件

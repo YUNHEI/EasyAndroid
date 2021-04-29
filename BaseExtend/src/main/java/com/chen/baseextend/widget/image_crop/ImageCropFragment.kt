@@ -49,7 +49,7 @@ class ImageCropFragment : BaseSimpleFragment() {
 
         val bitmap = _img.crop(500)
 
-        val path = ImageUtil_.saveBitmapToFile(context!!, bitmap, false)
+        val path = ImageUtil_.saveBitmapToFile(requireContext(), bitmap, false)
 
         activity?.run {
 

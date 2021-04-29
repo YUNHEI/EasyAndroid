@@ -2,6 +2,7 @@ package com.chen.basemodule.extend
 
 import android.app.Activity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
@@ -16,5 +17,3 @@ fun <VB : ViewBinding> Fragment.doBinding(
 fun <VB : ViewBinding> Activity.doBinding(inflate: (li: LayoutInflater) -> VB) = lazy {
     inflate.invoke(layoutInflater)
 }
-
-

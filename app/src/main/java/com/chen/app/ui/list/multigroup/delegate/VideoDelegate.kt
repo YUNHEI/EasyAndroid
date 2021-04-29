@@ -38,6 +38,6 @@ class VideoDelegate(context: Context) : BaseInfoDelegate(context) {
     }
 
     override fun isThisDelegate(data: NewsBean, position: Int, realP: Int): Boolean {
-        return data.run { has_video == true } ?: false
+        return data.run { has_video == true }
     }
 }

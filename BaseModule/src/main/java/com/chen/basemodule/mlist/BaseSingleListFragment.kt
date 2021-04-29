@@ -17,7 +17,7 @@ abstract class BaseSingleListFragment<V : RootBean> : BaseMultiListFragment<V>()
 
     override fun initDelegate(bundle: Bundle) {
         super.initDelegate(bundle)
-        mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<V>(context!!) {
+        mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<V>(requireContext()) {
 
             override val layoutId = itemLayoutId
 

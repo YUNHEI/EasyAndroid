@@ -51,7 +51,7 @@ class ViewPageListSampleFragment : SingleListFragment<WeatherBean>() {
         })
     }
 
-    override val lManager: ViewPagerLayoutManager by lazy { ViewPagerLayoutManager(context!!, RecyclerView.VERTICAL) }
+    override val lManager: ViewPagerLayoutManager by lazy { ViewPagerLayoutManager(requireContext(), RecyclerView.VERTICAL) }
 
     //item 点击事件
     override fun initClickListener() {
@@ -75,7 +75,7 @@ class ViewPageListSampleFragment : SingleListFragment<WeatherBean>() {
     //item 数据绑定
     override fun bindItemData(viewHolder: BaseItemViewHolder, data: WeatherBean, position: Int, realP: Int) {
         viewHolder.itemView.run {
-            _video.setVideoURI(Uri.parse("android.resource://${context!!.packageName}/${videos[position % 2]}"))
+            _video.setVideoURI(Uri.parse("android.resource://${requireContext().packageName}/${videos[position % 2]}"))
         }
     }
 

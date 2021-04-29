@@ -19,20 +19,7 @@ import com.chen.basemodule.extend.sp2px
  */
 class SimpleEmptyViewDelegate<T : RootBean>(context: Context) : BaseItemViewDelegate<T>(context) {
 
-    override val layoutId = -1
-
-    override fun onCreateView(context: Context): View {
-        return TextView(context).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            setPadding(dp2px(15))
-            textSize = 18f
-            gravity = Gravity.CENTER
-            text = "还未添加相应样式"
-        }
-    }
+    override val layoutId = R.layout.item_simple_empty
 
     override fun bindData(viewHolder: BaseItemViewHolder, data: T?, position: Int, realP: Int) {
     }
