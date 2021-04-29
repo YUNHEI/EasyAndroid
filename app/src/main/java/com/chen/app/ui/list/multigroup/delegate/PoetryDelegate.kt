@@ -2,10 +2,7 @@ package com.chen.app.ui.list.multigroup.delegate
 
 import android.content.Context
 import com.chen.app.R
-import com.chen.app.databinding.ItemPoetryBinding
 import com.chen.baseextend.bean.PoetryBean
-import com.chen.basemodule.extend.createBinding
-import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.BaseMultiSourceDelegate
 import kotlinx.android.synthetic.main.item_poetry.view.*
@@ -16,7 +13,7 @@ import kotlinx.android.synthetic.main.item_poetry.view.*
 class PoetryDelegate(context: Context) : BaseMultiSourceDelegate<PoetryBean>(context) {
 
 
-    override val binding  get() = createBinding(ItemPoetryBinding::inflate)
+    override val layoutId = R.layout.item_poetry
 
     override fun bindData(
         viewHolder: BaseItemViewHolder,

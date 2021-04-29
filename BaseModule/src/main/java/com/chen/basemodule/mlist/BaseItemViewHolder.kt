@@ -2,7 +2,6 @@ package com.chen.basemodule.mlist
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.chen.basemodule.allroot.RootBean
 import kotlinx.android.extensions.LayoutContainer
 
@@ -10,12 +9,12 @@ import kotlinx.android.extensions.LayoutContainer
  *  Created by chen on 2019/6/5
  **/
 class BaseItemViewHolder(
-    val binding: ViewBinding,
+    v: View,
     val mAdapter: BaseMultiAdapter<*>,
     var onAttachListener : ((v:View, bean:RootBean?) -> Unit)? = null
-) : RecyclerView.ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(v), LayoutContainer {
 
-//    override val containerView = binding.root
+    override val containerView = v
 
     fun notifySelf() {
         mAdapter.notifyItemChanged(adapterPosition)

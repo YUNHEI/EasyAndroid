@@ -1,11 +1,7 @@
 package com.chen.basemodule.mlist
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.viewbinding.ViewBinding
 import com.chen.basemodule.allroot.RootBean
-import com.chen.basemodule.extend.createBinding
 import com.chen.basemodule.mlist.bean.DataWrapBean
 import com.chen.basemodule.mlist.bean.ItemWrapBean
 import kotlin.reflect.KClass
@@ -27,7 +23,7 @@ abstract class BaseSingleGroupListFragment<P : RootBean, C : RootBean> :
 
         mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<DataWrapBean>(requireContext()) {
 
-            override val binding get() = createBinding(itemInflate())
+            override val layoutId = itemLayoutId
 
             override fun bindData(
                 viewHolder: BaseItemViewHolder,
@@ -49,7 +45,8 @@ abstract class BaseSingleGroupListFragment<P : RootBean, C : RootBean> :
      * onViewCreated 之后调用
      */
 
-    abstract fun <VB : ViewBinding> itemInflate(): ((li: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> VB)
+
+    abstract val itemLayoutId: Int
 
     abstract fun bindItemData(viewHolder: BaseItemViewHolder, data: C?, position: Int, realP: Int)
 

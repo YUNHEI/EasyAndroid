@@ -4,9 +4,6 @@ import android.content.Context
 
 import com.chen.basemodule.R
 import com.chen.basemodule.allroot.RootBean
-import com.chen.basemodule.databinding.ItemLoadingMoreFooterBinding
-import com.chen.basemodule.extend.createBinding
-import com.chen.basemodule.extend.doBinding
 
 /**
  * 加载中
@@ -14,9 +11,7 @@ import com.chen.basemodule.extend.doBinding
  */
 class SimpleLoadingFooterViewDelegate(context: Context) : BaseFooterViewDelegate(context) {
 
-//    override val layoutId = R.layout.item_loading_more_footer
-
-    override val binding get() =  createBinding(ItemLoadingMoreFooterBinding::inflate)
+    override val layoutId = R.layout.item_loading_more_footer
 
     override fun bindData(
         viewHolder: BaseItemViewHolder,

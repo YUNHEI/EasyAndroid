@@ -3,12 +3,9 @@ package com.chen.app.ui.list
 import androidx.lifecycle.LiveData
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
-import com.chen.app.databinding.ItemMessageBinding
-import com.chen.app.databinding.ItemTitleBinding
 import com.chen.baseextend.base.fragment.SingleGroupWithSectionListFragment
 import com.chen.baseextend.bean.project.ItemTypeBean
 import com.chen.baseextend.bean.project.ItemTypeRequest
-import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.toastSuc
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.bean.GroupWrapBean
@@ -63,9 +60,7 @@ class TestGroupListFragment : SingleGroupWithSectionListFragment<ItemTypeBean, I
 
     override fun getGroupTitle(groupData: ItemTypeBean?): String? = groupData?.itemName
 
-//    override val itemLayoutId: Int get() = R.layout.item_message
-
-    override val itemBinding by doBinding(ItemMessageBinding::inflate)
+    override val itemLayoutId: Int get() = R.layout.item_message
 
     override fun bindItemData(
         viewHolder: BaseItemViewHolder,

@@ -17,8 +17,4 @@ fun <VB : ViewBinding> Activity.doBinding(inflate: (li: LayoutInflater) -> VB) =
     inflate.invoke(layoutInflater)
 }
 
-fun <VB : ViewBinding> BaseItemViewDelegate<*>.createBinding(
-    inflate: (li: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean) -> VB
-) =  inflate.invoke(LayoutInflater.from(context), parent, false)
-
 

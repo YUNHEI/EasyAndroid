@@ -5,15 +5,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.chen.baseextend.R
-import com.chen.baseextend.databinding.ItemGroupTitleBinding
 import com.chen.baseextend.repos.viewmodel.MainViewModel
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.extend.color
-import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.dp2px
 import com.chen.basemodule.extend.drawable
-import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.BaseSingleGroupListFragment
+import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.bean.GroupWrapBean
 
 /**
@@ -25,7 +23,7 @@ abstract class SingleGroupWithSectionListFragment<P : RootBean, C : RootBean> : 
 
     override val viewModel by lazy { ViewModelProvider(requireActivity()).get(MainViewModel::class.java) }
 
-    override val groupBinding by doBinding(ItemGroupTitleBinding::inflate)
+    override val groupLayoutId: Int get() = R.layout.item_group_title
 
     override fun bindGroupData(viewHolder: BaseItemViewHolder, groupWrapData: GroupWrapBean<P, C>?, position: Int, realP: Int) {
         (viewHolder.itemView as TextView).run {

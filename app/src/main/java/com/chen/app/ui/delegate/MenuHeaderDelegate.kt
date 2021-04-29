@@ -3,13 +3,10 @@ package com.chen.app.ui.delegate
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.chen.app.R
-import com.chen.app.databinding.LayoutStrategyMenuHeaderBinding
 import com.chen.baseextend.bean.menu.HomeMenuBean
 import com.chen.baseextend.extend.context.startPage
 import com.chen.baseextend.ui.WebActivity
 import com.chen.basemodule.allroot.RootBean
-import com.chen.basemodule.extend.createBinding
-import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.mlist.BaseHeaderViewDelegate
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.mlist.BaseMultiAdapter
@@ -17,9 +14,7 @@ import com.chen.basemodule.mlist.layoutmanager.AutoGridLayoutManager
 
 class MenuHeaderDelegate(context: Context) : BaseHeaderViewDelegate(context) {
 
-//    override val layoutId = R.layout.layout_strategy_menu_header
-
-    override val binding  get() = createBinding(LayoutStrategyMenuHeaderBinding::inflate)
+    override val layoutId = R.layout.layout_strategy_menu_header
 
     private val lm by lazy { AutoGridLayoutManager(context, 4) }
 
@@ -28,16 +23,9 @@ class MenuHeaderDelegate(context: Context) : BaseHeaderViewDelegate(context) {
             addClickListener { _, _, data, _, _, _ ->
                 when (data?.cmd) {
                     //4
-                    "tgw://data_Center" -> WebActivity.toWebView(
-                        context,
-                        "https://m.tgw360.com/datacenter/#/home"
-                    )
+                    "tgw://data_Center" -> WebActivity.toWebView(context, "https://m.tgw360.com/datacenter/#/home")
                     //无忧选股
-                    "tgw://wuyou_list" -> WebActivity.toWebView(
-                        context,
-                        "http://q1.tgw360.com/phones.html",
-                        "无忧选股"
-                    )
+                    "tgw://wuyou_list" -> WebActivity.toWebView(context, "http://q1.tgw360.com/phones.html", "无忧选股")
                     else -> {
 
                     }

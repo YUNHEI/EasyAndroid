@@ -6,9 +6,11 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.chen.baseextend.R
-import com.chen.baseextend.databinding.ItemCommonBinding
 import com.chen.basemodule.basem.BaseBean
-import com.chen.basemodule.extend.*
+import com.chen.basemodule.extend.color
+import com.chen.basemodule.extend.dimen
+import com.chen.basemodule.extend.dp2px
+import com.chen.basemodule.extend.load
 import com.chen.basemodule.mlist.BaseItemViewHolder
 import com.chen.basemodule.network.base.BaseResponse
 import kotlinx.android.synthetic.main.item_common.view.*
@@ -40,9 +42,7 @@ abstract class SingleSimpleListFragment : SingleListFragment<SingleSimpleListFra
         add(ItemBean(title, brief, image, icon, itemStyle))
     }
 
-//    override val itemLayoutId = R.layout.item_common
-
-    override val itemBinding by doBinding(ItemCommonBinding::inflate)
+    override val itemLayoutId = R.layout.item_common
 
     override fun bindItemData(viewHolder: BaseItemViewHolder, data: ItemBean, position: Int, realP: Int) {
         viewHolder.itemView.run {

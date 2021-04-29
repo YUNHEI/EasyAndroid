@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewbinding.ViewBinding
 import com.chen.basemodule.allroot.RootBean
 
 
@@ -21,22 +20,19 @@ abstract class BaseItemViewDelegate<T : RootBean>(val context: Context) {
 
     var bundle: Bundle? = null
 
-    abstract val binding: ViewBinding
-
     lateinit var mAdapter: BaseMultiAdapter<T>
 
-    lateinit var parent: ViewGroup
-
     /*优先调用onCreateView获取View,返回item的布局 如 R.layout.item_info*/
-//    abstract val layoutId:Int
+    abstract val layoutId: Int
 
     val columns: Int
         get() = bundle?.getInt("columns", 1) ?: 1
 
 
     open fun createItemViewHolder(parent: ViewGroup): BaseItemViewHolder {
-        this.parent = parent
-        viewHolder = BaseItemViewHolder(binding, mAdapter)
+        val view = onCreateView(context) ?: LayoutInflater.from(parent.context)
+            .inflate(layoutId, parent, false)
+        viewHolder = BaseItemViewHolder(view, mAdapter)
         onAddCustomerClickListener(customerClickViewIds)
         return viewHolder!!
     }
@@ -47,7 +43,7 @@ abstract class BaseItemViewDelegate<T : RootBean>(val context: Context) {
 
     fun disableItemClick() = customerClickViewIds.clear()
 
-//    open fun onCreateView(context: Context): View? = null
+    open fun onCreateView(context: Context): View? = null
 
     open fun onItemClick(
         viewHolder: BaseItemViewHolder,

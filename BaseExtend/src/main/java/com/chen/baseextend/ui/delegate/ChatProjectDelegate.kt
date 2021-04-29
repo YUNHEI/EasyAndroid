@@ -7,12 +7,9 @@ import cn.jpush.im.android.api.enums.ContentType
 import com.chen.baseextend.R
 import com.chen.baseextend.bean.project.ProjectBean
 import com.chen.baseextend.bean.tim.TMessage
-import com.chen.baseextend.databinding.ItemProjectChatMsgBinding
 import com.chen.baseextend.extend.context.startPage
 import com.chen.baseextend.extend.fenToYuan
 import com.chen.baseextend.route.MainRoute.PATH_PROJECT_DETAIL_FRAGMENT
-import com.chen.basemodule.extend.createBinding
-import com.chen.basemodule.extend.doBinding
 import com.chen.basemodule.extend.load
 import com.chen.basemodule.mlist.BaseItemViewDelegate
 import com.chen.basemodule.mlist.BaseItemViewHolder
@@ -24,16 +21,9 @@ import kotlinx.android.synthetic.main.item_project.view.*
  **/
 class ChatProjectDelegate(context: Context) : BaseItemViewDelegate<TMessage>(context) {
 
-//    override val layoutId = R.layout.item_project_chat_msg
+    override val layoutId = R.layout.item_project_chat_msg
 
-    override val binding get() = createBinding(ItemProjectChatMsgBinding::inflate)
-
-    override fun bindData(
-        viewHolder: BaseItemViewHolder,
-        data: TMessage?,
-        position: Int,
-        realP: Int
-    ) {
+    override fun bindData(viewHolder: BaseItemViewHolder, data: TMessage?, position: Int, realP: Int) {
         viewHolder.itemView.run {
             (data?.message?.content as CustomContent?)?.getStringValue("projectBean")?.let {
                 Gson().fromJson(it, ProjectBean::class.java).run {
@@ -51,23 +41,13 @@ class ChatProjectDelegate(context: Context) : BaseItemViewDelegate<TMessage>(con
         }
     }
 
-    override fun onItemClick(
-        viewHolder: BaseItemViewHolder,
-        itemView: View,
-        data: TMessage?,
-        id: Int,
-        position: Int,
-        realP: Int
-    ): Boolean {
+    override fun onItemClick(viewHolder: BaseItemViewHolder, itemView: View, data: TMessage?, id: Int, position: Int, realP: Int): Boolean {
         viewHolder.run {
             (data?.message?.content as CustomContent?)?.getStringValue("projectBean")?.let {
                 Gson().fromJson(it, ProjectBean::class.java).let { pro ->
                     when (id) {
                         else -> {
-                            context.startPage(
-                                route = PATH_PROJECT_DETAIL_FRAGMENT,
-                                args = *arrayOf("id" to pro.id)
-                            )
+                            context.startPage(route = PATH_PROJECT_DETAIL_FRAGMENT, args = *arrayOf("id" to pro.id))
                         }
                     }
                 }

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewbinding.ViewBinding
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.mlist.bean.DataWrapBean
 import com.chen.basemodule.mlist.bean.GroupWrapBean
@@ -121,7 +120,7 @@ abstract class BaseMultiGroupListFragment<P : RootBean, C : RootBean> :
 
         mAdapter.addItemViewDelegate(object : BaseItemViewDelegate<DataWrapBean>(requireContext()) {
 
-            override val binding = groupBinding
+            override val layoutId = groupLayoutId
 
             override fun bindData(
                 viewHolder: BaseItemViewHolder,
@@ -188,7 +187,7 @@ abstract class BaseMultiGroupListFragment<P : RootBean, C : RootBean> :
         }
     }
 
-    abstract val groupBinding: ViewBinding
+    abstract val groupLayoutId: Int
 
     abstract fun bindGroupData(
         viewHolder: BaseItemViewHolder,

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
+import androidx.viewbinding.ViewBinding
 import com.chen.basemodule.R
 import com.chen.basemodule.allroot.RootBean
 import com.chen.basemodule.basem.BaseDataFragment
@@ -47,8 +48,6 @@ import kotlin.reflect.KClass
 </K></V> */
 abstract class BaseMultiListFragment<V : RootBean> : BaseDataFragment(), OnRefreshListener,
     OnLoadMoreListener {
-
-//    override val contentLayoutId = R.layout.base_mlist_fragment
 
     override val binding by doBinding(BaseMlistFragmentBinding::inflate)
 
