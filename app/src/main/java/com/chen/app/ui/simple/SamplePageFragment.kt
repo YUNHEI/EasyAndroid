@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.chen.app.R
+import com.chen.app.ui.one.OneFragment
 import com.chen.app.ui.simple.download.DownloadFragment
 import com.chen.app.ui.simple.event.EventFragment
 import com.chen.app.ui.simple.net.WeatherDetailFragment
@@ -92,6 +93,11 @@ class SamplePageFragment : SingleGroupSimpleListFragment() {
                 Item("网页") {
                     WebActivity.toWebView(context, "file:///android_asset/test.html")
 //                    WebActivity.toWebView(context, "http://baidu.com")
+                }
+            }
+            Group("one activity") {
+                Item("one") {
+                    startPage(OneFragment::class)
                 }
             }
             Group("toolbar的使用") {

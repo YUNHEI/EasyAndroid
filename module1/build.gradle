@@ -63,6 +63,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+        languageVersion = "1.5"
+        apiVersion = "1.5"
+    }
+
     lintOptions {
 //        checkReleaseBuilds true
         abortOnError false
@@ -70,8 +77,9 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
-    viewBinding {
-        enabled = true
+
+    buildFeatures{
+        viewBinding = true
     }
 }
 

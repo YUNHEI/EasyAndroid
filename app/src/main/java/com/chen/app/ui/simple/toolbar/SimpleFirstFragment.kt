@@ -1,6 +1,5 @@
 package com.chen.app.ui.simple.toolbar
 
-import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.facade.annotation.Launch
 import com.alibaba.android.arouter.facade.enums.LaunchType
 import com.alibaba.android.arouter.facade.enums.SwipeType
@@ -29,12 +28,12 @@ class SimpleFirstFragment : BaseSimpleFragment() {
         }
 
         binding.run {
-            Title.text = "Hello World"
+            title.text = "Hello World"
 
             //添加点击事件
-            listenClick(Next) {
+            listenClick(next) {
                 when (it) {
-                    Next -> {
+                    next -> {
                         startPage(SimpleToolbarFragment::class)
                     }
                     else -> {

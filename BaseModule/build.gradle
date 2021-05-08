@@ -39,7 +39,9 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8
+        languageVersion = "1.5"
+        apiVersion = "1.5"
     }
 
     lintOptions {
@@ -47,8 +49,8 @@ android {
         abortOnError false
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures{
+        viewBinding = true
     }
 }
 

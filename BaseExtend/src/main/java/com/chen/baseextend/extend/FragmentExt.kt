@@ -7,13 +7,14 @@ import com.chen.baseextend.extend.context.intent
 import kotlin.reflect.KClass
 import kotlin.reflect.jvm.jvmName
 
-/**
+/**∂
  *  Created by chen on 2019/6/10
  **/
+@Suppress("CHANGING_ARGUMENTS_EXECUTION_ORDER_FOR_NAMED_VARARGS")
 fun Fragment.startPage(fragmentClass: KClass<*>? = null, vararg args: Pair<String, Any?>, bundle: Bundle = Bundle(),
                        route: String? = null, type: LaunchType? = null, requestCode: Int? = null, option: Bundle? = null) {
 
-    activity?.intent(fragmentClass, args = *args, fragmentArg = bundle, route = route, type = type)?.run {
+    activity?.intent(fragmentClass, args = args, fragmentArg = bundle, route = route, type = type)?.run {
         if (requestCode == null || requestCode == -1) {
             startActivity(this, option)
         } else {

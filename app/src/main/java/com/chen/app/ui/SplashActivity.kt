@@ -45,14 +45,14 @@ class SplashActivity : BaseFragmentActivity() {
                         { adService.listAdvertise(ADRequest("1")) },
                         { o ->
                             if (o.data.isNullOrEmpty()) {
-                                binding.IvAdvert.setImageResource(R.mipmap.bg_invite)
+                                binding.ivAdvert.setImageResource(R.mipmap.bg_invite)
                                 toNext()
                             } else {
                                 showAdvert(o.data!![Random().nextInt(o.data!!.size)])
                             }
                         },
                         {
-                            binding.IvAdvert.setImageResource(R.mipmap.bg_invite)
+                            binding.ivAdvert.setImageResource(R.mipmap.bg_invite)
                             toNext()
                         }
                 )
@@ -72,17 +72,17 @@ class SplashActivity : BaseFragmentActivity() {
         } else {
             initTimer(3)
 
-            binding.Skip.setOnClickListener {
+            binding.skip.setOnClickListener {
                 timer!!.cancel()
                 toNext()
             }
 
             timer!!.start()
 
-            binding.IvAdvert.load(bean.bg_pic, isOriginSize = true)
+            binding.ivAdvert.load(bean.bg_pic, isOriginSize = true)
 
             if (bean.jumpType == 2) {
-                binding.IvAdvert.setOnClickListener {
+                binding.ivAdvert.setOnClickListener {
                     startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     WebActivity.toWebView(this, "www.baidu.com")
                     if (timer != null) {
@@ -97,22 +97,22 @@ class SplashActivity : BaseFragmentActivity() {
 
     private fun initTimer(second: Int) {
 
-        binding.Skip.visibility = View.VISIBLE
-        binding.Tip.text = String.format("%s", second)
+        binding.skip.visibility = View.VISIBLE
+        binding.tip.text = String.format("%s", second)
 
         timer = object : CountDownTimer((second * 1000 + 900).toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 Log.e("time", millisUntilFinished.toString() + "")
                 val t = (millisUntilFinished / 1000).toInt()
-                if (t > 0) binding.Tip.text = String.format("%s", t)
+                if (t > 0) binding.tip.text = String.format("%s", t)
 
                 if (t == 2) {
-                    binding.Tip.post { toNext() }
+                    binding.tip.post { toNext() }
                 }
             }
 
             override fun onFinish() {
-                binding.Tip.post { toNext() }
+                binding.tip.post { toNext() }
             }
 
         }
