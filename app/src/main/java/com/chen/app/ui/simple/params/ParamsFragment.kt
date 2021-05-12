@@ -24,11 +24,11 @@ class ParamsFragment : BaseSimpleFragment() {
 
     override fun initAndObserve() {
 
-        binding.run {
-            Day.text = day
-            Date.text = date
-            Week.text = "$week"
-            Wea.text = "$wea"
+        binding.let {
+            it.day.text = day
+            it.date.text = date
+            it.week.text = "$week"
+            it.wea.text = "$wea"
         }
 
     }

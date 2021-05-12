@@ -29,11 +29,11 @@ class WeatherDetailLoadingFragment : BaseSimpleFragment() {
                 { weatherService.getWeatherDetail(BaseRequest()).apply { if (!data.isNullOrEmpty()) status = 200 } },
                 {
                     it.data?.getOrNull(0)?.run {
-                        binding.run {
-                            Day.text = day
-                            Date.text = date
-                            Week.text = week
-                            Wea.text = wea
+                        binding.let {
+                            it.day.text = day
+                            it.date.text = date
+                            it.week.text = week
+                            it.wea.text = wea
                         }
                     }
                 }

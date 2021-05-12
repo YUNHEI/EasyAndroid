@@ -30,7 +30,7 @@ import kotlin.coroutines.suspendCoroutine
 class QRCodeFragment : BaseSimpleFragment() {
 
     private val capture: UserCaptureManager by lazy {
-        UserCaptureManager(activity, binding.DbvCustom) {
+        UserCaptureManager(activity, binding.dbvCustom) {
 
         }
     }
@@ -95,7 +95,7 @@ class QRCodeFragment : BaseSimpleFragment() {
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
-        return binding.DbvCustom.onKeyDown(keyCode, event) || super.onKeyUp(keyCode, event)
+        return binding.dbvCustom.onKeyDown(keyCode, event) || super.onKeyUp(keyCode, event)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
